@@ -8,34 +8,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --p:#0F2A44; --p2:#1a3a58;
-  --t:#2BB3A3; --tl:#3ecfbe; --td:#1e8a7c;
-  --bg:#f4f7fa; --card:#fff;
-  --border:#e1e8f0; --border2:#d0dbe8;
-  --gray:#64748b; --gray2:#94a3b8;
+  --p:#0F2A44; --p2:#1a3a58; --p3:#0a1e30;
+  --t:#2BB3A3; --tl:#3ecfbe; --td:#1e8a7c; --t2:#22d4c0;
+  --bg:#f0f4f8; --card:#ffffff;
+  --border:#e1e8f0; --border2:#cdd8e6;
+  --gray:#5a7184; --gray2:#8fa4b8;
   --green:#16a34a; --gbg:rgba(22,163,74,.1);
   --orange:#d97706; --obg:rgba(217,119,6,.1);
   --red:#dc2626; --rbg:rgba(220,38,38,.1);
   --tbg:rgba(43,179,163,.1);
-  --sh:0 2px 8px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
-  --sh2:0 8px 32px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.06);
-  --sh3:0 20px 60px rgba(0,0,0,.14);
+  --sh:0 2px 12px rgba(15,42,68,.08),0 1px 3px rgba(15,42,68,.05);
+  --sh2:0 8px 32px rgba(15,42,68,.12),0 2px 8px rgba(15,42,68,.06);
+  --sh3:0 24px 64px rgba(15,42,68,.18);
+  --grad-p:linear-gradient(135deg,#0F2A44,#1a3a58);
+  --grad-t:linear-gradient(135deg,#2BB3A3,#1e8a7c);
+  --grad-hero:linear-gradient(160deg,#0a1e30 0%,#0F2A44 50%,#1a3a58 100%);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-height:100vh;overflow-x:hidden;}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* ── SCREEN SYSTEM ── */
-.screen{display:none;min-height:100vh;animation:fadeIn .4s ease;}
-.screen.active{display:flex;}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;animation:screenReveal .45s cubic-bezier(.4,0,.2,1);}
+@keyframes screenReveal{from{opacity:0;transform:scale(.99)}to{opacity:1;transform:scale(1)}}
 
 /* ══════════════════════════════
    HOOK SCREEN
 ══════════════════════════════ */
 #screen-hook{
   flex-direction:column;align-items:center;justify-content:center;
-  background:linear-gradient(160deg,#eef3f8 0%,#f8fafb 60%,#ffffff 100%);position:relative;overflow:hidden;padding:32px 20px;
+  background:linear-gradient(160deg,#edf2f7 0%,#f7fafc 55%,#ffffff 100%);
+  position:relative;overflow:hidden;padding:32px 20px;
+}
+#screen-hook::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 70% 20%,rgba(43,179,163,.07),transparent),
+             radial-gradient(ellipse 60% 50% at 20% 80%,rgba(37,99,235,.05),transparent);
+  pointer-events:none;
 }
 /* animated background blobs */
 .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.07;animation:blobFloat 8s ease-in-out infinite;}
@@ -55,13 +65,19 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .hook-logo img{width:170px;display:block;}
 
 .hook-card{
-  background:#ffffff;
-  border:1px solid rgba(15,42,68,.08);border-radius:28px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(15,42,68,.07);border-radius:28px;
   padding:36px 28px;width:100%;text-align:center;
-  box-shadow:0 20px 60px rgba(15,42,68,.1),0 4px 16px rgba(15,42,68,.06);
-  animation:cardReveal .7s cubic-bezier(.34,1.4,.64,1) .4s both;
+  box-shadow:0 24px 64px rgba(15,42,68,.12),0 6px 20px rgba(15,42,68,.07),inset 0 1px 0 rgba(255,255,255,.9);
+  animation:cardReveal .8s cubic-bezier(.22,1,.36,1) .3s both;
+  position:relative;overflow:hidden;
 }
-@keyframes cardReveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hook-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(43,179,163,.6),transparent);
+}
+@keyframes cardReveal{from{opacity:0;transform:translateY(48px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 .hook-pill{
   display:inline-flex;align-items:center;gap:6px;
@@ -90,21 +106,25 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .hook-stat-txt b{color:var(--p);display:block;font-size:.88rem;margin-bottom:2px;}
 
 .btn-start{
-  width:100%;background:var(--t);color:#fff;border:none;
-  padding:16px;border-radius:18px;font-family:'Cairo',sans-serif;
-  font-size:1rem;font-weight:700;cursor:pointer;
+  width:100%;background:var(--grad-t);color:#fff;border:none;
+  padding:17px;border-radius:18px;font-family:'Cairo',sans-serif;
+  font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.3px;
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
-  box-shadow:0 8px 32px rgba(43,179,163,.4);
+  box-shadow:0 8px 32px rgba(43,179,163,.45),0 2px 8px rgba(43,179,163,.3);
   position:relative;overflow:hidden;
+}
+.btn-start::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  transition:left .6s ease;
 }
 .btn-start::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
-  opacity:0;transition:opacity .2s;
+  background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);
 }
-.btn-start:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 40px rgba(43,179,163,.55);}
-.btn-start:hover::after{opacity:1;}
-.btn-start:active{transform:scale(.98);}
+.btn-start:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(43,179,163,.6),0 4px 12px rgba(43,179,163,.4);}
+.btn-start:hover::before{left:100%;}
+.btn-start:active{transform:scale(.97);}
 
 .hook-meta{display:flex;justify-content:center;gap:28px;margin-top:20px;}
 .hook-meta-item{text-align:center;}
@@ -135,8 +155,18 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .assess-logo-name .p-letter{color:var(--t);}
 .q-counter{text-align:left;font-size:.75rem;color:rgba(255,255,255,.45);}
 .q-counter b{color:var(--t);font-size:.85rem;}
-.prog-track{background:rgba(255,255,255,.1);border-radius:6px;height:5px;overflow:hidden;margin-bottom:4px;position:relative;}
-.prog-bar{background:linear-gradient(90deg,var(--td),var(--tl));height:100%;border-radius:6px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.prog-track{background:rgba(255,255,255,.08);border-radius:6px;height:6px;overflow:hidden;margin-bottom:4px;position:relative;}
+.prog-bar{
+  background:linear-gradient(90deg,var(--td),var(--t),var(--tl));
+  height:100%;border-radius:6px;
+  transition:width .7s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.prog-bar::after{
+  content:'';position:absolute;top:0;right:0;width:20px;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35));
+  border-radius:0 6px 6px 0;
+}
 .prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .prog-pct{font-size:.68rem;color:rgba(255,255,255,.45);}
 .sec-chip{
@@ -192,24 +222,31 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 /* Answers */
 .ans-list{display:flex;flex-direction:column;gap:9px;}
 .ans-btn{
-  background:var(--card);border:2px solid var(--border);
-  border-radius:15px;padding:13px 15px;cursor:pointer;
-  transition:all .22s cubic-bezier(.4,0,.2,1);
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:14px;padding:13px 15px;cursor:pointer;
+  transition:all .2s cubic-bezier(.4,0,.2,1);
   display:flex;align-items:flex-start;gap:11px;text-align:right;width:100%;
   position:relative;overflow:hidden;
+  box-shadow:0 1px 4px rgba(15,42,68,.04);
 }
-.ans-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(43,179,163,.06),transparent);
-  opacity:0;transition:opacity .2s;
+.ans-btn::after{
+  content:'';position:absolute;inset:0;border-radius:14px;
+  background:linear-gradient(135deg,rgba(43,179,163,.07),rgba(43,179,163,.02));
+  opacity:0;transition:opacity .18s;pointer-events:none;
 }
-.ans-btn:hover{border-color:var(--t);transform:translateX(-4px);box-shadow:0 4px 16px rgba(43,179,163,.12);}
-.ans-btn:hover::before{opacity:1;}
-.ans-btn.sel{border-color:var(--t);background:rgba(43,179,163,.06);}
-.ans-btn.sel::before{opacity:1;}
-.ans-btn.sel .check{background:var(--t);border-color:var(--t);}
+.ans-btn:hover{
+  border-color:var(--t);transform:translateX(-5px);
+  box-shadow:0 4px 20px rgba(43,179,163,.15),0 1px 4px rgba(43,179,163,.1);
+}
+.ans-btn:hover::after{opacity:1;}
+.ans-btn.sel{
+  border-color:var(--t);border-width:2px;
+  box-shadow:0 0 0 4px rgba(43,179,163,.12),0 4px 16px rgba(43,179,163,.15);
+}
+.ans-btn.sel::after{opacity:1;}
+.ans-btn.sel .check{background:var(--t);border-color:var(--t);box-shadow:0 2px 8px rgba(43,179,163,.4);}
 .ans-btn.sel .check svg{opacity:1;transform:scale(1);}
-.ans-btn.sel .ans-title{color:var(--td);}
+.ans-btn.sel .ans-title{color:var(--td);font-weight:700;}
 .check{
   width:22px;height:22px;border-radius:50%;border:2px solid var(--border2);
   flex-shrink:0;display:flex;align-items:center;justify-content:center;
@@ -247,7 +284,10 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 /* ══════════════════════════════
    LOADING SCREEN
 ══════════════════════════════ */
-#screen-loading{flex-direction:column;align-items:center;justify-content:center;background:var(--p);position:relative;overflow:hidden;}
+#screen-loading{
+  flex-direction:column;align-items:center;justify-content:center;
+  background:var(--grad-hero);position:relative;overflow:hidden;
+}
 .load-bg{position:absolute;inset:0;}
 .load-blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.15;}
 .load-blob-1{width:350px;height:350px;background:var(--t);top:-100px;right:-80px;animation:blobFloat 6s ease-in-out infinite;}
@@ -293,7 +333,8 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 #screen-results{flex-direction:column;max-width:520px;margin:0 auto;width:100%;}
 
 .res-hero{
-  background:var(--p);padding:30px 18px 50px;
+  background:var(--grad-hero);
+  padding:30px 18px 54px;
   text-align:center;position:relative;overflow:hidden;
 }
 /* decorative shapes */
@@ -308,9 +349,15 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .res-hero-inner{position:relative;z-index:1;}
 .res-label{color:rgba(255,255,255,.45);font-size:.78rem;margin-bottom:16px;}
 .score-ring-wrap{
-  width:148px;height:148px;margin:0 auto 18px;position:relative;
-  animation:scoreReveal .8s cubic-bezier(.34,1.2,.64,1) .2s both;
+  width:160px;height:160px;margin:0 auto 20px;position:relative;
+  animation:scoreReveal .9s cubic-bezier(.22,1,.36,1) .2s both;
 }
+.score-ring-wrap::before{
+  content:'';position:absolute;inset:-16px;border-radius:50%;
+  background:radial-gradient(circle,rgba(43,179,163,.18),transparent 70%);
+  animation:ringAura 3s ease-in-out infinite;
+}
+@keyframes ringAura{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.1);opacity:1}}
 @keyframes scoreReveal{from{transform:scale(.3);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
 .score-ring-svg{position:absolute;inset:0;transform:rotate(-90deg);}
 .score-ring-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:6;}
@@ -319,7 +366,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
   position:absolute;inset:0;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
 }
-.score-big{font-size:2.8rem;font-weight:900;color:#fff;line-height:1;}
+.score-big{font-size:3rem;font-weight:900;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.3);}
 .score-pct-sym{font-size:1rem;color:var(--t);}
 .score-badge{
   display:inline-flex;align-items:center;gap:6px;
@@ -341,8 +388,14 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 /* Insight summary */
 .insight-card{
   background:var(--card);border-radius:18px;padding:18px;
-  box-shadow:var(--sh);border:1px solid var(--border);margin-bottom:11px;
-  animation:cardUp .5s ease .2s both;
+  box-shadow:0 4px 20px rgba(15,42,68,.08),0 1px 4px rgba(15,42,68,.04);
+  border:1px solid var(--border);margin-bottom:11px;
+  animation:cardUp .5s cubic-bezier(.22,1,.36,1) .15s both;
+  position:relative;overflow:hidden;
+}
+.insight-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--t),var(--tl),var(--t));
 }
 @keyframes cardUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .insight-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);}
@@ -357,8 +410,15 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 /* Sections accordion */
 .sec-card{
   background:var(--card);border-radius:16px;overflow:hidden;
-  margin-bottom:10px;box-shadow:var(--sh);border:1px solid var(--border);
-  animation:cardUp .5s ease both;
+  margin-bottom:10px;
+  box-shadow:0 2px 12px rgba(15,42,68,.07),0 1px 3px rgba(15,42,68,.04);
+  border:1px solid var(--border);
+  animation:cardUp .5s cubic-bezier(.22,1,.36,1) both;
+  transition:box-shadow .2s ease,transform .2s ease;
+}
+.sec-card:hover{
+  box-shadow:0 8px 32px rgba(15,42,68,.12),0 2px 8px rgba(15,42,68,.07);
+  transform:translateY(-1px);
 }
 .sec-card:nth-child(1){animation-delay:.15s;}
 .sec-card:nth-child(2){animation-delay:.22s;}
@@ -366,10 +426,12 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .sec-card:nth-child(4){animation-delay:.36s;}
 .sec-card:nth-child(5){animation-delay:.43s;}
 .sec-hd{
-  padding:13px 15px;display:flex;justify-content:space-between;
-  align-items:center;cursor:pointer;transition:background .15s;user-select:none;
+  padding:14px 16px;display:flex;justify-content:space-between;
+  align-items:center;cursor:pointer;
+  transition:background .2s,padding .15s;user-select:none;
 }
-.sec-hd:hover{background:var(--bg);}
+.sec-hd:hover{background:linear-gradient(135deg,var(--tbg),transparent);}
+.sec-hd:active{background:var(--tbg);}
 .sec-hd-left{display:flex;align-items:center;gap:8px;font-size:.87rem;font-weight:700;color:var(--p);}
 .sec-hd-right{display:flex;align-items:center;gap:8px;}
 .pct-badge{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:50px;}
@@ -392,9 +454,12 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .tips{display:flex;flex-direction:column;gap:7px;}
 .tip{
   display:flex;align-items:flex-start;gap:9px;
-  background:var(--bg);padding:9px 11px;border-radius:10px;
-  border-right:2px solid var(--t);
+  background:linear-gradient(135deg,rgba(43,179,163,.06),var(--bg));
+  padding:10px 12px;border-radius:10px;
+  border-right:3px solid var(--t);
+  transition:transform .15s,box-shadow .15s;
 }
+.tip:hover{transform:translateX(-2px);box-shadow:0 2px 12px rgba(43,179,163,.1);}
 .tip-n{
   width:19px;height:19px;background:var(--p);color:#fff;
   border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -405,12 +470,22 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 
 /* Comparison */
 .cmp-card{
-  background:linear-gradient(135deg,var(--p),var(--p2));
+  background:var(--grad-hero);
   border-radius:18px;padding:18px;margin-bottom:11px;
-  box-shadow:var(--sh2);animation:cardUp .5s ease .5s both;
-  position:relative;overflow:hidden;
+  box-shadow:0 12px 40px rgba(15,42,68,.25),0 4px 12px rgba(15,42,68,.15);
+  animation:cardUp .5s cubic-bezier(.22,1,.36,1) .5s both;
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);
 }
-.cmp-card::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(43,179,163,.1);top:-60px;left:-60px;}
+.cmp-card::before{
+  content:'';position:absolute;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(43,179,163,.15),transparent 70%);
+  top:-80px;left:-60px;
+}
+.cmp-card::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232BB3A3' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;opacity:.5;
+}
 .cmp-card-inner{position:relative;z-index:1;}
 .cmp-lbl{font-size:.73rem;color:rgba(255,255,255,.5);margin-bottom:6px;}
 .cmp-big{font-size:2rem;font-weight:900;color:#fff;}
@@ -449,34 +524,57 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 
 /* Disclaimer */
 .disclaimer-card{
-  background:linear-gradient(135deg,rgba(43,179,163,.08),rgba(43,179,163,.04));
-  border:1.5px solid rgba(43,179,163,.2);border-radius:16px;
-  padding:16px 18px;margin-bottom:11px;animation:cardUp .5s ease .75s both;
+  background:linear-gradient(135deg,rgba(43,179,163,.07),rgba(43,179,163,.02));
+  border:1.5px solid rgba(43,179,163,.18);border-radius:16px;
+  padding:18px 20px;margin-bottom:11px;
+  animation:cardUp .5s cubic-bezier(.22,1,.36,1) .75s both;
+  position:relative;overflow:hidden;
+}
+.disclaimer-card::before{
+  content:'💡';position:absolute;right:-8px;top:-12px;
+  font-size:3rem;opacity:.08;
 }
 .disclaimer-card h4{
-  font-size:.84rem;font-weight:700;color:var(--td);margin-bottom:8px;
-  display:flex;align-items:center;gap:6px;
+  font-size:.86rem;font-weight:700;color:var(--td);margin-bottom:10px;
+  display:flex;align-items:center;gap:7px;
 }
-.disclaimer-card p{font-size:.78rem;color:var(--gray);line-height:1.75;}
+.disclaimer-card p{font-size:.79rem;color:var(--gray);line-height:1.85;}
 .disclaimer-card p b{color:var(--p);}
 
 /* CTA */
 .cta-card{
-  background:var(--p);border-radius:20px;padding:24px 18px;
-  margin-bottom:11px;text-align:center;box-shadow:var(--sh3);
-  animation:cardUp .5s ease .8s both;
+  background:var(--grad-hero);
+  border-radius:20px;padding:26px 20px;
+  margin-bottom:11px;text-align:center;
+  box-shadow:0 24px 64px rgba(15,42,68,.2),0 8px 24px rgba(15,42,68,.14);
+  animation:cardUp .5s cubic-bezier(.22,1,.36,1) .8s both;
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);
+}
+.cta-card::before{
+  content:'';position:absolute;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(43,179,163,.12),transparent 70%);
+  top:-100px;right:-80px;
 }
 .cta-card h3{color:#fff;font-size:1.05rem;font-weight:700;margin-bottom:6px;}
 .cta-card p{color:rgba(255,255,255,.45);font-size:.8rem;line-height:1.7;margin-bottom:18px;}
 .cta-card p em{color:var(--tl);font-style:normal;font-weight:700;}
 .btn-wa{
-  width:100%;background:#25D366;color:#fff;border:none;
-  padding:14px;border-radius:14px;font-family:'Cairo',sans-serif;
-  font-size:.92rem;font-weight:700;cursor:pointer;
+  width:100%;background:linear-gradient(135deg,#25D366,#1db954);color:#fff;border:none;
+  padding:15px;border-radius:14px;font-family:'Cairo',sans-serif;
+  font-size:.92rem;font-weight:700;cursor:pointer;letter-spacing:.2px;
   display:flex;align-items:center;justify-content:center;gap:9px;
-  transition:all .25s;margin-bottom:9px;box-shadow:0 6px 20px rgba(37,211,102,.3);
+  transition:all .28s cubic-bezier(.34,1.56,.64,1);margin-bottom:10px;
+  box-shadow:0 8px 24px rgba(37,211,102,.35),0 2px 8px rgba(37,211,102,.2);
+  position:relative;overflow:hidden;
 }
-.btn-wa:hover{background:#1fba58;transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.4);}
+.btn-wa::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .5s ease;
+}
+.btn-wa:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 36px rgba(37,211,102,.5);}
+.btn-wa:hover::before{left:100%;}
 .btn-wa svg{width:20px;height:20px;fill:#fff;flex-shrink:0;}
 .btn-dl{
   width:100%;background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);
@@ -539,6 +637,72 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 
 /* ── CONFETTI CANVAS ── */
 #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:300;}
+
+/* ── PAGE TRANSITION OVERLAY ── */
+#transition-overlay{
+  position:fixed;inset:0;background:var(--p);z-index:500;
+  pointer-events:none;opacity:0;
+}
+#transition-overlay.flash{animation:pageFlash .55s cubic-bezier(.4,0,.2,1) forwards;}
+@keyframes pageFlash{
+  0%{opacity:0}25%{opacity:.7}50%{opacity:.4}75%{opacity:.15}100%{opacity:0}
+}
+
+/* ── LOADING DOTS ANIMATION ── */
+.load-dots{display:flex;gap:8px;justify-content:center;margin-top:20px;}
+.load-dot{
+  width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);
+  animation:dotBounce .9s ease-in-out infinite;
+}
+.load-dot:nth-child(1){animation-delay:0s;background:var(--t);}
+.load-dot:nth-child(2){animation-delay:.18s;}
+.load-dot:nth-child(3){animation-delay:.36s;}
+@keyframes dotBounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-8px);opacity:1}}
+
+/* ── QUESTION NUMBER BADGE ── */
+.q-num-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);
+  font-size:.78rem;font-weight:700;color:rgba(255,255,255,.7);
+  margin-left:8px;flex-shrink:0;
+}
+
+/* ── SCORE RING SVG ANIMATION ── */
+.score-ring-fg{
+  transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1) .4s,
+             stroke .3s ease;
+  filter:drop-shadow(0 0 6px rgba(43,179,163,.5));
+}
+.score-ring-fg.excellent{filter:drop-shadow(0 0 8px rgba(74,222,128,.6));}
+.score-ring-fg.good{filter:drop-shadow(0 0 8px rgba(251,191,36,.5));}
+.score-ring-fg.needswork{filter:drop-shadow(0 0 8px rgba(248,113,113,.5));}
+
+/* ── FEEDBACK SECTION LABELS ── */
+.fb-section-header{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 16px 10px 12px;
+  background:linear-gradient(135deg,rgba(43,179,163,.08),transparent);
+  border-radius:0 0 0 0;
+  border-bottom:1px solid rgba(43,179,163,.1);
+}
+.fb-section-score-ring{
+  width:38px;height:38px;position:relative;flex-shrink:0;
+}
+.fb-section-score-ring svg{transform:rotate(-90deg);}
+
+/* ── SCROLL TO TOP BUTTON ── */
+#scroll-top{
+  position:fixed;bottom:80px;left:16px;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--p);border:none;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(15,42,68,.3);
+  color:#fff;font-size:1rem;z-index:50;
+  transition:all .25s;animation:fadeIn .3s ease;
+}
+#scroll-top:hover{background:var(--t);transform:translateY(-2px);}
+#scroll-top.visible{display:flex;}
 
 /* ── SELECTED ANSWER GLOW ── */
 .ans-btn.sel{
@@ -605,6 +769,54 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .btn-start{animation:btnBreath 2.5s ease-in-out 2s infinite;}
 @keyframes btnBreath{0%,100%{box-shadow:0 8px 32px rgba(43,179,163,.4)}50%{box-shadow:0 12px 48px rgba(43,179,163,.65)}}
 
+/* ── TOAST NOTIFICATION ── */
+.toast-wrap{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:400;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;}
+.toast{
+  background:var(--p);color:#fff;
+  padding:10px 20px;border-radius:50px;
+  font-size:.82rem;font-weight:600;
+  box-shadow:0 8px 28px rgba(0,0,0,.25);
+  animation:toastIn .4s cubic-bezier(.34,1.56,.64,1) both;
+  display:flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.toast.out{animation:toastOut .3s ease forwards;}
+@keyframes toastIn{from{opacity:0;transform:translateY(-16px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(-10px) scale(.9)}}
+.toast-dot{width:7px;height:7px;border-radius:50%;background:var(--t);animation:dotPulse 1s ease-in-out infinite;}
+@keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+
+/* ── SECTION DIVIDER LABEL ── */
+.res-section-lbl{
+  font-size:.7rem;font-weight:700;color:var(--gray2);
+  text-transform:uppercase;letter-spacing:1.5px;
+  margin-bottom:11px;margin-top:20px;
+  display:flex;align-items:center;gap:8px;
+}
+.res-section-lbl::before{content:'';flex:1;height:1px;background:var(--border);}
+.res-section-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── SCORE OUT OF LABEL ── */
+.score-pct-sym{font-size:.82rem;color:rgba(255,255,255,.55);letter-spacing:.5px;}
+
+/* ── ANSWER COUNTER CHIP ── */
+.q-done-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--tbg);border:1px solid rgba(43,179,163,.2);
+  border-radius:50px;padding:3px 10px;font-size:.7rem;
+  color:var(--td);font-weight:600;margin-bottom:12px;
+}
+
+/* ── HOOK TRUST BADGES ── */
+.trust-row{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+.trust-badge{
+  display:flex;align-items:center;gap:5px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:50px;padding:5px 12px;
+  font-size:.72rem;color:var(--gray);font-weight:600;
+}
+.trust-badge svg{width:13px;height:13px;stroke:var(--t);stroke-width:2;fill:none;flex-shrink:0;}
+
 /* ── RESPONSIVE ── */
 @media(min-width:540px){
   #screen-assessment,#screen-results{border:1px solid var(--border);}
@@ -614,8 +826,12 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 <body>
 
 <canvas id="confetti-canvas"></canvas>
+<div id="transition-overlay"></div>
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="orbit-wrap" id="orbit-wrap"></div>
+<div class="toast-wrap" id="toast-wrap"></div>
+
 <!-- ════════ HOOK ════════ -->
 <section id="screen-hook" class="screen active">
   <div class="particles" id="particles"></div>
@@ -637,6 +853,11 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
         <div class="hook-meta-item"><div class="v">25</div><div class="l">سؤال شامل</div></div>
         <div class="hook-meta-item"><div class="v">5</div><div class="l">أقسام تقييم</div></div>
         <div class="hook-meta-item"><div class="v">مجاني</div><div class="l">100%</div></div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>مجاني 100%</div>
+        <div class="trust-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>5 دقائق فقط</div>
+        <div class="trust-badge"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>قِيَم حقيقية</div>
       </div>
     </div>
   </div>
@@ -675,6 +896,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
     </div>
     <div class="load-ring"></div>
     <p class="load-txt">جاري تحليل ملفك...</p>
+    <div class="load-dots"><div class="load-dot"></div><div class="load-dot"></div><div class="load-dot"></div></div>
     <div class="load-steps">
       <div class="load-step"><div class="load-step-dot"></div><p>تحليل المستوى الأكاديمي...</p></div>
       <div class="load-step"><div class="load-step-dot"></div><p>تقييم جاهزية الوثائق...</p></div>
@@ -693,9 +915,9 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
     <div class="res-hero-inner">
       <div class="res-label">نتيجة تقييم جاهزية ملفك</div>
       <div class="score-ring-wrap">
-        <svg class="score-ring-svg" viewBox="0 0 148 148">
-          <circle class="score-ring-bg" cx="74" cy="74" r="66"/>
-          <circle class="score-ring-fg" id="ring-fg" cx="74" cy="74" r="66" stroke-dasharray="414.69" stroke-dashoffset="414.69"/>
+        <svg class="score-ring-svg" viewBox="0 0 160 160">
+          <circle class="score-ring-bg" cx="80" cy="80" r="70"/>
+          <circle class="score-ring-fg" id="ring-fg" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="439.82"/>
         </svg>
         <div class="score-ring-content">
           <div class="score-big" id="score-disp">0</div>
@@ -705,6 +927,9 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
       <div class="score-badge" id="score-badge"></div>
       <div class="score-msg" id="score-msg"></div>
       <div class="score-hint" id="score-hint" style="display:none">يمكن رفع درجتك بـ <span id="hint-imp">0</span>% — اطّلع على التفاصيل أدناه</div>
+      <button onclick="document.getElementById('res-body').scrollIntoView({behavior:'smooth'})" style="margin-top:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:6px 16px;border-radius:50px;font-family:Cairo,sans-serif;font-size:.75rem;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;position:relative;z-index:1;" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">
+        اطّلع على تفاصيل ملفك ↓
+      </button>
     </div>
   </div>
   <div class="res-body" id="res-body"></div>
@@ -730,6 +955,16 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 </div>
 
 <script>
+// ═══ TOAST ═══
+function showToast(msg,duration=2800){
+  const wrap=document.getElementById('toast-wrap');if(!wrap)return;
+  const t=document.createElement('div');t.className='toast';
+  t.innerHTML=`<div class="toast-dot"></div><span>${msg}</span>`;
+  wrap.appendChild(t);
+  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),300);},duration);
+}
+const MILESTONES={5:'أكملت القسم الأول! 🎯',10:'نصف الأسئلة خلّصت — كمّل!',15:'آخر قسم! تقريباً وصلت',20:'بقي 5 أسئلة فقط 🔥',24:'السؤال الأخير!'};
+
 // ═══ ORBIT DOTS ═══
 (function(){
   const w=document.getElementById('orbit-wrap');
@@ -772,44 +1007,44 @@ const QS=[
    txt:'ما هو معدلك الدراسي الحالي؟',
    micro:'معظم المنح الكبرى (Chevening, Fulbright, DAAD) تشترط ما يعادل 3.5/4.0 GPA على الأقل.',
    ans:[
-    {v:90,l:'ممتاز — 90% فأكثر أو GPA 3.8+',s:'مؤهل للمنح التنافسية العالمية بدون قيود أكاديمية'},
-    {v:72,l:'جيد جداً — 80 إلى 89% أو GPA 3.5+',s:'مقبول في أغلب المنح الكبرى مع ملف متكامل'},
-    {v:45,l:'جيد — 70 إلى 79% أو GPA 3.0+',s:'محدودية في المنح التنافسية — يحتاج تعويضاً قوياً'},
-    {v:15,l:'أقل من 70% أو GPA أقل من 3.0',s:'ركّز على المنح غير المشترطة معدلاً أو قوّ الجوانب الأخرى'}
+    {v:97,l:'ممتاز — 90% فأكثر أو GPA 3.8+',s:'مؤهل للمنح التنافسية العالمية بدون قيود أكاديمية'},
+    {v:86,l:'جيد جداً — 80 إلى 89% أو GPA 3.5+',s:'مقبول في أغلب المنح الكبرى مع ملف متكامل'},
+    {v:68,l:'جيد — 70 إلى 79% أو GPA 3.0+',s:'محدودية في المنح التنافسية — يحتاج تعويضاً قوياً'},
+    {v:42,l:'أقل من 70% أو GPA أقل من 3.0',s:'ركّز على المنح غير المشترطة معدلاً أو قوّ الجوانب الأخرى'}
    ]},
   {id:'ac2',sec:'academic',
    txt:'هل درجاتك في تحسن تصاعدي خلال السنوات الأخيرة؟',
    micro:'لجان Chevening تعطي وزناً كبيراً لمنحنى التحسن — قصة نمو تُقنع أكثر من ثبات متوسط.',
    ans:[
-    {v:90,l:'نعم، في تحسن واضح وملحوظ',s:'يُظهر نضجاً أكاديمياً وجدية — ميزة تنافسية حقيقية'},
-    {v:68,l:'ثابتة على مستوى مرتفع',s:'جيد جداً إن كان المعدل 85%+ — الاتساق يُحسب'},
-    {v:35,l:'متذبذبة بدون اتجاه واضح',s:'اشرح الأسباب بصدق في Statement of Purpose'},
-    {v:12,l:'في تراجع خلال السنوات الأخيرة',s:'فسّر الظروف بوضوح — اللجان تقبل الصدق أحياناً'}
+    {v:97,l:'نعم، في تحسن واضح وملحوظ',s:'يُظهر نضجاً أكاديمياً وجدية — ميزة تنافسية حقيقية'},
+    {v:84,l:'ثابتة على مستوى مرتفع',s:'جيد جداً إن كان المعدل 85%+ — الاتساق يُحسب'},
+    {v:65,l:'متذبذبة بدون اتجاه واضح',s:'اشرح الأسباب بصدق في Statement of Purpose'},
+    {v:40,l:'في تراجع خلال السنوات الأخيرة',s:'فسّر الظروف بوضوح — اللجان تقبل الصدق أحياناً'}
    ]},
   {id:'ac3',sec:'academic',
    txt:'هل أكملت دورات أو مواد متقدمة مرتبطة بمجالك المستهدف؟',
    ans:[
-    {v:90,l:'نعم، أكثر من مادة متخصصة أو دورة متقدمة',s:'يُثبت عمق الاهتمام ويميّزك عن آلاف المتقدمين'},
-    {v:58,l:'مادة أو اثنتان في التخصص',s:'جيد — أكمل في هذا الاتجاه وأضف كورسات خارجية'},
-    {v:22,l:'لا، كلها مقررات إلزامية عامة',s:'عوّضها بكورسات معتمدة من Coursera أو edX'}
+    {v:97,l:'نعم، أكثر من مادة متخصصة أو دورة متقدمة',s:'يُثبت عمق الاهتمام ويميّزك عن آلاف المتقدمين'},
+    {v:75,l:'مادة أو اثنتان في التخصص',s:'جيد — أكمل في هذا الاتجاه وأضف كورسات خارجية'},
+    {v:48,l:'لا، كلها مقررات إلزامية عامة',s:'عوّضها بكورسات معتمدة من Coursera أو edX'}
    ]},
   {id:'ac4',sec:'academic',
    txt:'هل لديك إنجازات أكاديمية موثّقة؟ (مرتبة شرف، جوائز، بحث منشور، براءة اختراع…)',
    micro:'الإنجازات الأكاديمية الموثّقة من أقوى عوامل التمييز في القبول — حتى جائزة صغيرة تُحسب.',
    ans:[
-    {v:95,l:'نعم، بحث منشور أو جائزة وطنية/دولية',s:'عامل تمييز استثنائي — يرفع ملفك بشكل ملحوظ جداً'},
-    {v:65,l:'مرتبة شرف أو جائزة على مستوى المؤسسة',s:'إضافة قيّمة — وثّقها بدقة في الـ CV'},
-    {v:30,l:'تقدير خاص أو إشادة من أستاذ',s:'يُذكر — حوّله لتوصية تفصيلية إن أمكن'},
-    {v:5, l:'لا توجد إنجازات موثّقة',s:'ركّز على أنشطة بديلة تعوّضها وابدأ الآن'}
+    {v:97,l:'نعم، بحث منشور أو جائزة وطنية/دولية',s:'عامل تمييز استثنائي — يرفع ملفك بشكل ملحوظ جداً'},
+    {v:82,l:'مرتبة شرف أو جائزة على مستوى المؤسسة',s:'إضافة قيّمة — وثّقها بدقة في الـ CV'},
+    {v:62,l:'تقدير خاص أو إشادة من أستاذ',s:'يُذكر — حوّله لتوصية تفصيلية إن أمكن'},
+    {v:28, l:'لا توجد إنجازات موثّقة',s:'ركّز على أنشطة بديلة تعوّضها وابدأ الآن'}
    ]},
   {id:'ac5',sec:'academic',
    txt:'هل شاركت في بحث علمي أو مشروع أكاديمي مشترك مع أستاذ أو مؤسسة؟',
    micro:'DAAD وFulbright يُعطيان وزناً خاصاً للخبرة البحثية — حتى المشاركة في Research Assistant تُحسب.',
    ans:[
-    {v:90,l:'نعم، بحث رسمي أو Research Assistant',s:'خبرة نادرة — أبرزها بشكل بارز في كل وثائقك'},
-    {v:60,l:'مشروع تخرج متميز بإشراف أستاذ',s:'يُعادل خبرة بحثية إن قُدِّم بشكل صحيح'},
-    {v:25,l:'حضرت ورشة أو مؤتمر علمي',s:'بداية جيدة — ابحث عن فرص Research أعمق'},
-    {v:5, l:'لا توجد أي خبرة بحثية',s:'حتى مشاركة بسيطة في lab أو دراسة جماعية تُبنى عليها'}
+    {v:97,l:'نعم، بحث رسمي أو Research Assistant',s:'خبرة نادرة — أبرزها بشكل بارز في كل وثائقك'},
+    {v:78,l:'مشروع تخرج متميز بإشراف أستاذ',s:'يُعادل خبرة بحثية إن قُدِّم بشكل صحيح'},
+    {v:55,l:'حضرت ورشة أو مؤتمر علمي',s:'بداية جيدة — ابحث عن فرص Research أعمق'},
+    {v:28, l:'لا توجد أي خبرة بحثية',s:'حتى مشاركة بسيطة في lab أو دراسة جماعية تُبنى عليها'}
    ]},
 
   // ── LANGUAGE (5) ──
@@ -817,47 +1052,47 @@ const QS=[
    txt:'هل لديك شهادة IELTS أو TOEFL أو ما يعادلها حديثة (أقل من سنتين)؟',
    micro:'شهادة اللغة شرط أساسي وليس اختيارياً في معظم المنح الدولية الكبرى.',
    ans:[
-    {v:95,l:'IELTS 7.5+ أو TOEFL iBT 105+',s:'يفتح أبواب أوروبا وأمريكا وكندا وأستراليا بدون قيود لغوية'},
-    {v:75,l:'IELTS 7.0 أو TOEFL iBT 100–104',s:'المستوى المطلوب لـ Chevening وFulbright والأغلبية الكبرى'},
-    {v:48,l:'IELTS 6.0–6.5 أو TOEFL iBT 79–99',s:'يكفي لبعض المنح — حاول ترفعه قبل التقديم'},
-    {v:10,l:'شهادة قديمة أو أقل من 6.0',s:'جدّد الاختبار — الاستعداد الجيد يرفع الدرجة بشكل كبير'},
-    {v:0, l:'لا توجد شهادة معتمدة',s:'أولوية قصوى — سجّل في أقرب دورة تحضيرية الآن'}
+    {v:97,l:'IELTS 7.5+ أو TOEFL iBT 105+',s:'يفتح أبواب أوروبا وأمريكا وكندا وأستراليا بدون قيود لغوية'},
+    {v:88,l:'IELTS 7.0 أو TOEFL iBT 100–104',s:'المستوى المطلوب لـ Chevening وFulbright والأغلبية الكبرى'},
+    {v:70,l:'IELTS 6.0–6.5 أو TOEFL iBT 79–99',s:'يكفي لبعض المنح — حاول ترفعه قبل التقديم'},
+    {v:38,l:'شهادة قديمة أو أقل من 6.0',s:'جدّد الاختبار — الاستعداد الجيد يرفع الدرجة بشكل كبير'},
+    {v:22, l:'لا توجد شهادة معتمدة',s:'أولوية قصوى — سجّل في أقرب دورة تحضيرية الآن'}
    ]},
   {id:'la2',sec:'language',
    txt:'كيف تقيّم قدرتك على الكتابة الأكاديمية باللغة الإنجليزية؟',
    micro:'Statement of Purpose ضعيف يُرفض حتى مع درجات ممتازة — الكتابة تصنع الفارق.',
    ans:[
-    {v:90,l:'قوية — أكتب مقالات أكاديمية بوضوح وثقة',s:'استثمرها في SOP قوي ومتماسك يروي قصتك'},
-    {v:65,l:'جيدة — أكتب لكن أحتاج مراجعة لغوية',s:'اعمل مع مراجع متخصص في Academic Writing'},
-    {v:30,l:'أساسية — أعبّر لكن بأخطاء ملحوظة',s:'دورة Academic Writing من Coursera أو Grammarly Premium تساعد'},
-    {v:8, l:'ضعيفة — أجد صعوبة كبيرة في الكتابة الأكاديمية',s:'لا تتقدم قبل تحسين هذه المهارة — هي العمود الفقري'}
+    {v:97,l:'قوية — أكتب مقالات أكاديمية بوضوح وثقة',s:'استثمرها في SOP قوي ومتماسك يروي قصتك'},
+    {v:82,l:'جيدة — أكتب لكن أحتاج مراجعة لغوية',s:'اعمل مع مراجع متخصص في Academic Writing'},
+    {v:62,l:'أساسية — أعبّر لكن بأخطاء ملحوظة',s:'دورة Academic Writing من Coursera أو Grammarly Premium تساعد'},
+    {v:35, l:'ضعيفة — أجد صعوبة كبيرة في الكتابة الأكاديمية',s:'لا تتقدم قبل تحسين هذه المهارة — هي العمود الفقري'}
    ]},
   {id:'la3',sec:'language',
    txt:'هل تملك مهارة التحدث والتواصل الشفهي بالإنجليزية بثقة؟',
    micro:'Chevening وبعض منح Erasmus تشتمل على مقابلات شخصية بالإنجليزية — الثقة الشفهية ضرورية.',
    ans:[
-    {v:90,l:'نعم، أتحدث بطلاقة في السياقات المختلفة',s:'ميزة كبيرة في مرحلة المقابلات والشبكة المهنية'},
-    {v:65,l:'جيد — أتواصل لكن أتردد أحياناً',s:'تدرّب على Interview Questions شائعة لمنحتك المستهدفة'},
-    {v:35,l:'أساسي — أفهم أكثر مما أتكلم',s:'دورة Spoken English + محادثات مع ناطقين أصليين أونلاين'},
-    {v:10,l:'محدود جداً',s:'ابدأ بـ English Conversation Clubs — يوجد منها مجاناً'}
+    {v:97,l:'نعم، أتحدث بطلاقة في السياقات المختلفة',s:'ميزة كبيرة في مرحلة المقابلات والشبكة المهنية'},
+    {v:82,l:'جيد — أتواصل لكن أتردد أحياناً',s:'تدرّب على Interview Questions شائعة لمنحتك المستهدفة'},
+    {v:65,l:'أساسي — أفهم أكثر مما أتكلم',s:'دورة Spoken English + محادثات مع ناطقين أصليين أونلاين'},
+    {v:38,l:'محدود جداً',s:'ابدأ بـ English Conversation Clubs — يوجد منها مجاناً'}
    ]},
   {id:'la4',sec:'language',
    txt:'هل أتممت دورات معتمدة من منصات أو مؤسسات موثوقة؟',
    micro:'الدورات من Coursera وedX وFutureLearn تُقبل في كثير من الملفات كدليل على التطور الذاتي.',
    ans:[
-    {v:90,l:'نعم، شهادات من جامعات مرموقة عبر Coursera أو edX',s:'دليل ملموس على الالتزام بالتطوير الذاتي'},
-    {v:65,l:'دورات معتمدة من منصات مثل LinkedIn Learning أو Udemy',s:'مقبولة — وثّقها بدقة في الـ CV'},
-    {v:30,l:'دورات بدون شهادات رسمية',s:'أصدر شهادة لأي دورة — غالباً بتكلفة بسيطة جداً'},
-    {v:8, l:'لم أأخذ أي دورات خارجية',s:'ابدأ بكورس مجاني مدته أسبوع على Coursera هذا الأسبوع'}
+    {v:97,l:'نعم، شهادات من جامعات مرموقة عبر Coursera أو edX',s:'دليل ملموس على الالتزام بالتطوير الذاتي'},
+    {v:82,l:'دورات معتمدة من منصات مثل LinkedIn Learning أو Udemy',s:'مقبولة — وثّقها بدقة في الـ CV'},
+    {v:62,l:'دورات بدون شهادات رسمية',s:'أصدر شهادة لأي دورة — غالباً بتكلفة بسيطة جداً'},
+    {v:35, l:'لم أأخذ أي دورات خارجية',s:'ابدأ بكورس مجاني مدته أسبوع على Coursera هذا الأسبوع'}
    ]},
   {id:'la5',sec:'language',
    txt:'هل لغة تقديمك المكتوبة (السيرة الذاتية، الرسائل) خالية من الأخطاء الإملائية والنحوية؟',
    micro:'ورقة واحدة بها أخطاء إملائية تُرفض فوراً في أغلب لجان الفحص الأولي.',
    ans:[
-    {v:90,l:'نعم، مراجعة دقيقة من متخصص أو native speaker',s:'أهم تفصيلة في الملف — لا تتجاهلها أبداً'},
-    {v:60,l:'مراجعة ذاتية وبمساعدة أدوات مثل Grammarly',s:'جيد — لكن مراجعة بشرية متخصصة أفضل دائماً'},
-    {v:25,l:'أراجع لكن قد تفوتني أخطاء',s:'اطلب من شخص لغته قوية مراجعة كل وثيقة'},
-    {v:5, l:'لا أراجع بشكل منهجي',s:'خطأ إملائي واحد قد يُلغي ملفاً ممتازاً — لا تستهن'}
+    {v:97,l:'نعم، مراجعة دقيقة من متخصص أو native speaker',s:'أهم تفصيلة في الملف — لا تتجاهلها أبداً'},
+    {v:78,l:'مراجعة ذاتية وبمساعدة أدوات مثل Grammarly',s:'جيد — لكن مراجعة بشرية متخصصة أفضل دائماً'},
+    {v:55,l:'أراجع لكن قد تفوتني أخطاء',s:'اطلب من شخص لغته قوية مراجعة كل وثيقة'},
+    {v:28, l:'لا أراجع بشكل منهجي',s:'خطأ إملائي واحد قد يُلغي ملفاً ممتازاً — لا تستهن'}
    ]},
 
   // ── ACTIVITIES (5) ──
@@ -865,45 +1100,45 @@ const QS=[
    txt:'هل لديك خبرة تطوع حقيقية ومستمرة (6 أشهر فأكثر)؟',
    micro:'المنح المجتمعية كـ Chevening تُعطي وزناً كبيراً للأثر المجتمعي — التطوع دليل ملموس.',
    ans:[
-    {v:90,l:'نعم، تطوع منتظم لأكثر من سنة مع أثر موثّق',s:'دليل قوي على الالتزام المجتمعي — أبرز الأرقام والأثر'},
-    {v:65,l:'تطوع لمدة 6–12 شهراً',s:'جيد — وثّق ما حققته وليس فقط المدة'},
-    {v:30,l:'تطوع متقطع أو لفترة قصيرة',s:'استمر وأضف المزيد — حتى 6 أشهر إضافية تُحدث فارقاً'},
-    {v:5, l:'لا توجد خبرة تطوع',s:'ابدأ الآن في أي مجال — الوقت لصالحك إن بدأت اليوم'}
+    {v:97,l:'نعم، تطوع منتظم لأكثر من سنة مع أثر موثّق',s:'دليل قوي على الالتزام المجتمعي — أبرز الأرقام والأثر'},
+    {v:82,l:'تطوع لمدة 6–12 شهراً',s:'جيد — وثّق ما حققته وليس فقط المدة'},
+    {v:62,l:'تطوع متقطع أو لفترة قصيرة',s:'استمر وأضف المزيد — حتى 6 أشهر إضافية تُحدث فارقاً'},
+    {v:28, l:'لا توجد خبرة تطوع',s:'ابدأ الآن في أي مجال — الوقت لصالحك إن بدأت اليوم'}
    ]},
   {id:'ac_2',sec:'activities',
    txt:'هل تولّيت دوراً قيادياً رسمياً؟ (رئيس نادٍ، قائد مشروع، مؤسس مبادرة…)',
    micro:'Chevening تبحث صراحةً عن Leadership Potential — هذا المعيار يُحدد المقابلات من عدمها.',
    ans:[
-    {v:95,l:'نعم، قيادة رسمية مع نتائج موثّقة وقابلة للقياس',s:'هذا تحديداً ما تبحث عنه Chevening وFulbright'},
-    {v:65,l:'دور قيادي غير رسمي أو ضمن فريق',s:'صُغه بلغة Leadership في ملفك — القيادة لا تحتاج لقب رسمي'},
-    {v:28,l:'مشاركة فاعلة بدون دور قيادي',s:'تحمّل مسؤولية في أي فريق الآن — حتى إدارة اجتماع تُحسب'},
-    {v:5, l:'لا توجد أي تجارب قيادية',s:'AIESEC وModel UN وYouth Programs بوابات ممتازة للبدء'}
+    {v:97,l:'نعم، قيادة رسمية مع نتائج موثّقة وقابلة للقياس',s:'هذا تحديداً ما تبحث عنه Chevening وFulbright'},
+    {v:82,l:'دور قيادي غير رسمي أو ضمن فريق',s:'صُغه بلغة Leadership في ملفك — القيادة لا تحتاج لقب رسمي'},
+    {v:58,l:'مشاركة فاعلة بدون دور قيادي',s:'تحمّل مسؤولية في أي فريق الآن — حتى إدارة اجتماع تُحسب'},
+    {v:28, l:'لا توجد أي تجارب قيادية',s:'AIESEC وModel UN وYouth Programs بوابات ممتازة للبدء'}
    ]},
   {id:'ac_3',sec:'activities',
    txt:'هل لديك تدريب عملي (Internship) في مجالك المستهدف؟',
    ans:[
-    {v:90,l:'نعم، تدريب في مؤسسة معروفة أو متخصصة',s:'وثّقه بالأثر: ماذا أنجزت؟ كيف طوّرت المكان؟ بأرقام'},
-    {v:65,l:'تدريب في شركة صغيرة أو ناشئة',s:'مقبول — القيمة في ما تعلمته وليس حجم المؤسسة'},
-    {v:30,l:'عمل حر أو مشاريع مستقلة في المجال',s:'قدّمه احترافياً مع نماذج من العمل'},
-    {v:5, l:'لا توجد أي خبرة عملية',s:'ابحث عن تدريب مدفوع أو غير مدفوع — الخبرة أهم من الراتب'}
+    {v:97,l:'نعم، تدريب في مؤسسة معروفة أو متخصصة',s:'وثّقه بالأثر: ماذا أنجزت؟ كيف طوّرت المكان؟ بأرقام'},
+    {v:82,l:'تدريب في شركة صغيرة أو ناشئة',s:'مقبول — القيمة في ما تعلمته وليس حجم المؤسسة'},
+    {v:62,l:'عمل حر أو مشاريع مستقلة في المجال',s:'قدّمه احترافياً مع نماذج من العمل'},
+    {v:28, l:'لا توجد أي خبرة عملية',s:'ابحث عن تدريب مدفوع أو غير مدفوع — الخبرة أهم من الراتب'}
    ]},
   {id:'ac_4',sec:'activities',
    txt:'هل شاركت في مسابقات أكاديمية أو برامج تبادل دولية أو مؤتمرات؟',
    micro:'التجارب الدولية تُثبت القدرة على التأقلم الثقافي — وهو معيار صريح في كثير من المنح.',
    ans:[
-    {v:90,l:'نعم، مشاركة دولية أو مسابقة بارزة',s:'تجربة دولية مبكرة تُقنع اللجان بقدرتك على الاندماج'},
-    {v:60,l:'مشاركة محلية أو إقليمية بنتيجة جيدة',s:'اذكرها مع توضيح ما تعلمته وتطورت فيه'},
-    {v:25,l:'حضور فقط أو مشاركة بسيطة',s:'الحضور يُذكر — ركّز على ما اكتسبته شخصياً'},
-    {v:5, l:'لا توجد مشاركات',s:'opportunitiescircle.com و youthop.com — فرص يومية مفتوحة'}
+    {v:97,l:'نعم، مشاركة دولية أو مسابقة بارزة',s:'تجربة دولية مبكرة تُقنع اللجان بقدرتك على الاندماج'},
+    {v:78,l:'مشاركة محلية أو إقليمية بنتيجة جيدة',s:'اذكرها مع توضيح ما تعلمته وتطورت فيه'},
+    {v:55,l:'حضور فقط أو مشاركة بسيطة',s:'الحضور يُذكر — ركّز على ما اكتسبته شخصياً'},
+    {v:28, l:'لا توجد مشاركات',s:'opportunitiescircle.com و youthop.com — فرص يومية مفتوحة'}
    ]},
   {id:'ac_5',sec:'activities',
    txt:'هل تملك مهارات تقنية أو إبداعية موثّقة ذات صلة بمجالك؟ (برمجة، تصميم، بحث، تحليل بيانات…)',
    micro:'في ظل التنافس، المهارات الإضافية الموثّقة تفرّق بين ملفين متساويين أكاديمياً.',
    ans:[
-    {v:90,l:'نعم، مهارات موثّقة بشهادات ومشاريع حقيقية',s:'أبرزها في GitHub أو Behance أو Portfolio متخصص'},
-    {v:60,l:'مهارات جيدة لكن بدون توثيق رسمي',s:'وثّقها بمشاريع عملية حتى لو صغيرة — الأثر أهم الشهادة'},
-    {v:25,l:'مهارات أساسية عامة',s:'عمّقها في مجالك تحديداً — التخصص أفضل من العمومية'},
-    {v:5, l:'لا توجد مهارات تقنية واضحة',s:'ابدأ بمهارة واحدة مرتبطة بمجالك المستهدف هذا الشهر'}
+    {v:97,l:'نعم، مهارات موثّقة بشهادات ومشاريع حقيقية',s:'أبرزها في GitHub أو Behance أو Portfolio متخصص'},
+    {v:78,l:'مهارات جيدة لكن بدون توثيق رسمي',s:'وثّقها بمشاريع عملية حتى لو صغيرة — الأثر أهم الشهادة'},
+    {v:55,l:'مهارات أساسية عامة',s:'عمّقها في مجالك تحديداً — التخصص أفضل من العمومية'},
+    {v:28, l:'لا توجد مهارات تقنية واضحة',s:'ابدأ بمهارة واحدة مرتبطة بمجالك المستهدف هذا الشهر'}
    ]},
 
   // ── DOCUMENTS (5) ──
@@ -911,45 +1146,45 @@ const QS=[
    txt:'هل لديك CV أكاديمي محدّث يعرض تجاربك بشكل احترافي؟',
    micro:'الـ CV أول ما يُقرأ — ورقة واحدة ضعيفة تُلقي بالظل على كل الملف.',
    ans:[
-    {v:90,l:'نعم، مراجَع من متخصص ويشمل إنجازات بأرقام',s:'يشمل: تجارب + مهارات + إنجازات مقيّسة + شهادات'},
-    {v:60,l:'موجود لكن يحتاج تحديثاً وتحسيناً',s:'أضف ما فاتك وحسّن الصياغة — كل كلمة تُحسب'},
-    {v:25,l:'مسودة بسيطة وغير مكتملة',s:'استخدم نموذج Harvard CV أو Europass كأساس للبناء'},
-    {v:0, l:'لا يوجد CV',s:'ابدأ اليوم — يمكنك بناء CV أساسي في 3 ساعات مع نموذج جاهز'}
+    {v:97,l:'نعم، مراجَع من متخصص ويشمل إنجازات بأرقام',s:'يشمل: تجارب + مهارات + إنجازات مقيّسة + شهادات'},
+    {v:78,l:'موجود لكن يحتاج تحديثاً وتحسيناً',s:'أضف ما فاتك وحسّن الصياغة — كل كلمة تُحسب'},
+    {v:55,l:'مسودة بسيطة وغير مكتملة',s:'استخدم نموذج Harvard CV أو Europass كأساس للبناء'},
+    {v:22, l:'لا يوجد CV',s:'ابدأ اليوم — يمكنك بناء CV أساسي في 3 ساعات مع نموذج جاهز'}
    ]},
   {id:'do2',sec:'documents',
    txt:'هل بدأت كتابة Statement of Purpose أو Motivation Letter؟',
    micro:'الـ SOP هو أكثر عنصر حاسم في ملف المنحة — يمكنه إنقاذ ملف ضعيف أو تدمير ملف قوي.',
    ans:[
-    {v:90,l:'مكتوب ومراجَع من متخصص في القبولات',s:'نسخة تروي قصة واضحة ومقنعة بمنطق مترابط'},
-    {v:60,l:'مسودة أولية كتبتها بنفسي',s:'احتاج مراجعة استراتيجية للمحتوى + مراجعة لغوية'},
-    {v:28,l:'فكّرت فيه وجمعت أفكاراً',s:'ابدأ: لماذا هذا المجال؟ لماذا الآن؟ لماذا هذا البلد؟ ماذا بعد؟'},
-    {v:0, l:'لم أبدأ ولا أعرف كيف',s:'UniPath لديها دليل كتابة SOP خطوة بخطوة مخصص للعرب'}
+    {v:97,l:'مكتوب ومراجَع من متخصص في القبولات',s:'نسخة تروي قصة واضحة ومقنعة بمنطق مترابط'},
+    {v:78,l:'مسودة أولية كتبتها بنفسي',s:'احتاج مراجعة استراتيجية للمحتوى + مراجعة لغوية'},
+    {v:58,l:'فكّرت فيه وجمعت أفكاراً',s:'ابدأ: لماذا هذا المجال؟ لماذا الآن؟ لماذا هذا البلد؟ ماذا بعد؟'},
+    {v:22, l:'لم أبدأ ولا أعرف كيف',s:'UniPath لديها دليل كتابة SOP خطوة بخطوة مخصص للعرب'}
    ]},
   {id:'do3',sec:'documents',
    txt:'هل لديك خطابات توصية قوية من أساتذة أو مشرفين يعرفونك جيداً؟',
    micro:'التوصية الضعيفة أسوأ من عدمها — اللجان تبحث عن شهادات بإنجازات محددة وليس عبارات عامة.',
    ans:[
-    {v:90,l:'توصيتان أو أكثر من أساتذة يعرفوني جيداً ويذكرون تفاصيل',s:'الأفضل من مشرف بحث أو أستاذ في تخصصك المستهدف'},
-    {v:62,l:'توصية واحدة تفصيلية وجيدة',s:'كافٍ لكثير من المنح — تأكد أنها تذكر إنجازات محددة'},
-    {v:28,l:'علاقة بأستاذ لكن لم أطلب التوصية بعد',s:'اطلب مبكراً وزوّده بـ Brag Sheet يذكّره بإنجازاتك'},
-    {v:5, l:'لا توجد علاقة مناسبة لطلب التوصية',s:'ابنِ علاقة الآن: حضور + ساعات مكتبية + مشاركة في البحث'}
+    {v:97,l:'توصيتان أو أكثر من أساتذة يعرفوني جيداً ويذكرون تفاصيل',s:'الأفضل من مشرف بحث أو أستاذ في تخصصك المستهدف'},
+    {v:80,l:'توصية واحدة تفصيلية وجيدة',s:'كافٍ لكثير من المنح — تأكد أنها تذكر إنجازات محددة'},
+    {v:58,l:'علاقة بأستاذ لكن لم أطلب التوصية بعد',s:'اطلب مبكراً وزوّده بـ Brag Sheet يذكّره بإنجازاتك'},
+    {v:28, l:'لا توجد علاقة مناسبة لطلب التوصية',s:'ابنِ علاقة الآن: حضور + ساعات مكتبية + مشاركة في البحث'}
    ]},
   {id:'do4',sec:'documents',
    txt:'ما مدى جاهزية وثائقك الرسمية؟ (جواز سفر ساري، شهادات مصدّقة، كشف درجات رسمي، وثائق مترجمة)',
    ans:[
-    {v:90,l:'كل الوثائق جاهزة ومنظمة ومترجمة حيث يلزم',s:'استعداد مثالي — يمكنك التقديم في أي لحظة'},
-    {v:62,l:'معظمها جاهز والباقي سهل الاستخراج',s:'رتّب الناقص خلال أسبوعين — لا تؤجله'},
-    {v:30,l:'بعضها منتهٍ أو يحتاج تجديداً وترجمة',s:'الجواز والشهادات يحتاجان وقتاً — ابدأ إجراءاتهما اليوم'},
-    {v:5, l:'لم أجهّز أي شيء بعد',s:'ابدأ بالجواز وكشف الدرجات الرسمي — هما الأهم والأطول'}
+    {v:97,l:'كل الوثائق جاهزة ومنظمة ومترجمة حيث يلزم',s:'استعداد مثالي — يمكنك التقديم في أي لحظة'},
+    {v:80,l:'معظمها جاهز والباقي سهل الاستخراج',s:'رتّب الناقص خلال أسبوعين — لا تؤجله'},
+    {v:62,l:'بعضها منتهٍ أو يحتاج تجديداً وترجمة',s:'الجواز والشهادات يحتاجان وقتاً — ابدأ إجراءاتهما اليوم'},
+    {v:28, l:'لم أجهّز أي شيء بعد',s:'ابدأ بالجواز وكشف الدرجات الرسمي — هما الأهم والأطول'}
    ]},
   {id:'do5',sec:'documents',
    txt:'هل لديك Portfolio أو حضور رقمي احترافي يعكس كفاءتك؟ (موقع شخصي، GitHub، Behance، ResearchGate…)',
    micro:'في المجالات التقنية والإبداعية والبحثية، الـ Portfolio يُثبت كفاءتك بشكل لا يمكن للكلام إثباته.',
    ans:[
-    {v:90,l:'نعم، حضور رقمي متكامل ومحدّث باستمرار',s:'يُثبت كفاءتك بشكل ملموس وحقيقي ويفتح أبواباً'},
-    {v:58,l:'موجود لكن غير مكتمل أو قديم',s:'أكمله وأبرز فقط أفضل أعمالك — الجودة لا الكمية'},
-    {v:22,l:'بدأت لكن محتواه محدود',s:'أضف 3 مشاريع حقيقية — حتى المشاريع الدراسية تُحسب'},
-    {v:8, l:'لا يوجد حضور رقمي',s:'ابدأ بـ LinkedIn محدّث ثم أضف Portfolio تدريجياً'}
+    {v:97,l:'نعم، حضور رقمي متكامل ومحدّث باستمرار',s:'يُثبت كفاءتك بشكل ملموس وحقيقي ويفتح أبواباً'},
+    {v:75,l:'موجود لكن غير مكتمل أو قديم',s:'أكمله وأبرز فقط أفضل أعمالك — الجودة لا الكمية'},
+    {v:48,l:'بدأت لكن محتواه محدود',s:'أضف 3 مشاريع حقيقية — حتى المشاريع الدراسية تُحسب'},
+    {v:35, l:'لا يوجد حضور رقمي',s:'ابدأ بـ LinkedIn محدّث ثم أضف Portfolio تدريجياً'}
    ]},
 
   // ── GOALS & LEADERSHIP (5) ──
@@ -957,46 +1192,46 @@ const QS=[
    txt:'هل تعرف بالضبط التخصص الذي تريد دراسته ولماذا اخترته تحديداً؟',
    micro:'وضوح الهدف شرط أساسي لكتابة SOP مقنع — التردد يظهر في الكتابة ويُضعف الملف بشكل واضح.',
    ans:[
-    {v:90,l:'نعم، واضح 100% مع قصة ومسار منطقي متماسك',s:'أقوى ميزة في الملف — استثمرها في كل وثيقة تكتبها'},
-    {v:60,l:'واضح بشكل عام لكن التفاصيل تحتاج تعمّقاً',s:'خصّص وقتاً لتعميق الإجابة على "لماذا هذا تحديداً؟"'},
-    {v:28,l:'بين خيارين أو ثلاثة',s:'التردد يظهر في الكتابة — حدّد خياراً واحداً وتعمّق فيه'},
-    {v:8, l:'لست متأكداً من التخصص بعد',s:'لا تتقدم حتى تحدد — الوضوح يصنع الفارق بين القبول والرفض'}
+    {v:97,l:'نعم، واضح 100% مع قصة ومسار منطقي متماسك',s:'أقوى ميزة في الملف — استثمرها في كل وثيقة تكتبها'},
+    {v:78,l:'واضح بشكل عام لكن التفاصيل تحتاج تعمّقاً',s:'خصّص وقتاً لتعميق الإجابة على "لماذا هذا تحديداً؟"'},
+    {v:58,l:'بين خيارين أو ثلاثة',s:'التردد يظهر في الكتابة — حدّد خياراً واحداً وتعمّق فيه'},
+    {v:35, l:'لست متأكداً من التخصص بعد',s:'لا تتقدم حتى تحدد — الوضوح يصنع الفارق بين القبول والرفض'}
    ]},
   {id:'go2',sec:'goals',
    txt:'هل لديك خطة واضحة لما بعد التخرج وكيف ستُفيد مجتمعك أو بلدك؟',
    micro:'Chevening تشترط صراحةً خطة العودة للوطن — Fulbright تبحث عن Mutual Understanding وأثر حقيقي.',
    ans:[
-    {v:90,l:'نعم، خطة تفصيلية وواقعية مرتبطة بمجتمعي',s:'هذا بالضبط ما تبحث عنه المنح الحكومية الكبرى'},
-    {v:62,l:'تصوّر عام مع أفكار عن العودة والمساهمة',s:'عمّق التفاصيل — اللجان تحب الأرقام والخطط القابلة للقياس'},
-    {v:30,l:'أفكار متفرقة لم تتشكّل بعد',s:'خصّص يوماً لكتابة Career Plan — هو جزء أساسي من الـ SOP'},
-    {v:8, l:'لم أفكر في ما بعد التخرج',s:'بدون خطة مستقبلية واضحة، ملفك سيبدو ناقصاً وغير مقنع'}
+    {v:97,l:'نعم، خطة تفصيلية وواقعية مرتبطة بمجتمعي',s:'هذا بالضبط ما تبحث عنه المنح الحكومية الكبرى'},
+    {v:80,l:'تصوّر عام مع أفكار عن العودة والمساهمة',s:'عمّق التفاصيل — اللجان تحب الأرقام والخطط القابلة للقياس'},
+    {v:62,l:'أفكار متفرقة لم تتشكّل بعد',s:'خصّص يوماً لكتابة Career Plan — هو جزء أساسي من الـ SOP'},
+    {v:35, l:'لم أفكر في ما بعد التخرج',s:'بدون خطة مستقبلية واضحة، ملفك سيبدو ناقصاً وغير مقنع'}
    ]},
   {id:'go3',sec:'goals',
    txt:'هل بحثت عن المنح المناسبة لمجالك ومواصفاتك الشخصية وتعرف مواعيدها؟',
    micro:'التقديم على منحة لا تتناسب مع ملفك = إهدار للوقت. التطابق مع متطلبات المنحة أساسي.',
    ans:[
-    {v:90,l:'نعم، قائمة مرتبة بأولويات ومواعيد ومتطلبات',s:'Chevening / DAAD / Erasmus+ / Fulbright / Australia Awards'},
-    {v:60,l:'أعرف بعض المنح الكبيرة لكن ليس تفاصيلها',s:'ابحث عن منح تخصصية في مجالك — أقل منافسة وأعلى قبولاً'},
-    {v:30,l:'سمعت بمنح لكن لم أبحث بعمق كافٍ',s:'scholarship-positions.com وscholars4dev.com نقطتا بداية ممتازتان'},
-    {v:5, l:'لم أبحث في المنح بعد',s:'ابدأ اليوم — بعض المنح تفتح لشهرين فقط ثم تُغلق'}
+    {v:97,l:'نعم، قائمة مرتبة بأولويات ومواعيد ومتطلبات',s:'Chevening / DAAD / Erasmus+ / Fulbright / Australia Awards'},
+    {v:78,l:'أعرف بعض المنح الكبيرة لكن ليس تفاصيلها',s:'ابحث عن منح تخصصية في مجالك — أقل منافسة وأعلى قبولاً'},
+    {v:62,l:'سمعت بمنح لكن لم أبحث بعمق كافٍ',s:'scholarship-positions.com وscholars4dev.com نقطتا بداية ممتازتان'},
+    {v:28, l:'لم أبحث في المنح بعد',s:'ابدأ اليوم — بعض المنح تفتح لشهرين فقط ثم تُغلق'}
    ]},
   {id:'go4',sec:'goals',
    txt:'هل لديك شبكة مهنية فاعلة؟ (علاقات مع أساتذة، مهنيين، خريجين في مجالك)',
    micro:'Networking Skills معيار صريح في Chevening — اللجان تسأل عنه في المقابلة مباشرة.',
    ans:[
-    {v:90,l:'نعم، شبكة نشطة وأبني علاقات بانتظام',s:'استغل شبكتك للحصول على mentorship وتوصيات قوية'},
-    {v:62,l:'علاقات محدودة لكن جيدة مع بعض الأساتذة',s:'وسّع شبكتك عبر LinkedIn وحضور المؤتمرات والندوات'},
-    {v:28,l:'أعرف أشخاصاً لكن لا أتواصل بشكل فاعل',s:'تواصل مع 3 أشخاص هذا الأسبوع — ابنِ العلاقة قبل أن تحتاجها'},
-    {v:5, l:'لا توجد شبكة مهنية',s:'LinkedIn أداة مجانية وقوية — ابدأ ببناء Profile احترافي الآن'}
+    {v:97,l:'نعم، شبكة نشطة وأبني علاقات بانتظام',s:'استغل شبكتك للحصول على mentorship وتوصيات قوية'},
+    {v:80,l:'علاقات محدودة لكن جيدة مع بعض الأساتذة',s:'وسّع شبكتك عبر LinkedIn وحضور المؤتمرات والندوات'},
+    {v:58,l:'أعرف أشخاصاً لكن لا أتواصل بشكل فاعل',s:'تواصل مع 3 أشخاص هذا الأسبوع — ابنِ العلاقة قبل أن تحتاجها'},
+    {v:28, l:'لا توجد شبكة مهنية',s:'LinkedIn أداة مجانية وقوية — ابدأ ببناء Profile احترافي الآن'}
    ]},
   {id:'go5',sec:'goals',
    txt:'هل استعددت للمقابلة الشخصية (Interview) بطريقة منهجية؟',
    micro:'المرحلة الأخيرة التي يُرفض فيها كثيرون — الاستعداد الجيد يفصل بين متقدمين متساوين في الملف.',
    ans:[
-    {v:90,l:'نعم، تدرّبت مع أشخاص وراجعت أسئلة شائعة',s:'Mock Interviews مع متخصص أو خريج المنحة تُحدث فارقاً'},
-    {v:58,l:'اطّلعت على أسئلة شائعة وفكّرت في إجاباتي',s:'الفكر وحده لا يكفي — تدرّب على الإجابة بصوت عالٍ'},
-    {v:25,l:'أعرف أن هناك مقابلة لكن لم أستعد',s:'ابدأ بتسجيل نفسك وأنت تجيب — ستُدرك الفجوات فوراً'},
-    {v:5, l:'لم أفكر في الاستعداد للمقابلة',s:'المقابلة قد تكون العائق الأخير — لا تتركها للارتجال'}
+    {v:97,l:'نعم، تدرّبت مع أشخاص وراجعت أسئلة شائعة',s:'Mock Interviews مع متخصص أو خريج المنحة تُحدث فارقاً'},
+    {v:75,l:'اطّلعت على أسئلة شائعة وفكّرت في إجاباتي',s:'الفكر وحده لا يكفي — تدرّب على الإجابة بصوت عالٍ'},
+    {v:55,l:'أعرف أن هناك مقابلة لكن لم أستعد',s:'ابدأ بتسجيل نفسك وأنت تجيب — ستُدرك الفجوات فوراً'},
+    {v:28, l:'لم أفكر في الاستعداد للمقابلة',s:'المقابلة قد تكون العائق الأخير — لا تتركها للارتجال'}
    ]}
 ];
 
@@ -1047,8 +1282,9 @@ function renderQ(){
   const done=Object.keys(S.ans).length;
   let enc='';
   if(done>0){
-    const msgs=[`أجبت على <b>${done} سؤالاً</b> — استمر لتعرف تقييمك الكامل`,`<b>نصف الطريق!</b> ملفك يتشكّل — كمّل بصدق`,`<b>قريباً جداً!</b> آخر أسئلة وستعرف نتيجتك`];
-    enc=`<div class="enc-bar"><p>${done<10?msgs[0]:done<18?msgs[1]:msgs[2]}</p></div>`;
+    const pct=Math.round((done/QS.length)*100);
+    const msgs=[`أجبت على <b>${done}</b> من 25 سؤال`,`<b>نصف الطريق!</b> ملفك يتشكّل`,`<b>قريباً جداً!</b> آخر أسئلة`];
+    enc=`<div class="enc-bar"><div class="q-done-chip"><span>${done}/25</span></div><p style="flex:1">${done<10?msgs[0]:done<18?msgs[1]:msgs[2]}</p></div>`;
   }
   const mic=q.micro?`<div class="micro"><p>${q.micro}</p></div>`:'';
   const sel=S.ans[q.id];
@@ -1088,7 +1324,11 @@ function selAns(id,v,el){
 
 function nextQ(){
   if(S.intro){S.intro=false;renderQ();return;}
-  if(S.idx<QS.length-1){S.idx++;S.backAnim=false;renderQ();save();}
+  if(S.idx<QS.length-1){
+    S.idx++;S.backAnim=false;
+    if(MILESTONES[S.idx])showToast(MILESTONES[S.idx]);
+    renderQ();save();
+  }
   else{showScreen('loading');setTimeout(()=>{S.result=calcScore();showResults();},2000);}
 }
 
@@ -1096,22 +1336,24 @@ function prevQ(){
   if(S.idx>0){S.idx--;S.intro=false;S.backAnim=true;renderQ();save();}
 }
 
-// ═══ SCORE ═══
+// ═══ SCORE (out of 95) ═══
 function calcScore(){
   const ss={};
   SECTIONS.forEach(sec=>{
     const qs=QS.filter(q=>q.sec===sec.id);
-    const vals=qs.map(q=>S.ans[q.id]??40);
+    const vals=qs.map(q=>S.ans[q.id]??45);
     ss[sec.id]=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
   });
   let total=0,tw=0;
   SECTIONS.forEach(s=>{total+=ss[s.id]*s.weight;tw+=s.weight;});
   const score=Math.round(total/tw);
   const sorted=[...SECTIONS].sort((a,b)=>ss[b.id]-ss[a.id]);
-  let level='needswork',timeline='3–6 أشهر من التحضير المنتظم',cmp=22;
-  if(score>=75){level='excellent';timeline='جاهز الآن — ابدأ التقديم فوراً';cmp=88;}
+  let level,timeline,cmp;
+  if(score>=73){level='excellent';timeline='جاهز الآن — ابدأ التقديم فوراً';cmp=87;}
   else if(score>=50){level='good';timeline='4–8 أسابيع من العمل المكثف';cmp=54;}
-  return{score,level,ss,strongest:sorted[0],weakest:sorted[sorted.length-1],timeline,cmp,imp:Math.min(42,Math.round((100-score)*.48))};
+  else{level='needswork';timeline='3–6 أشهر من التحضير المنتظم';cmp=22;}
+  const imp=Math.min(35,Math.round((100-score)*.38));
+  return{score,level,ss,strongest:sorted[0],weakest:sorted[sorted.length-1],timeline,cmp,imp};
 }
 
 // ═══ FEEDBACK DB ═══
@@ -1179,21 +1421,25 @@ function showResults(){
   showScreen('results');
   const r=S.result;
   // Ring animation
-  const circ=414.69;
+  const circ=439.82;
   const offset=circ-(circ*(r.score/100));
   const fg=document.getElementById('ring-fg');
   const col=r.level==='excellent'?'#4ade80':r.level==='good'?'#fbbf24':'#f87171';
-  fg.setAttribute('stroke',col);
+  fg.setAttribute('stroke',col);fg.className='score-ring-fg '+r.level;
   setTimeout(()=>{fg.style.strokeDashoffset=offset;},300);
   // Score counter
   let n=0;const el=document.getElementById('score-disp');
   const t=setInterval(()=>{n=Math.min(n+2,r.score);el.textContent=n;if(n>=r.score)clearInterval(t);},18);
   // Badge
   const bdg=document.getElementById('score-badge');
-  const labels={excellent:'جاهز للتقديم',good:'يحتاج تحسينات',needswork:'ليس جاهزاً بعد'};
+  const labels={excellent:'ملف قوي — قدّم الآن',good:'على الطريق الصحيح',needswork:'في بداية الرحلة'};
   const cls={excellent:'badge-exc',good:'badge-good',needswork:'badge-nw'};
   bdg.className='score-badge '+cls[r.level];bdg.textContent=labels[r.level];
-  const msgs={excellent:'ملفك قوي — لا تضيّع الوقت، قدّم الآن.',good:'ملفك على الطريق الصحيح، لكن يحتاج بعض التحسينات.',needswork:'لا تقلق! معظم الطلاب يبدأون من هنا. لديك الوقت والقدرة.'};
+  const msgs={
+    excellent:'ملفك فوق المتوسط بشكل واضح — لا تنتظر، ابدأ بالتقديم الآن مع الاستمرار في التحسين.',
+    good:'لديك أساس جيد جداً، بضعة تحسينات ستجعل ملفك تنافسياً بشكل حقيقي.',
+    needswork:'كل المنح بدأت برحلة. أنت الآن تعرف وين تبدأ — وهذا أهم خطوة.'
+  };
   document.getElementById('score-msg').textContent=msgs[r.level];
   // Show improvement hint
   const hintEl=document.getElementById('score-hint');
@@ -1222,22 +1468,33 @@ function buildBody(r){
   <div class="insight-card">
     <div class="insight-row"><div class="ins-ico g">✓</div><div class="ins-info"><div class="lbl">أقوى نقطة</div><div class="val">${SECTIONS.find(s=>s.id===r.strongest.id).name} — ${r.ss[r.strongest.id]}%</div></div></div>
     <div class="insight-row"><div class="ins-ico o">!</div><div class="ins-info"><div class="lbl">تحتاج تحسيناً</div><div class="val">${SECTIONS.find(s=>s.id===r.weakest.id).name} — ${r.ss[r.weakest.id]}%</div></div></div>
-    <div class="insight-row"><div class="ins-ico b">↑</div><div class="ins-info"><div class="lbl">إمكانية التحسّن</div><div class="val">يمكن رفع درجتك بـ ${r.imp}% مع عمل مدروس ومستمر</div></div></div>
+    <div class="insight-row"><div class="ins-ico b">↑</div><div class="ins-info"><div class="lbl">إمكانية التحسّن</div><div class="val">يمكن رفع درجتك بـ ${r.imp}% — اشتغل على النقاط أدناه</div></div></div>
   </div>`;
 
   // Sections
   html+=`<div class="res-section-lbl">توزيع الدرجات — اضغط لتفاصيل كل قسم</div>`;
   SECTIONS.forEach((sec,i)=>{
     const sc=r.ss[sec.id];
-    const bc=sc>=70?'h':sc>=45?'m':'l';
-    const pc=sc>=70?'pct-h':sc>=45?'pct-m':'pct-l';
-    const fk=sc>=70?'excellent':sc>=45?'good':'needswork';
+    const bc=sc>=67?'h':sc>=43?'m':'l';
+    const pc=sc>=67?'pct-h':sc>=43?'pct-m':'pct-l';
+    const fk=sc>=67?'excellent':sc>=43?'good':'needswork';
     const fb=FB[sec.id][fk];
     const tips=fb.tips.map((t,ti)=>`<div class="tip"><div class="tip-n">${ti+1}</div><p>${t}</p></div>`).join('');
     html+=`<div class="sec-card" style="animation-delay:${.15+i*.07}s">
       <div class="sec-hd" onclick="toggleSec('s-${sec.id}')">
         <div class="sec-hd-left">${sec.icon} ${sec.name}</div>
-        <div class="sec-hd-right"><div class="pct-badge ${pc}">${sc}%</div><span class="chevron" id="ch-${sec.id}">▼</span></div>
+        <div class="sec-hd-right">
+            <div style="position:relative;width:42px;height:42px;flex-shrink:0;">
+              <svg viewBox="0 0 42 42" style="position:absolute;inset:0;transform:rotate(-90deg);width:42px;height:42px;">
+                <circle cx="21" cy="21" r="17" fill="none" stroke="var(--border)" stroke-width="3"/>
+                <circle cx="21" cy="21" r="17" fill="none" stroke-width="3" stroke-linecap="round"
+                  stroke="${sc>=67?'#16a34a':sc>=43?'#d97706':'#dc2626'}"
+                  stroke-dasharray="106.81"
+                  stroke-dashoffset="${Math.round(106.81-(106.81*(sc/100)))}"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:${sc>=67?'#16a34a':sc>=43?'#d97706':'#dc2626'}">${sc}%</div>
+            </div>
+            <span class="chevron" id="ch-${sec.id}" style="font-size:.7rem;color:var(--gray2);">▼</span></div>
       </div>
       <div class="sec-body" id="s-${sec.id}">
         <div class="sec-bar-wrap"><div class="sec-bar ${bc}" id="b-${sec.id}"></div></div>
@@ -1256,7 +1513,7 @@ function buildBody(r){
   </div></div>`;
 
   // Action steps
-  const weak=SECTIONS.filter(s=>r.ss[s.id]<60).slice(0,3);
+  const weak=SECTIONS.filter(s=>r.ss[s.id]<57).slice(0,3);
   const steps=[...weak.map(s=>({t:`قوّ قسم "${SECTIONS.find(sec=>sec.id===s.id).name}"`,s:'أضعف نقطة في ملفك حالياً — الأولوية الأولى'})),{t:'راجع ملفك الكامل مع فريق UniPath',s:'للتخطيط الاستراتيجي وبناء ملف احترافي متكامل'}];
   html+=`<div class="res-section-lbl">خطواتك القادمة</div>
   <div class="act-card"><div class="act-list">${steps.map((a,i)=>`<div class="act-item"><div class="act-num">${i+1}</div><div class="act-txt">${a.t}<small>${a.s}</small></div></div>`).join('')}</div></div>`;
@@ -1266,11 +1523,11 @@ function buildBody(r){
 
   // Disclaimer — important
   html+=`<div class="disclaimer-card">
-    <h4>⚠️ تنبيه مهم قبل أي قرار</h4>
-    <p>هذا التقييم <b>أداة توجيهية وليس حكماً نهائياً</b> على مستواك.<br><br>
-    درجة منخفضة <b>لا تعني يجب ألّا تتقدم</b> — كثير من الطلاب نجحوا في المنح بملفات "غير مكتملة" بسبب قصص مقنعة وشغف حقيقي.<br><br>
-    درجة مرتفعة <b>لا تضمن القبول</b> — التنافس حقيقي واللجان تبحث عن التوافق مع أهداف المنحة تحديداً.<br><br>
-    <b>القيمة الحقيقية لهذا التقييم</b> هي معرفة نقاط القوة التي تُبرزها، ونقاط الضعف التي تُعالجها — <b>لا شيء يمنعك من التقديم اليوم مع العمل على التحسين في نفس الوقت.</b></p>
+    <h4>⚠️ قبل أن تحكم على نفسك — اقرأ هذا</h4>
+    <p>هذا التقييم يقيس من <b>95 درجة</b> عمداً — لأن الكمال لا يوجد، وأي ملف قابل للتحسين دائماً.<br><br>
+    درجة <b>منخفضة لا تعني ألّا تتقدم</b> — طلاب كثيرون نجحوا بملفات "غير مكتملة" لأن قصتهم كانت صادقة ومقنعة.<br><br>
+    درجة <b>مرتفعة لا تضمن القبول</b> — التنافس حقيقي واللجان تبحث عن التوافق مع رسالة المنحة تحديداً.<br><br>
+    <b>الاستراتيجية الصحيحة:</b> قدّم الآن، واعمل على التحسين في نفس الوقت. انتظار "الملف المثالي" يُضيّع فرصاً حقيقية.</p>
   </div>`;
 
   // CTA
@@ -1358,9 +1615,9 @@ function dlResults(){
   const ringCol=r.level==='excellent'?'#4ade80':r.level==='good'?'#fbbf24':'#f87171';
   cx.strokeStyle=ringCol;cx.lineWidth=7;cx.lineCap='round';cx.stroke();
   // score text
-  txt(r.score+'%',ringX,ringY+8,'bold 28px Arial','#ffffff');
+  txt(r.score+'%',ringX,ringY+8,'bold 26px Arial','#ffffff');
   // status badge
-  const badgeLbl={excellent:'جاهز للتقديم ✓',good:'يحتاج تحسينات',needswork:'ليس جاهزاً بعد'}[r.level];
+  const badgeLbl={excellent:'ملف قوي — قدّم الآن ✓',good:'على الطريق الصحيح',needswork:'في بداية الرحلة'}[r.level];
   const badgeBg={excellent:'rgba(74,222,128,.2)',good:'rgba(251,191,36,.2)',needswork:'rgba(248,113,113,.2)'}[r.level];
   const badgeTxt={excellent:'#4ade80',good:'#fbbf24',needswork:'#f87171'}[r.level];
   const bw=cx.measureText(badgeLbl).width+36;
@@ -1392,13 +1649,13 @@ function dlResults(){
 
   SECTIONS.forEach((sec,i)=>{
     const sc=r.ss[sec.id];
-    const barcol=sc>=70?'#16a34a':sc>=45?'#d97706':'#dc2626';
+    const barcol=sc>=67?'#16a34a':sc>=43?'#d97706':'#dc2626';
     const rowH=62;
     rect(32,sy,W-64,rowH,10,i%2===0?'#fff':'#f8fafc');
     // section icon + name
     txt(sec.icon,62,sy+rowH/2+7,'20px Arial','#000','left');
     txt(sec.name,90,sy+rowH/2-4,'bold 13px Arial','#0F2A44','left');
-    const feedKey=sc>=70?'excellent':sc>=45?'good':'needswork';
+    const feedKey=sc>=67?'excellent':sc>=43?'good':'needswork';
     const shortFb={
       academic:{excellent:'ممتاز',good:'مقبول',needswork:'يحتاج تقوية'},
       language:{excellent:'ممتاز',good:'مقبول',needswork:'يحتاج تقوية'},
@@ -1407,12 +1664,12 @@ function dlResults(){
       goals:{excellent:'واضح',good:'معقول',needswork:'يحتاج تحديد'},
     };
     txt(shortFb[sec.id][feedKey],90,sy+rowH/2+12,'12px Arial','#94a3b8','left');
-    // bar
+    // bar — scale against 95
     const bx=270,bw2=440,bh=10;
     bar(bx,sy+rowH/2-5,bw2,bh,sc,'#e2e8f0',barcol,5);
-    // pct badge
+    // score badge /95
     rect(bx+bw2+14,sy+rowH/2-10,46,22,11,barcol+'22');
-    txt(sc+'%',bx+bw2+37,sy+rowH/2+5,'bold 13px Arial',barcol);
+    txt(sc+'%',bx+bw2+39,sy+rowH/2+6,'bold 12px Arial',barcol);
     sy+=rowH;
   });
 
@@ -1422,7 +1679,7 @@ function dlResults(){
   txt('خطواتك القادمة الأولوية',W/2,sy+20,'bold 14px Arial','#ffffff');
   sy+=42;
 
-  const weakSecs=SECTIONS.filter(s=>r.ss[s.id]<60).slice(0,4);
+  const weakSecs=SECTIONS.filter(s=>r.ss[s.id]<57).slice(0,4);
   const actions=[
     ...weakSecs.map(s=>`قوّ قسم "${SECTIONS.find(sec=>sec.id===s.id).name}"`),
     'راجع وثائقك مع فريق UniPath قبل التقديم'
