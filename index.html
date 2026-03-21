@@ -122,11 +122,23 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
   box-shadow:0 4px 20px rgba(15,42,68,.3);
 }
 .assess-hd-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.assess-logo img{width:76px;filter:brightness(0) invert(1);display:block;}
+.assess-logo{display:flex;align-items:center;gap:10px;}
+.assess-logo-wrap{
+  width:42px;height:42px;border-radius:50%;
+  background:#fff;padding:5px;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.assess-logo-wrap img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+.assess-logo-name{font-size:.95rem;font-weight:900;color:#fff;letter-spacing:-.3px;}
+.assess-logo-name .p-letter{color:var(--t);}
 .q-counter{text-align:left;font-size:.75rem;color:rgba(255,255,255,.45);}
 .q-counter b{color:var(--t);font-size:.85rem;}
-.prog-track{background:rgba(255,255,255,.1);border-radius:6px;height:5px;overflow:hidden;margin-bottom:9px;}
+.prog-track{background:rgba(255,255,255,.1);border-radius:6px;height:5px;overflow:hidden;margin-bottom:4px;position:relative;}
 .prog-bar{background:linear-gradient(90deg,var(--td),var(--tl));height:100%;border-radius:6px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.prog-pct{font-size:.68rem;color:rgba(255,255,255,.45);}
 .sec-chip{
   display:inline-flex;align-items:center;gap:5px;
   background:rgba(43,179,163,.15);border:1px solid rgba(43,179,163,.22);
@@ -241,7 +253,17 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .load-blob-1{width:350px;height:350px;background:var(--t);top:-100px;right:-80px;animation:blobFloat 6s ease-in-out infinite;}
 .load-blob-2{width:280px;height:280px;background:#3b82f6;bottom:-60px;left:-60px;animation:blobFloat 8s ease-in-out infinite reverse;}
 .load-content{position:relative;z-index:1;text-align:center;padding:32px;}
-.load-logo img{width:120px;filter:brightness(0) invert(1);margin-bottom:40px;}
+.load-logo{margin-bottom:36px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.load-logo-circle{
+  width:64px;height:64px;border-radius:50%;
+  background:#fff;padding:6px;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.load-logo-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.load-logo-name{font-size:1.4rem;font-weight:900;color:#fff;}
+.load-logo-name .p-letter{color:var(--tl);}
 .load-ring{
   width:68px;height:68px;margin:0 auto 24px;position:relative;
 }
@@ -515,6 +537,74 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 .form-ok h4{font-size:1rem;font-weight:700;color:var(--p);margin-bottom:6px;}
 .form-ok p{font-size:.82rem;color:var(--gray);line-height:1.7;}
 
+/* ── CONFETTI CANVAS ── */
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:300;}
+
+/* ── SELECTED ANSWER GLOW ── */
+.ans-btn.sel{
+  border-color:var(--t);background:rgba(43,179,163,.07);
+  box-shadow:0 0 0 3px rgba(43,179,163,.15);
+}
+
+/* ── RIPPLE ON ANSWER SELECT ── */
+.ans-btn{position:relative;overflow:hidden;}
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(43,179,163,.25);
+  transform:scale(0);animation:rippleOut .5s ease-out;
+  pointer-events:none;
+}
+@keyframes rippleOut{to{transform:scale(4);opacity:0}}
+
+/* ── STRONGER SECTION INTRO ── */
+.sec-intro-badge{
+  animation:badgeSpin .8s cubic-bezier(.34,1.8,.64,1) .1s both;
+}
+@keyframes badgeSpin{from{transform:rotate(-15deg) scale(0)}to{transform:rotate(0) scale(1)}}
+
+/* ── ANSWER APPEAR STAGGER ── */
+.ans-btn:nth-child(1){animation:ansIn .3s ease .05s both;}
+.ans-btn:nth-child(2){animation:ansIn .3s ease .12s both;}
+.ans-btn:nth-child(3){animation:ansIn .3s ease .19s both;}
+.ans-btn:nth-child(4){animation:ansIn .3s ease .26s both;}
+.ans-btn:nth-child(5){animation:ansIn .3s ease .33s both;}
+@keyframes ansIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── QUESTION TEXT APPEAR ── */
+.q-txt{animation:qTxtIn .35s ease .02s both;}
+@keyframes qTxtIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── FLOATING ORBIT DOTS (hook) ── */
+.orbit-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.orbit-dot{position:absolute;border-radius:50%;animation:orbitFloat linear infinite;}
+@keyframes orbitFloat{0%{transform:translate(0,0) scale(1);opacity:.4}25%{transform:translate(30px,-20px) scale(1.2);opacity:.7}50%{transform:translate(0,-40px) scale(1);opacity:.4}75%{transform:translate(-30px,-20px) scale(.8);opacity:.6}100%{transform:translate(0,0) scale(1);opacity:.4}}
+
+/* ── HOOK META COUNTER ANIMATION ── */
+.hook-meta-item .v{
+  animation:countUp .8s cubic-bezier(.34,1.56,.64,1) 1s both;
+}
+@keyframes countUp{from{transform:scale(0) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.hook-meta-item:nth-child(2) .v{animation-delay:1.15s;}
+.hook-meta-item:nth-child(3) .v{animation-delay:1.3s;}
+
+/* ── SCORE RING GLOW ── */
+.score-ring-wrap::after{
+  content:'';position:absolute;inset:-8px;border-radius:50%;
+  animation:ringGlow 2.5s ease-in-out infinite;
+}
+@keyframes ringGlow{0%,100%{box-shadow:0 0 0 0 rgba(43,179,163,0)}50%{box-shadow:0 0 32px 6px rgba(43,179,163,.2)}}
+
+/* ── RESULT CARD HOVER ── */
+.sec-card{transition:transform .2s ease,box-shadow .2s ease;}
+.sec-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
+
+/* ── SMOOTH STICKY HEADER SHADOW ── */
+.assess-hd{transition:box-shadow .3s ease;}
+
+/* ── BTN PULSE (start) ── */
+.btn-start{animation:btnBreath 2.5s ease-in-out 2s infinite;}
+@keyframes btnBreath{0%,100%{box-shadow:0 8px 32px rgba(43,179,163,.4)}50%{box-shadow:0 12px 48px rgba(43,179,163,.65)}}
+
 /* ── RESPONSIVE ── */
 @media(min-width:540px){
   #screen-assessment,#screen-results{border:1px solid var(--border);}
@@ -523,6 +613,9 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 </head>
 <body>
 
+<canvas id="confetti-canvas"></canvas>
+
+<div class="orbit-wrap" id="orbit-wrap"></div>
 <!-- ════════ HOOK ════════ -->
 <section id="screen-hook" class="screen active">
   <div class="particles" id="particles"></div>
@@ -553,11 +646,17 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 <section id="screen-assessment" class="screen">
   <header class="assess-hd">
     <div class="assess-hd-top">
-      <div class="assess-logo"><img id="logo-assess" src="" alt="UniPath"></div>
+      <div class="assess-logo">
+        <div class="assess-logo-wrap"><img id="logo-assess" src="" alt="UniPath"></div>
+        <div class="assess-logo-name">Uni<span class="p-letter">P</span>ath</div>
+      </div>
       <div class="q-counter">السؤال <b id="qc">1</b> من <b>25</b></div>
     </div>
+    <div class="prog-row">
+      <div class="sec-chip"><div class="sec-chip-dot"></div><span id="sec-lbl">القوة الأكاديمية</span></div>
+      <div class="prog-pct" id="prog-pct">4%</div>
+    </div>
     <div class="prog-track"><div class="prog-bar" id="prog" style="width:4%"></div></div>
-    <div class="sec-chip"><div class="sec-chip-dot"></div><span id="sec-lbl">القوة الأكاديمية</span></div>
   </header>
   <div class="q-area" id="q-area"></div>
   <div class="assess-ft">
@@ -570,7 +669,10 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 <section id="screen-loading" class="screen">
   <div class="load-bg"><div class="load-blob load-blob-1"></div><div class="load-blob load-blob-2"></div></div>
   <div class="load-content">
-    <div class="load-logo"><img id="logo-load" src="" alt="UniPath"></div>
+    <div class="load-logo">
+      <div class="load-logo-circle"><img id="logo-load" src="" alt="UniPath"></div>
+      <div class="load-logo-name">Uni<span class="p-letter">P</span>ath</div>
+    </div>
     <div class="load-ring"></div>
     <p class="load-txt">جاري تحليل ملفك...</p>
     <div class="load-steps">
@@ -602,6 +704,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
       </div>
       <div class="score-badge" id="score-badge"></div>
       <div class="score-msg" id="score-msg"></div>
+      <div class="score-hint" id="score-hint" style="display:none">يمكن رفع درجتك بـ <span id="hint-imp">0</span>% — اطّلع على التفاصيل أدناه</div>
     </div>
   </div>
   <div class="res-body" id="res-body"></div>
@@ -627,6 +730,20 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--p);min-heig
 </div>
 
 <script>
+// ═══ ORBIT DOTS ═══
+(function(){
+  const w=document.getElementById('orbit-wrap');
+  if(!w)return;
+  const cols=['#2BB3A3','#3b82f6','#10b981','#6366f1'];
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div');
+    d.className='orbit-dot';
+    const size=4+Math.random()*10;
+    d.style.cssText=`width:${size}px;height:${size}px;background:${cols[i%cols.length]};left:${10+Math.random()*80}%;top:${10+Math.random()*80}%;animation-duration:${6+Math.random()*10}s;animation-delay:${-Math.random()*8}s;opacity:.3;`;
+    w.appendChild(d);
+  }
+})();
+
 // ═══ PARTICLES ═══
 (function(){
   const c=document.getElementById('particles');
@@ -947,7 +1064,10 @@ function renderQ(){
 
 function updateHd(isIntro){
   document.getElementById('qc').textContent=Math.min(S.idx+1,QS.length);
-  document.getElementById('prog').style.width=Math.max(4,Math.round((S.idx/QS.length)*100))+'%';
+  const pct=Math.max(4,Math.round((S.idx/QS.length)*100));
+  document.getElementById('prog').style.width=pct+'%';
+  const pctEl=document.getElementById('prog-pct');
+  if(pctEl)pctEl.textContent=pct+'%';
   const sec=SECTIONS.find(s=>s.id===QS[S.idx].sec);
   document.getElementById('sec-lbl').textContent=sec.name;
   document.getElementById('btn-back').style.display=(S.idx>0&&!isIntro)?'block':'none';
@@ -957,6 +1077,11 @@ function selAns(id,v,el){
   S.ans[id]=v;
   document.querySelectorAll('.ans-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
+  // ripple
+  const r2=document.createElement('span');r2.className='ripple';
+  const s2=Math.max(el.clientWidth,el.clientHeight)*2;
+  r2.style.cssText=`width:${s2}px;height:${s2}px;left:50%;top:50%;margin-left:-${s2/2}px;margin-top:-${s2/2}px;`;
+  el.appendChild(r2);setTimeout(()=>r2.remove(),500);
   document.getElementById('btn-next').disabled=false;
   save();
 }
@@ -1018,6 +1143,38 @@ const FB={
   }
 };
 
+// ═══ CONFETTI ═══
+function launchConfetti(){
+  const cv=document.getElementById('confetti-canvas');
+  if(!cv)return;
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const cx=cv.getContext('2d');
+  const pieces=[];
+  const cols=['#2BB3A3','#0F2A44','#3ecfbe','#fbbf24','#4ade80','#60a5fa'];
+  for(let i=0;i<120;i++){
+    pieces.push({
+      x:Math.random()*cv.width,y:-10-Math.random()*cv.height*.5,
+      r:3+Math.random()*5,c:cols[Math.floor(Math.random()*cols.length)],
+      vx:(Math.random()-.5)*4,vy:2+Math.random()*4,
+      rot:Math.random()*360,vrot:(Math.random()-.5)*8,op:1,w:6+Math.random()*10,h:4+Math.random()*6
+    });
+  }
+  let frame=0;
+  function draw(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    pieces.forEach(p=>{
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot*Math.PI/180);
+      cx.globalAlpha=p.op;cx.fillStyle=p.c;
+      cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();
+      p.x+=p.vx;p.y+=p.vy;p.rot+=p.vrot;p.vy+=.06;
+      if(p.y>cv.height*.6)p.op=Math.max(0,p.op-.03);
+    });
+    frame++;if(frame<160)requestAnimationFrame(draw);
+    else cx.clearRect(0,0,cv.width,cv.height);
+  }
+  draw();
+}
+
 function showResults(){
   showScreen('results');
   const r=S.result;
@@ -1038,6 +1195,12 @@ function showResults(){
   bdg.className='score-badge '+cls[r.level];bdg.textContent=labels[r.level];
   const msgs={excellent:'ملفك قوي — لا تضيّع الوقت، قدّم الآن.',good:'ملفك على الطريق الصحيح، لكن يحتاج بعض التحسينات.',needswork:'لا تقلق! معظم الطلاب يبدأون من هنا. لديك الوقت والقدرة.'};
   document.getElementById('score-msg').textContent=msgs[r.level];
+  // Show improvement hint
+  const hintEl=document.getElementById('score-hint');
+  const hintImp=document.getElementById('hint-imp');
+  if(hintEl&&hintImp){hintEl.style.display='inline-flex';hintImp.textContent=r.imp;}
+  // Confetti for good scores
+  if(r.level==='excellent')setTimeout(launchConfetti,600);
   // Build body
   document.getElementById('res-body').innerHTML=buildBody(r);
   // Animate bars
@@ -1135,34 +1298,192 @@ function toggleSec(id){
 // ═══ DOWNLOAD ═══
 function dlResults(){
   const r=S.result;if(!r)return;
-  const cv=document.createElement('canvas');cv.width=800;cv.height=1050;
+  const W=900,H=1400;
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
   const cx=cv.getContext('2d');
-  cx.fillStyle='#ffffff';cx.fillRect(0,0,800,1050);
-  cx.fillStyle='#0F2A44';cx.fillRect(0,0,800,200);
-  // Grid pattern
-  cx.strokeStyle='rgba(43,179,163,.08)';cx.lineWidth=1;
-  for(let i=0;i<800;i+=32){cx.beginPath();cx.moveTo(i,0);cx.lineTo(i,200);cx.stroke();}
-  for(let j=0;j<200;j+=32){cx.beginPath();cx.moveTo(0,j);cx.lineTo(800,j);cx.stroke();}
-  cx.fillStyle='#2BB3A3';cx.fillRect(0,196,800,6);
-  cx.fillStyle='#fff';cx.font='bold 32px Arial';cx.textAlign='center';cx.fillText('UniPath',400,90);
-  cx.font='16px Arial';cx.fillStyle='rgba(255,255,255,.6)';cx.fillText('مقياس جاهزية المنح الدراسية',400,120);
-  cx.font='bold 68px Arial';cx.fillStyle='#2BB3A3';cx.fillText(r.score+'%',400,300);
-  const lbl={excellent:'جاهز للتقديم',good:'يحتاج تحسينات',needswork:'ليس جاهزاً بعد'}[r.level];
-  cx.font='bold 22px Arial';cx.fillStyle='#0F2A44';cx.fillText(lbl,400,345);
-  let y=415;
-  SECTIONS.forEach(sec=>{
-    const sc=r.ss[sec.id];
-    cx.fillStyle='#64748b';cx.font='15px Arial';cx.textAlign='right';cx.fillText(sec.name,720,y);
-    cx.fillStyle='#e2e8f0';cx.fillRect(80,y-13,380,9);
-    const col=sc>=70?'#16a34a':sc>=45?'#d97706':'#dc2626';
-    cx.fillStyle=col;cx.fillRect(80,y-13,(sc/100)*380,9);
-    cx.fillStyle='#0F2A44';cx.font='bold 15px Arial';cx.textAlign='left';cx.fillText(sc+'%',470,y);
-    y+=52;
+
+  // ── helpers ──
+  function rect(x,y,w,h,radius,fill){
+    cx.fillStyle=fill;cx.beginPath();
+    cx.roundRect?cx.roundRect(x,y,w,h,radius):cx.rect(x,y,w,h);
+    cx.fill();
+  }
+  function txt(t,x,y,font,fill,align='center'){
+    cx.font=font;cx.fillStyle=fill;cx.textAlign=align;cx.fillText(t,x,y);
+  }
+  function bar(x,y,w,h,pct,bg,fg,radius=4){
+    rect(x,y,w,h,radius,bg);
+    if(pct>0)rect(x,y,Math.round(w*(pct/100)),h,radius,fg);
+  }
+  function line(x1,y1,x2,y2,col,lw=1){
+    cx.strokeStyle=col;cx.lineWidth=lw;cx.beginPath();cx.moveTo(x1,y1);cx.lineTo(x2,y2);cx.stroke();
+  }
+
+  // ── BG ──
+  rect(0,0,W,H,0,'#f4f7fa');
+
+  // ── HERO HEADER ──
+  rect(0,0,W,230,0,'#0F2A44');
+  // subtle grid
+  cx.strokeStyle='rgba(43,179,163,.06)';cx.lineWidth=1;
+  for(let i=0;i<W;i+=36){line(i,0,i,230,'rgba(43,179,163,.06)');}
+  for(let j=0;j<230;j+=36){line(0,j,W,j,'rgba(43,179,163,.06)');}
+  // teal accent bar
+  rect(0,224,W,6,0,'#2BB3A3');
+  // decorative circles
+  cx.globalAlpha=.08;rect(W-80,  -60,240,240,120,'#2BB3A3');
+  cx.globalAlpha=.06;rect(-60,100,180,180,90,'#3b82f6');
+  cx.globalAlpha=1;
+  // logo area
+  rect(36,32,56,56,28,'#fff');
+  txt('U',64,72,'bold 26px Arial','#0F2A44');
+  txt('Uni',125,62,'bold 22px Arial','#ffffff','left');
+  txt('P',161,62,'bold 22px Arial','#2BB3A3','left');
+  txt('ath',175,62,'bold 22px Arial','#ffffff','left');
+  txt('مقياس جاهزية المنح الدراسية',125,86,'14px Arial','rgba(255,255,255,.5)','left');
+  // date & time top-right
+  const now=new Date();
+  txt(now.toLocaleDateString('ar-EG'),W-32,55,'13px Arial','rgba(255,255,255,.4)','right');
+  txt(now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'}),W-32,76,'12px Arial','rgba(255,255,255,.3)','right');
+
+  // ── SCORE RING AREA ──
+  const ringX=W/2, ringY=155, ringR=52;
+  // ring background circle
+  cx.beginPath();cx.arc(ringX,ringY,ringR,0,Math.PI*2);
+  cx.strokeStyle='rgba(255,255,255,.1)';cx.lineWidth=7;cx.stroke();
+  // ring fill arc - start from top (-PI/2), sweep clockwise by score fraction
+  const startA=-Math.PI/2;
+  const endA=startA+(r.score/100)*(Math.PI*2);
+  cx.beginPath();cx.arc(ringX,ringY,ringR,startA,endA,false);
+  const ringCol=r.level==='excellent'?'#4ade80':r.level==='good'?'#fbbf24':'#f87171';
+  cx.strokeStyle=ringCol;cx.lineWidth=7;cx.lineCap='round';cx.stroke();
+  // score text
+  txt(r.score+'%',ringX,ringY+8,'bold 28px Arial','#ffffff');
+  // status badge
+  const badgeLbl={excellent:'جاهز للتقديم ✓',good:'يحتاج تحسينات',needswork:'ليس جاهزاً بعد'}[r.level];
+  const badgeBg={excellent:'rgba(74,222,128,.2)',good:'rgba(251,191,36,.2)',needswork:'rgba(248,113,113,.2)'}[r.level];
+  const badgeTxt={excellent:'#4ade80',good:'#fbbf24',needswork:'#f87171'}[r.level];
+  const bw=cx.measureText(badgeLbl).width+36;
+  rect(W/2-bw/2,170,bw,26,13,badgeBg);
+  txt(badgeLbl,W/2,188,'bold 13px Arial',badgeTxt);
+
+  // ── SECTION 1: QUICK STATS ROW ──
+  let sy=256;
+  const stats=[
+    {l:'أقوى قسم',v:SECTIONS.find(s=>s.id===r.strongest.id).name,c:'#16a34a'},
+    {l:'يحتاج تحسين',v:SECTIONS.find(s=>s.id===r.weakest.id).name,c:'#d97706'},
+    {l:'إمكانية التحسن',v:'+'+r.imp+'%',c:'#2BB3A3'},
+  ];
+  const sw=(W-64)/3;
+  stats.forEach((s,i)=>{
+    const sx=32+i*(sw+10);
+    rect(sx,sy,sw,68,14,'#fff');
+    // colored top strip
+    rect(sx,sy,sw,4,0,s.c);
+    txt(s.l,sx+sw/2,sy+22,'11px Arial','#94a3b8');
+    txt(s.v,sx+sw/2,sy+48,'bold 14px Arial',s.c);
   });
-  cx.fillStyle='#94a3b8';cx.font='12px Arial';cx.textAlign='center';
-  cx.fillText('wa.me/201500276855 | UniPath',400,980);
-  cx.fillText(new Date().toLocaleDateString('ar-EG'),400,1005);
-  const lnk=document.createElement('a');lnk.download=`UniPath-Result-${Date.now()}.png`;lnk.href=cv.toDataURL('image/png');lnk.click();
+
+  // ── SECTION 2: SCORES BREAKDOWN ──
+  sy=350;
+  rect(32,sy,W-64,28,10,'#0F2A44');
+  txt('توزيع الدرجات على الأقسام',W/2,sy+18,'bold 14px Arial','#ffffff');
+  sy+=38;
+
+  SECTIONS.forEach((sec,i)=>{
+    const sc=r.ss[sec.id];
+    const barcol=sc>=70?'#16a34a':sc>=45?'#d97706':'#dc2626';
+    const rowH=62;
+    rect(32,sy,W-64,rowH,10,i%2===0?'#fff':'#f8fafc');
+    // section icon + name
+    txt(sec.icon,62,sy+rowH/2+7,'20px Arial','#000','left');
+    txt(sec.name,90,sy+rowH/2-4,'bold 13px Arial','#0F2A44','left');
+    const feedKey=sc>=70?'excellent':sc>=45?'good':'needswork';
+    const shortFb={
+      academic:{excellent:'ممتاز',good:'مقبول',needswork:'يحتاج تقوية'},
+      language:{excellent:'ممتاز',good:'مقبول',needswork:'يحتاج تقوية'},
+      activities:{excellent:'ممتاز',good:'مقبول',needswork:'يحتاج تقوية'},
+      documents:{excellent:'مكتمل',good:'شبه مكتمل',needswork:'ناقص'},
+      goals:{excellent:'واضح',good:'معقول',needswork:'يحتاج تحديد'},
+    };
+    txt(shortFb[sec.id][feedKey],90,sy+rowH/2+12,'12px Arial','#94a3b8','left');
+    // bar
+    const bx=270,bw2=440,bh=10;
+    bar(bx,sy+rowH/2-5,bw2,bh,sc,'#e2e8f0',barcol,5);
+    // pct badge
+    rect(bx+bw2+14,sy+rowH/2-10,46,22,11,barcol+'22');
+    txt(sc+'%',bx+bw2+37,sy+rowH/2+5,'bold 13px Arial',barcol);
+    sy+=rowH;
+  });
+
+  // ── SECTION 3: ACTION STEPS ──
+  sy+=16;
+  rect(32,sy,W-64,32,10,'#0F2A44');
+  txt('خطواتك القادمة الأولوية',W/2,sy+20,'bold 14px Arial','#ffffff');
+  sy+=42;
+
+  const weakSecs=SECTIONS.filter(s=>r.ss[s.id]<60).slice(0,4);
+  const actions=[
+    ...weakSecs.map(s=>`قوّ قسم "${SECTIONS.find(sec=>sec.id===s.id).name}"`),
+    'راجع وثائقك مع فريق UniPath قبل التقديم'
+  ].slice(0,5);
+  actions.forEach((a,i)=>{
+    rect(32,sy,W-64,42,10,'#fff');
+    // number circle
+    cx.beginPath();cx.arc(62,sy+21,13,0,Math.PI*2);cx.fillStyle='#0F2A44';cx.fill();
+    txt(String(i+1),62,sy+26,'bold 13px Arial','#fff');
+    txt(a,88,sy+24,'13px Arial','#1a2e45','left');
+    sy+=50;
+  });
+
+  // ── SECTION 4: TIPS (best tip per weak section) ──
+  sy+=10;
+  rect(32,sy,W-64,32,10,'#2BB3A3');
+  txt('نصيحة لكل قسم ضعيف',W/2,sy+20,'bold 14px Arial','#fff');
+  sy+=42;
+
+  const FB_SHORT={
+    academic:{needswork:'أبرز نموّك في الـ SOP واشتغل على كورسات Coursera معتمدة لتعويض الدرجات.',good:'اطلب توصية تذكر إنجازاتك بتفاصيل وعزّز بشهادات من edX أو Coursera.'},
+    language:{needswork:'سجّل في IELTS مكثف الآن — استهدف 6.5+ خلال 3 أشهر مع British Council.',good:'خذ دورة Academic Writing وراجع الـ SOP مع Native Speaker قبل التقديم.'},
+    activities:{needswork:'ابدأ تطوعاً هذا الأسبوع واسعَ لدور قيادي — AIESEC وModel UN فرص ممتازة.',good:'وثّق كل نشاط بالأثر والأرقام واربطه بأهدافك في خطاب الدوافع.'},
+    documents:{needswork:'ابدأ بـ Harvard CV وكتابة SOP فوراً — لا تتقدم بدون توصيتين تفصيليتين.',good:'راجع وثائقك مع متخصص وتأكد من خلوّها من الأخطاء اللغوية.'},
+    goals:{needswork:'خصّص يوماً للإجابة: لماذا هذا؟ لماذا الآن؟ ماذا بعد؟ — الوضوح يصنع الملف.',good:'عمّق خطتك المستقبلية وأضف أرقاماً وتفاصيل واقعية في الـ SOP.'},
+  };
+  const shownSecs=SECTIONS.filter(s=>r.ss[s.id]<70).slice(0,4);
+  shownSecs.forEach((sec,i)=>{
+    const sc=r.ss[sec.id];
+    const tipKey=sc<45?'needswork':'good';
+    const tip=FB_SHORT[sec.id]?.[tipKey]||'';
+    rect(32,sy,W-64,52,10,i%2===0?'#fff':'#f8fafc');
+    rect(32,sy,4,52,0,'#2BB3A3');
+    txt(sec.icon+' '+sec.name,56,sy+18,'bold 12px Arial','#0F2A44','left');
+    // wrap text
+    const maxW=W-110;
+    cx.font='11px Arial';cx.fillStyle='#64748b';cx.textAlign='left';
+    const words=tip.split(' ');let line2='',lineY=sy+36;
+    words.forEach((w,wi)=>{
+      const test=line2+w+' ';
+      if(cx.measureText(test).width>maxW&&wi>0){cx.fillText(line2,56,lineY);line2=w+' ';lineY+=15;}
+      else line2=test;
+    });
+    cx.fillText(line2,56,lineY);
+    sy+=58;
+  });
+
+  // ── FOOTER ──
+  sy=H-68;
+  rect(0,sy,W,68,0,'#0F2A44');
+  rect(0,sy,W,3,0,'#2BB3A3');
+  txt('Uni',42,sy+38,'bold 16px Arial','#fff','left');
+  txt('P',66,sy+38,'bold 16px Arial','#2BB3A3','left');
+  txt('ath — مقياس جاهزية المنح الدراسية',80,sy+38,'14px Arial','rgba(255,255,255,.6)','left');
+  txt('wa.me/201500276855',W-32,sy+30,'12px Arial','rgba(255,255,255,.5)','right');
+  txt('هذه نتيجة تقييم ذاتي — قدّم ولا تستسلم 💪',W-32,sy+50,'11px Arial','rgba(255,255,255,.35)','right');
+
+  // ── DOWNLOAD ──
+  const lnk=document.createElement('a');
+  lnk.download=`UniPath-${r.score}pct-${Date.now()}.png`;
+  lnk.href=cv.toDataURL('image/png',1.0);lnk.click();
 }
 
 // ═══ MODAL ═══
