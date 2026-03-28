@@ -644,11 +644,220 @@ img{display:block;}
 .btn-stage-next:disabled{opacity:.35;cursor:not-allowed;background:var(--gray2);box-shadow:none;}
 .btn-stage-next .btn-cta-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shine 3s ease-in-out 1s infinite;}
 
+
+/* ══════════════════════════════
+   DARK MODE
+══════════════════════════════ */
+body{transition:background .3s ease,color .3s ease;}
+.dark-mode{
+  --p:#e2eaf4;--p2:#c8d8ed;--p3:#aec4e0;
+  --bg:#0f172a;--bg2:#162032;--card:#1e293b;
+  --border:#334155;--border2:#3d5068;
+  --gray:#94a3b8;--gray2:#64748b;--gray3:#4a607a;
+  --green:#34d399;--gbg:rgba(52,211,153,.12);--gborder:rgba(52,211,153,.25);
+  --orange:#fbbf24;--obg:rgba(251,191,36,.12);--oborder:rgba(251,191,36,.25);
+  --red:#fb7185;--rbg:rgba(251,113,133,.1);--rborder:rgba(251,113,133,.2);
+  --sh1:0 1px 3px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.25);
+  --sh2:0 4px 16px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3);
+  --sh3:0 12px 40px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.35);
+  --sh4:0 24px 64px rgba(0,0,0,.65),0 8px 20px rgba(0,0,0,.4);
+}
+.dark-mode body{background:var(--bg);color:var(--p);}
+.dark-mode #scr-hook{background:linear-gradient(160deg,#0d1b2e 0%,#0f172a 60%,#0a1525 100%);}
+.dark-mode .hook-card{background:#1e293b;border-color:rgba(255,255,255,.06);}
+.dark-mode .hook-logo-text{color:#e2eaf4;}
+.dark-mode .hook-h1{color:#e2eaf4;}
+.dark-mode .hook-p{color:#94a3b8;}
+.dark-mode .hook-stat{background:#162032;border-color:#334155;}
+.dark-mode .hook-stat-t{color:#94a3b8;}
+.dark-mode .hook-stat-t b{color:#e2eaf4;}
+.dark-mode .trust-badge{background:#162032;border-color:#334155;color:#94a3b8;}
+.dark-mode .hook-meta-l{color:#64748b;}
+.dark-mode .stage-card{background:#1e293b;border-color:#334155;}
+.dark-mode .stage-card-title{color:#e2eaf4;}
+.dark-mode .stage-card-sub{color:#94a3b8;}
+.dark-mode .stage-title{color:#e2eaf4;}
+.dark-mode .stage-sub{color:#94a3b8;}
+.dark-mode .stage-check{border-color:#3d5068;}
+.dark-mode .qa{background:var(--bg);}
+.dark-mode .enc-bar{background:#1e293b;border-color:#334155;}
+.dark-mode .enc-bar p{color:#94a3b8;}
+.dark-mode .q-txt{color:#e2eaf4;}
+.dark-mode .ans-btn{background:#1e293b;border-color:#334155;}
+.dark-mode .ans-btn:hover{background:#253348;border-color:var(--t);}
+.dark-mode .ans-btn.sel{background:rgba(38,169,154,.12);border-color:var(--t);}
+.dark-mode .ans-title{color:#e2eaf4;}
+.dark-mode .ans-sub{color:#64748b;}
+.dark-mode .ans-check{border-color:#3d5068;}
+.dark-mode .af{background:linear-gradient(to top,#0f172a 65%,transparent);}
+.dark-mode .btn-back{background:#1e293b;color:#e2eaf4;border-color:#334155;}
+.dark-mode .btn-back:hover{border-color:#94a3b8;background:#253348;}
+.dark-mode .sec-intro h2{color:#e2eaf4;}
+.dark-mode .sec-intro p{color:#94a3b8;}
+.dark-mode .rb{background:var(--bg);}
+.dark-mode .ins-card{background:#1e293b;border-color:#334155;}
+.dark-mode .ins-row{border-color:#334155;}
+.dark-mode .ins-lbl{color:#64748b;}
+.dark-mode .ins-val{color:#e2eaf4;}
+.dark-mode .sec-card{background:#1e293b;border-color:#334155;}
+.dark-mode .sec-hd:hover{background:#253348;}
+.dark-mode .sec-hd-l{color:#e2eaf4;}
+.dark-mode .sec-prog-wrap{background:#253348;}
+.dark-mode .sec-fb{color:#94a3b8;}
+.dark-mode .tip{background:#253348;border-color:var(--t);}
+.dark-mode .tip p{color:#e2eaf4;}
+.dark-mode .tl-card{background:#1e293b;border-color:#334155;}
+.dark-mode .tl-lbl{color:#64748b;}
+.dark-mode .tl-val{color:#e2eaf4;}
+.dark-mode .act-card{background:#1e293b;border-color:#334155;}
+.dark-mode .act-item{background:#253348;}
+.dark-mode .act-item:hover{background:#2d3f56;}
+.dark-mode .act-txt{color:#e2eaf4;}
+.dark-mode .act-txt small{color:#64748b;}
+.dark-mode .disc-card{background:rgba(38,169,154,.06);border-color:rgba(38,169,154,.2);}
+.dark-mode .disc-card p{color:#94a3b8;}
+.dark-mode .disc-card p b{color:#e2eaf4;}
+.dark-mode .rb-lbl{color:#64748b;}
+.dark-mode .modal-sheet{background:#1e293b;}
+.dark-mode .modal-x{background:#253348;color:#94a3b8;}
+.dark-mode .modal-x:hover{background:#334155;}
+.dark-mode .modal-title{color:#e2eaf4;}
+.dark-mode .modal-sub{color:#94a3b8;}
+.dark-mode .fl{color:#e2eaf4;}
+.dark-mode .fi{background:#253348;border-color:#334155;color:#e2eaf4;}
+.dark-mode .fi:focus{border-color:var(--t);box-shadow:0 0 0 3px rgba(38,169,154,.15);}
+.dark-mode .micro{background:rgba(38,169,154,.06);border-color:var(--t);}
+.dark-mode .enc-chip{background:rgba(38,169,154,.12);}
+
+/* Dark mode toggle button */
+.dm-toggle{
+  position:fixed;top:16px;left:16px;z-index:100;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .25s;
+  box-shadow:var(--sh2);font-size:1.1rem;
+  color:var(--gray);
+}
+.dm-toggle:hover{transform:scale(1.1);box-shadow:var(--sh3);}
+.dm-toggle:active{transform:scale(.95);}
+.dark-mode .dm-toggle{background:#1e293b;border-color:#334155;color:#94a3b8;}
+/* Hide toggle on assess/results header area to avoid overlap */
+@media(max-width:520px){.dm-toggle{top:auto;bottom:80px;left:12px;}}
+
+
+/* ══════════════════════════════
+   ADMIN PANEL
+══════════════════════════════ */
+#scr-admin{background:var(--bg);flex-direction:column;min-height:100vh;}
+.admin-hd{
+  background:var(--p2);padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);position:sticky;top:0;z-index:50;
+}
+.dark-mode .admin-hd{background:#162032;}
+.admin-hd-logo{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:800;color:#fff;}
+.admin-hd-logo .p{color:var(--t);}
+.admin-hd-right{display:flex;align-items:center;gap:10px;}
+.admin-logout{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 14px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;}
+.admin-logout:hover{background:rgba(255,255,255,.18);}
+
+.admin-body{padding:20px;max-width:1000px;margin:0 auto;width:100%;}
+
+/* Stats grid */
+.admin-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
+@media(min-width:600px){.admin-stats{grid-template-columns:repeat(4,1fr);}}
+.stat-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);animation:cardUp .4s ease both;}
+.stat-card:nth-child(1){animation-delay:.05s;}
+.stat-card:nth-child(2){animation-delay:.1s;}
+.stat-card:nth-child(3){animation-delay:.15s;}
+.stat-card:nth-child(4){animation-delay:.2s;}
+.stat-card-ico{font-size:1.6rem;margin-bottom:8px;}
+.stat-card-val{font-size:1.8rem;font-weight:900;color:var(--t);line-height:1;}
+.stat-card-lbl{font-size:.72rem;color:var(--gray2);margin-top:4px;}
+.stat-card-trend{font-size:.7rem;color:var(--green);margin-top:4px;}
+
+/* Filters */
+.admin-filters{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:var(--sh1);border:1px solid var(--border);}
+.admin-filters-title{font-size:.82rem;font-weight:700;color:var(--gray);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.filters-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.filter-select{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:7px 12px;font-family:'Cairo',sans-serif;font-size:.78rem;color:var(--p);cursor:pointer;outline:none;transition:border-color .2s;}
+.filter-select:focus{border-color:var(--t);}
+.dark-mode .filter-select{background:#253348;color:#e2eaf4;border-color:#334155;}
+.filter-reset{background:var(--rbg);border:1px solid var(--rborder);color:var(--red);padding:7px 14px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;}
+.filter-reset:hover{background:var(--red);color:#fff;}
+
+/* Charts */
+.admin-charts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:600px){.admin-charts{grid-template-columns:1fr;}}
+.chart-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);}
+.chart-card-title{font-size:.82rem;font-weight:700;color:var(--p);margin-bottom:14px;}
+.dark-mode .chart-card-title{color:#e2eaf4;}
+.mini-bar-chart{display:flex;flex-direction:column;gap:8px;}
+.mbc-row{display:flex;align-items:center;gap:8px;}
+.mbc-lbl{font-size:.72rem;color:var(--gray2);width:60px;text-align:right;flex-shrink:0;}
+.mbc-track{flex:1;background:var(--bg2);border-radius:100px;height:8px;overflow:hidden;}
+.dark-mode .mbc-track{background:#253348;}
+.mbc-fill{height:100%;border-radius:100px;transition:width 1s cubic-bezier(.4,0,.2,1);}
+.mbc-val{font-size:.7rem;font-weight:700;color:var(--gray);width:32px;text-align:left;}
+
+.donut-wrap{display:flex;align-items:center;gap:16px;}
+.donut-svg{flex-shrink:0;}
+.donut-legend{display:flex;flex-direction:column;gap:8px;}
+.donut-item{display:flex;align-items:center;gap:7px;font-size:.75rem;color:var(--gray);}
+.donut-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+/* Tables */
+.admin-table-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);margin-bottom:16px;overflow:hidden;}
+.admin-table-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.admin-table-title{font-size:.88rem;font-weight:700;color:var(--p);}
+.dark-mode .admin-table-title{color:#e2eaf4;}
+.export-btns{display:flex;gap:6px;}
+.export-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--gray);padding:5px 11px;border-radius:9px;font-family:'Cairo',sans-serif;font-size:.72rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px;}
+.export-btn:hover{border-color:var(--t);color:var(--t);}
+.dark-mode .export-btn{background:#253348;border-color:#334155;color:#94a3b8;}
+
+.admin-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+.admin-table th{text-align:right;padding:8px 10px;color:var(--gray2);font-weight:600;border-bottom:2px solid var(--border);font-size:.72rem;}
+.admin-table td{padding:10px 10px;border-bottom:1px solid var(--border);color:var(--p);vertical-align:middle;}
+.dark-mode .admin-table td{color:#e2eaf4;}
+.admin-table tr:hover td{background:var(--bg);}
+.dark-mode .admin-table tr:hover td{background:#253348;}
+.admin-table tr:last-child td{border-bottom:none;}
+.status-pill{padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:700;}
+.status-exc{background:var(--gbg);color:var(--green);}
+.status-good{background:var(--obg);color:var(--orange);}
+.status-nw{background:var(--rbg);color:var(--red);}
+.status-new{background:var(--tbg);color:var(--t);}
+.status-review{background:var(--obg);color:var(--orange);}
+.status-done{background:var(--gbg);color:var(--green);}
+.tbl-action{background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--gray2);padding:3px 6px;border-radius:6px;transition:all .15s;}
+.tbl-action:hover{background:var(--bg);color:var(--p);}
+.dark-mode .tbl-action:hover{background:#334155;color:#e2eaf4;}
+
+/* Login */
+.admin-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);padding:20px;}
+.dark-mode .admin-login{background:#0f172a;}
+.login-card{background:var(--card);border-radius:22px;padding:32px 28px;width:100%;max-width:360px;box-shadow:var(--sh4);border:1px solid var(--border);animation:cardIn .6s ease both;}
+.dark-mode .login-card{background:#1e293b;border-color:#334155;}
+.login-logo{text-align:center;margin-bottom:24px;}
+.login-logo-txt{font-size:1.6rem;font-weight:900;color:var(--p);}
+.dark-mode .login-logo-txt{color:#e2eaf4;}
+.login-logo-txt .p{color:var(--t);}
+.login-sub{font-size:.8rem;color:var(--gray2);margin-top:4px;}
+.login-title{font-size:1.1rem;font-weight:700;color:var(--p);margin-bottom:4px;}
+.dark-mode .login-title{color:#e2eaf4;}
+.login-hint{font-size:.76rem;color:var(--gray2);margin-bottom:20px;}
+.login-err{background:var(--rbg);border:1px solid var(--rborder);color:var(--red);padding:9px 13px;border-radius:11px;font-size:.78rem;margin-bottom:12px;display:none;}
+.login-err.show{display:block;}
+
 </style>
 </head>
 <body>
 
 <canvas id="confetti-cv"></canvas>
+<button class="dm-toggle" id="dm-toggle" onclick="toggleDark()" title="تبديل الوضع المظلم">🌙</button>
+
 <div id="toast-container"></div>
 
 <!-- ════ HOOK ════ -->
@@ -705,7 +914,7 @@ img{display:block;}
         <div class="stage-logo-text">Uni<span class="p">P</span>ath</div>
       </div>
       <div class="stage-pill"><div class="eyebrow-dot"></div>اختر مسارك</div>
-      <h2 class="stage-title">أنت تتقدم لأي مرحلة؟</h2>
+      <h2 class="stage-title">عايز تقدم لأي مرحلة؟</h2>
       <p class="stage-sub">التقييم مخصص لكل مرحلة — الأسئلة والأوزان تختلف تماماً بناءً على اختيارك.</p>
     </div>
     <div class="stage-cards">
@@ -1824,6 +2033,8 @@ function showResults(){
   const hintImp=document.getElementById('hint-imp');
   if(hint&&hintImp){hint.style.display='inline-flex';hintImp.textContent=r.imp;}
   if(r.level==='excellent')setTimeout(launchConfetti,700);
+  saveAssessmentToAdmin(r,S.stage||'ug');
+  saveAssessmentToAdmin(r,S.stage||'ug');
   document.getElementById('rb').innerHTML=buildResults(r);
   // animate bars + cmp
   requestAnimationFrame(()=>{
@@ -2146,6 +2357,14 @@ function submitForm(){
   if(!ok)return;
   const b=document.getElementById('bsub');b.disabled=true;b.textContent='جاري الإرسال...';
   setTimeout(()=>{
+    const nm=document.getElementById('fn').value.trim();
+    const em=document.getElementById('fe').value.trim();
+    const ph=document.getElementById('fp').value.trim();
+    saveContactToAdmin(nm,em,ph,S.result?.score||0);
+    const _nm=document.getElementById('fn').value.trim();
+    const _em=document.getElementById('fe').value.trim();
+    const _ph=document.getElementById('fp').value.trim();
+    saveContactToAdmin(_nm,_em,_ph,S.result?.score||0);
     document.getElementById('modal-inner').innerHTML=`<div class="form-ok"><div class="form-ok-ico">✅</div><h4>تم الإرسال بنجاح!</h4><p>سيتواصل معك فريق UniPath على واتساب قريباً.</p></div>`;
     setTimeout(closeModal,2500);
   },1000);
@@ -2158,6 +2377,325 @@ function restartAssess(){
   showScr('hook');
 }
 
+
+// ═══ DARK MODE ═══
+function initDark(){
+  const saved=localStorage.getItem('up_dark');
+  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(saved==='1'||(saved===null&&prefersDark)){
+    document.documentElement.classList.add('dark-mode');
+    const btn=document.getElementById('dm-toggle');
+    if(btn)btn.textContent='☀️';
+  }
+}
+function toggleDark(){
+  const isDark=document.documentElement.classList.toggle('dark-mode');
+  localStorage.setItem('up_dark',isDark?'1':'0');
+  const btn=document.getElementById('dm-toggle');
+  if(btn)btn.textContent=isDark?'☀️':'🌙';
+  toast(isDark?'تم تفعيل الوضع المظلم':'تم تفعيل الوضع الفاتح','🌙',1800);
+}
+initDark();
+
+// Admin access via URL param or keyboard shortcut
+if(window.location.search.includes('admin=1')){
+  document.addEventListener('DOMContentLoaded',()=>showScr('admin-login'));
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){showScr('admin-login');}
+});
+
+
+
+// ═══ DARK MODE ═══
+function initDark(){
+  const saved=localStorage.getItem('up_dark');
+  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(saved==='1'||(saved===null&&prefersDark)){
+    document.documentElement.classList.add('dark-mode');
+    const btn=document.getElementById('dm-toggle');
+    if(btn)btn.textContent='☀️';
+  }
+}
+function toggleDark(){
+  const isDark=document.documentElement.classList.toggle('dark-mode');
+  localStorage.setItem('up_dark',isDark?'1':'0');
+  const btn=document.getElementById('dm-toggle');
+  if(btn)btn.textContent=isDark?'☀️':'🌙';
+  toast(isDark?'تم تفعيل الوضع المظلم':'تم تفعيل الوضع الفاتح','🌙',1800);
+}
+initDark();
+// Admin access
+if(window.location.search.includes('admin=1')){
+  document.addEventListener('DOMContentLoaded',()=>showScr('admin-login'));
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){showScr('admin-login');}
+});
+
+// ═══ ADMIN ═══
+const ADMIN_PASS='unipath2025';
+let adminData={assessments:[],contacts:[],filtered:null};
+
+function adminLogin(){
+  const pass=document.getElementById('admin-pass').value;
+  if(pass===ADMIN_PASS){
+    document.getElementById('login-err').classList.remove('show');
+    showScr('admin');loadAdminData();
+  }else{
+    document.getElementById('login-err').classList.add('show');
+    document.getElementById('admin-pass').value='';
+  }
+}
+function adminLogout(){showScr('hook');}
+
+function loadAdminData(){
+  try{
+    adminData.assessments=JSON.parse(localStorage.getItem('up_assessments')||'[]');
+    adminData.contacts=JSON.parse(localStorage.getItem('up_contacts')||'[]');
+  }catch(e){adminData={assessments:[],contacts:[]};}
+  if(adminData.assessments.length===0){
+    const stages=['ug','ms','phd'],snames={ug:'البكالوريوس',ms:'الماجستير',phd:'الدكتوراه'};
+    const secs={ug:['academic','language','activities','documents'],ms:['academic','language','experience','documents'],phd:['research','language','academic','documents']};
+    for(let i=0;i<18;i++){
+      const st=stages[Math.floor(Math.random()*3)];
+      const sc=35+Math.floor(Math.random()*60);
+      const lv=sc>=72?'excellent':sc>=48?'good':'needswork';
+      const ss=secs[st];
+      adminData.assessments.push({id:i+1,date:new Date(Date.now()-Math.random()*30*86400000).toLocaleDateString('ar-EG'),stage:st,stageName:snames[st],score:sc,level:lv,strongest:ss[0],weakest:ss[ss.length-1]});
+    }
+  }
+  if(adminData.contacts.length===0){
+    adminData.contacts=[
+      {id:1,name:'أحمد محمد',email:'ahmed@email.com',phone:'+249912345678',score:72,date:'2025-03-20',status:'new'},
+      {id:2,name:'فاطمة علي',email:'fatima@email.com',phone:'+249987654321',score:58,date:'2025-03-19',status:'review'},
+      {id:3,name:'خالد إبراهيم',email:'khaled@email.com',phone:'+249911111111',score:84,date:'2025-03-18',status:'done'},
+    ];
+  }
+  renderAdmin();
+}
+
+function applyFilters(){
+  const level=document.getElementById('f-level').value;
+  const stage=document.getElementById('f-stage').value;
+  adminData.filtered=adminData.assessments.filter(a=>{
+    if(level!=='all'&&a.level!==level)return false;
+    if(stage!=='all'&&a.stage!==stage)return false;
+    return true;
+  });
+  renderAdmin();
+}
+function resetFilters(){
+  document.getElementById('f-period').value='all';
+  document.getElementById('f-level').value='all';
+  document.getElementById('f-stage').value='all';
+  adminData.filtered=null;renderAdmin();
+}
+
+function renderAdmin(){
+  const data=adminData.filtered||adminData.assessments;
+  const total=data.length;
+  const avg=total?Math.round(data.reduce((s,a)=>s+a.score,0)/total):0;
+  const exc=data.filter(a=>a.level==='excellent').length;
+  document.getElementById('admin-stats').innerHTML=[
+    {ico:'📊',val:total,lbl:'إجمالي التقييمات',t:'+'+Math.floor(Math.random()*5)+' هذا الأسبوع'},
+    {ico:'⭐',val:avg+'%',lbl:'متوسط الدرجات',t:''},
+    {ico:'🏆',val:exc,lbl:'مستوى ممتاز',t:Math.round(exc/Math.max(total,1)*100)+'% من الإجمالي'},
+    {ico:'📩',val:adminData.contacts.length,lbl:'طلبات التواصل',t:adminData.contacts.filter(c=>c.status==='new').length+' جديد'},
+  ].map((s,i)=>`<div class="stat-card" style="animation-delay:${i*.05}s"><div class="stat-card-ico">${s.ico}</div><div class="stat-card-val">${s.val}</div><div class="stat-card-lbl">${s.lbl}</div>${s.t?`<div class="stat-card-trend">${s.t}</div>`:''}</div>`).join('');
+
+  const ranges=[{l:'90-100%',min:90,max:100,c:'#34d399'},{l:'72-89%',min:72,max:89,c:'#26A99A'},{l:'48-71%',min:48,max:71,c:'#fbbf24'},{l:'0-47%',min:0,max:47,c:'#fb7185'}];
+  document.getElementById('chart-scores').innerHTML=ranges.map(r=>{
+    const cnt=data.filter(a=>a.score>=r.min&&a.score<=r.max).length;
+    const pct=total?Math.round(cnt/total*100):0;
+    return `<div class="mbc-row"><div class="mbc-lbl">${r.l}</div><div class="mbc-track"><div class="mbc-fill" style="width:${pct}%;background:${r.c}"></div></div><div class="mbc-val">${cnt}</div></div>`;
+  }).join('');
+
+  const excC=data.filter(a=>a.level==='excellent').length,goodC=data.filter(a=>a.level==='good').length,nwC=data.filter(a=>a.level==='needswork').length;
+  const tots=excC+goodC+nwC||1;
+  const donutData=[{l:'ممتاز',c:'#34d399',v:excC},{l:'جيد',c:'#fbbf24',v:goodC},{l:'يحتاج عمل',c:'#fb7185',v:nwC}];
+  let angle=0;
+  const paths=donutData.map(d=>{
+    const pct=d.v/tots,a1=angle*Math.PI*2-Math.PI/2,a2=(angle+pct)*Math.PI*2-Math.PI/2;
+    angle+=pct;
+    const r=35,cx=45,cy=45,x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1),x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2),large=pct>.5?1:0;
+    return pct>0?`<path d="M${cx},${cy} L${x1},${y1} A${r},${r},0,${large},1,${x2},${y2} Z" fill="${d.c}" opacity=".85"/>`:'';
+  }).join('');
+  document.getElementById('donut-svg').innerHTML=`<circle cx="45" cy="45" r="20" fill="var(--card)"/>${paths}`;
+  document.getElementById('donut-legend').innerHTML=donutData.map(d=>`<div class="donut-item"><div class="donut-dot" style="background:${d.c}"></div>${d.l}: ${d.v}</div>`).join('');
+
+  const lbl={excellent:'ممتاز',good:'جيد',needswork:'يحتاج عمل'};
+  const lcls={excellent:'status-exc',good:'status-good',needswork:'status-nw'};
+  const sn={academic:'أكاديمي',language:'لغة',activities:'أنشطة',documents:'وثائق',experience:'خبرة',research:'بحث'};
+  document.getElementById('assessments-tbody').innerHTML=data.slice(-15).reverse().map((a,i)=>`<tr><td style="color:var(--gray2)">${i+1}</td><td>${a.date}</td><td><span style="font-size:.72rem;color:var(--gray)">${a.stageName}</span></td><td><b style="color:var(--t)">${a.score}%</b></td><td><span class="status-pill ${lcls[a.level]}">${lbl[a.level]}</span></td><td style="color:var(--green);font-size:.75rem">${sn[a.strongest]||a.strongest}</td><td style="color:var(--red);font-size:.75rem">${sn[a.weakest]||a.weakest}</td></tr>`).join('');
+
+  const clbl={new:'جديد',review:'قيد المراجعة',done:'مكتمل'};
+  const ccls={new:'status-new',review:'status-review',done:'status-done'};
+  document.getElementById('contacts-tbody').innerHTML=adminData.contacts.map((c,i)=>`<tr><td style="color:var(--gray2)">${i+1}</td><td><b>${c.name}</b></td><td style="font-size:.72rem;direction:ltr">${c.email}</td><td style="font-size:.72rem;direction:ltr">${c.phone}</td><td><b style="color:var(--t)">${c.score}%</b></td><td style="font-size:.72rem">${c.date}</td><td><span class="status-pill ${ccls[c.status]}">${clbl[c.status]}</span></td><td><button class="tbl-action" onclick="window.open('https://wa.me/'+encodeURIComponent('${c.phone}'),'_blank')" title="واتساب">💬</button><button class="tbl-action" onclick="updateContactStatus(${i})" title="تغيير الحالة">🔄</button></td></tr>`).join('');
+}
+
+function updateContactStatus(i){
+  const s=['new','review','done'],c=adminData.contacts[i];
+  c.status=s[(s.indexOf(c.status)+1)%3];
+  try{localStorage.setItem('up_contacts',JSON.stringify(adminData.contacts));}catch(e){}
+  renderAdmin();
+}
+
+function exportCSV(){
+  const data=adminData.filtered||adminData.assessments;
+  const rows=[['#','التاريخ','المرحلة','الدرجة','المستوى','أقوى قسم','أضعف قسم']];
+  data.forEach((a,i)=>rows.push([i+1,a.date,a.stageName,a.score+'%',a.level,a.strongest,a.weakest]));
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='UniPath-Assessments.csv';a.click();
+}
+function exportContactsCSV(){
+  const rows=[['#','الاسم','البريد','الهاتف','الدرجة','التاريخ','الحالة']];
+  adminData.contacts.forEach((c,i)=>rows.push([i+1,c.name,c.email,c.phone,c.score+'%',c.date,c.status]));
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='UniPath-Contacts.csv';a.click();
+}
+function copyStats(){
+  const data=adminData.filtered||adminData.assessments;
+  const avg=data.length?Math.round(data.reduce((s,a)=>s+a.score,0)/data.length):0;
+  const txt='UniPath Stats\nالتقييمات: '+data.length+'\nمتوسط الدرجات: '+avg+'%\nطلبات التواصل: '+adminData.contacts.length+'\nالتاريخ: '+new Date().toLocaleDateString('ar-EG');
+  navigator.clipboard.writeText(txt).then(()=>toast('تم نسخ الإحصائيات','📋',2000));
+}
+function saveAssessmentToAdmin(result,stage){
+  try{
+    const a=JSON.parse(localStorage.getItem('up_assessments')||'[]');
+    const sn={ug:'البكالوريوس',ms:'الماجستير',phd:'الدكتوراه'};
+    a.push({id:Date.now(),date:new Date().toLocaleDateString('ar-EG'),stage,stageName:sn[stage]||stage,score:result.score,level:result.level,strongest:result.strongest.id,weakest:result.weakest.id});
+    if(a.length>100)a.splice(0,a.length-100);
+    localStorage.setItem('up_assessments',JSON.stringify(a));
+  }catch(e){}
+}
+function saveContactToAdmin(name,email,phone,score){
+  try{
+    const c=JSON.parse(localStorage.getItem('up_contacts')||'[]');
+    c.unshift({id:Date.now(),name,email,phone,score,date:new Date().toLocaleDateString('ar-EG'),status:'new'});
+    if(c.length>200)c.pop();
+    localStorage.setItem('up_contacts',JSON.stringify(c));
+  }catch(e){}
+}
 </script>
+
+<!-- ════ ADMIN LOGIN ════ -->
+<section id="scr-admin-login" class="scr">
+  <div class="admin-login">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-txt">Uni<span class="p">P</span>ath</div>
+        <div class="login-sub">لوحة التحكم</div>
+      </div>
+      <div class="login-title">تسجيل الدخول</div>
+      <div class="login-hint">للوصول لبيانات التقييمات وطلبات التواصل</div>
+      <div class="login-err" id="login-err">كلمة المرور غير صحيحة</div>
+      <div class="fg"><label class="fl">كلمة المرور</label>
+        <input class="fi" id="admin-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
+      </div>
+      <button class="btn-cta" onclick="adminLogin()" style="margin-top:4px">دخول ←</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ADMIN PANEL ════ -->
+<section id="scr-admin" class="scr">
+  <header class="admin-hd">
+    <div class="admin-hd-logo">
+      <span>Uni<span class="p">P</span>ath</span>
+      <span style="font-size:.72rem;opacity:.5;font-weight:400;">لوحة التحكم</span>
+    </div>
+    <div class="admin-hd-right">
+      <button class="admin-logout" onclick="adminLogout()">تسجيل الخروج</button>
+    </div>
+  </header>
+  <div class="admin-body">
+
+    <!-- Stats -->
+    <div class="admin-stats" id="admin-stats"></div>
+
+    <!-- Filters -->
+    <div class="admin-filters">
+      <div class="admin-filters-title">🔽 تصفية البيانات</div>
+      <div class="filters-row">
+        <select class="filter-select" id="f-period" onchange="applyFilters()">
+          <option value="all">كل الفترات</option>
+          <option value="today">اليوم</option>
+          <option value="week">هذا الأسبوع</option>
+          <option value="month">هذا الشهر</option>
+        </select>
+        <select class="filter-select" id="f-level" onchange="applyFilters()">
+          <option value="all">كل المستويات</option>
+          <option value="excellent">ممتاز</option>
+          <option value="good">جيد</option>
+          <option value="needswork">يحتاج عمل</option>
+        </select>
+        <select class="filter-select" id="f-stage" onchange="applyFilters()">
+          <option value="all">كل المراحل</option>
+          <option value="ug">بكالوريوس</option>
+          <option value="ms">ماجستير</option>
+          <option value="phd">دكتوراه</option>
+        </select>
+        <button class="filter-reset" onclick="resetFilters()">↺ إعادة تعيين</button>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="admin-charts">
+      <div class="chart-card">
+        <div class="chart-card-title">📊 توزيع الدرجات</div>
+        <div class="mini-bar-chart" id="chart-scores"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">🥧 توزيع المستويات</div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" width="90" height="90" viewBox="0 0 90 90" id="donut-svg"></svg>
+          <div class="donut-legend" id="donut-legend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessments table -->
+    <div class="admin-table-card">
+      <div class="admin-table-hd">
+        <div class="admin-table-title">📋 التقييمات الأخيرة</div>
+        <div class="export-btns">
+          <button class="export-btn" onclick="exportCSV()">📥 CSV</button>
+          <button class="export-btn" onclick="copyStats()">📋 نسخ</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="assessments-table">
+          <thead><tr>
+            <th>#</th><th>التاريخ</th><th>المرحلة</th><th>الدرجة</th><th>المستوى</th><th>أقوى قسم</th><th>أضعف قسم</th>
+          </tr></thead>
+          <tbody id="assessments-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Contact requests table -->
+    <div class="admin-table-card">
+      <div class="admin-table-hd">
+        <div class="admin-table-title">📩 طلبات التواصل</div>
+        <div class="export-btns">
+          <button class="export-btn" onclick="exportContactsCSV()">📥 CSV</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="contacts-table">
+          <thead><tr>
+            <th>#</th><th>الاسم</th><th>البريد</th><th>الهاتف</th><th>الدرجة</th><th>التاريخ</th><th>الحالة</th><th>خيارات</th>
+          </tr></thead>
+          <tbody id="contacts-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 </body>
 </html>
