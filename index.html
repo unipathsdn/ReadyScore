@@ -746,98 +746,7 @@ body{transition:background .3s ease,color .3s ease;}
 @media(max-width:520px){.dm-toggle{top:auto;bottom:80px;left:12px;}}
 
 
-/* ══════════════════════════════
-   ADMIN PANEL
-══════════════════════════════ */
-#scr-admin{background:var(--bg);flex-direction:column;min-height:100vh;}
-.admin-hd{
-  background:var(--p2);padding:16px 20px;
-  display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 4px 20px rgba(0,0,0,.2);position:sticky;top:0;z-index:50;
-}
-.dark-mode .admin-hd{background:#162032;}
-.admin-hd-logo{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:800;color:#fff;}
-.admin-hd-logo .p{color:var(--t);}
-.admin-hd-right{display:flex;align-items:center;gap:10px;}
-.admin-logout{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 14px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;}
-.admin-logout:hover{background:rgba(255,255,255,.18);}
-
-.admin-body{padding:20px;max-width:1000px;margin:0 auto;width:100%;}
-
-/* Stats grid */
-.admin-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
-@media(min-width:600px){.admin-stats{grid-template-columns:repeat(4,1fr);}}
-.stat-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);animation:cardUp .4s ease both;}
-.stat-card:nth-child(1){animation-delay:.05s;}
-.stat-card:nth-child(2){animation-delay:.1s;}
-.stat-card:nth-child(3){animation-delay:.15s;}
-.stat-card:nth-child(4){animation-delay:.2s;}
-.stat-card-ico{font-size:1.6rem;margin-bottom:8px;}
-.stat-card-val{font-size:1.8rem;font-weight:900;color:var(--t);line-height:1;}
-.stat-card-lbl{font-size:.72rem;color:var(--gray2);margin-top:4px;}
-.stat-card-trend{font-size:.7rem;color:var(--green);margin-top:4px;}
-
-/* Filters */
-.admin-filters{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:var(--sh1);border:1px solid var(--border);}
-.admin-filters-title{font-size:.82rem;font-weight:700;color:var(--gray);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.filters-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.filter-select{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:7px 12px;font-family:'Cairo',sans-serif;font-size:.78rem;color:var(--p);cursor:pointer;outline:none;transition:border-color .2s;}
-.filter-select:focus{border-color:var(--t);}
-.dark-mode .filter-select{background:#253348;color:#e2eaf4;border-color:#334155;}
-.filter-reset{background:var(--rbg);border:1px solid var(--rborder);color:var(--red);padding:7px 14px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;}
-.filter-reset:hover{background:var(--red);color:#fff;}
-
-/* Charts */
-.admin-charts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-@media(max-width:600px){.admin-charts{grid-template-columns:1fr;}}
-.chart-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);}
-.chart-card-title{font-size:.82rem;font-weight:700;color:var(--p);margin-bottom:14px;}
-.dark-mode .chart-card-title{color:#e2eaf4;}
-.mini-bar-chart{display:flex;flex-direction:column;gap:8px;}
-.mbc-row{display:flex;align-items:center;gap:8px;}
-.mbc-lbl{font-size:.72rem;color:var(--gray2);width:60px;text-align:right;flex-shrink:0;}
-.mbc-track{flex:1;background:var(--bg2);border-radius:100px;height:8px;overflow:hidden;}
-.dark-mode .mbc-track{background:#253348;}
-.mbc-fill{height:100%;border-radius:100px;transition:width 1s cubic-bezier(.4,0,.2,1);}
-.mbc-val{font-size:.7rem;font-weight:700;color:var(--gray);width:32px;text-align:left;}
-
-.donut-wrap{display:flex;align-items:center;gap:16px;}
-.donut-svg{flex-shrink:0;}
-.donut-legend{display:flex;flex-direction:column;gap:8px;}
-.donut-item{display:flex;align-items:center;gap:7px;font-size:.75rem;color:var(--gray);}
-.donut-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-
-/* Tables */
-.admin-table-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh1);border:1px solid var(--border);margin-bottom:16px;overflow:hidden;}
-.admin-table-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
-.admin-table-title{font-size:.88rem;font-weight:700;color:var(--p);}
-.dark-mode .admin-table-title{color:#e2eaf4;}
-.export-btns{display:flex;gap:6px;}
-.export-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--gray);padding:5px 11px;border-radius:9px;font-family:'Cairo',sans-serif;font-size:.72rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px;}
-.export-btn:hover{border-color:var(--t);color:var(--t);}
-.dark-mode .export-btn{background:#253348;border-color:#334155;color:#94a3b8;}
-
-.admin-table{width:100%;border-collapse:collapse;font-size:.78rem;}
-.admin-table th{text-align:right;padding:8px 10px;color:var(--gray2);font-weight:600;border-bottom:2px solid var(--border);font-size:.72rem;}
-.admin-table td{padding:10px 10px;border-bottom:1px solid var(--border);color:var(--p);vertical-align:middle;}
-.dark-mode .admin-table td{color:#e2eaf4;}
-.admin-table tr:hover td{background:var(--bg);}
-.dark-mode .admin-table tr:hover td{background:#253348;}
-.admin-table tr:last-child td{border-bottom:none;}
-.status-pill{padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:700;}
-.status-exc{background:var(--gbg);color:var(--green);}
-.status-good{background:var(--obg);color:var(--orange);}
-.status-nw{background:var(--rbg);color:var(--red);}
-.status-new{background:var(--tbg);color:var(--t);}
-.status-review{background:var(--obg);color:var(--orange);}
-.status-done{background:var(--gbg);color:var(--green);}
-.tbl-action{background:none;border:none;cursor:pointer;font-size:.8rem;color:var(--gray2);padding:3px 6px;border-radius:6px;transition:all .15s;}
-.tbl-action:hover{background:var(--bg);color:var(--p);}
-.dark-mode .tbl-action:hover{background:#334155;color:#e2eaf4;}
-
 /* Login */
-.admin-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);padding:20px;}
-.dark-mode .admin-login{background:#0f172a;}
 .login-card{background:var(--card);border-radius:22px;padding:32px 28px;width:100%;max-width:360px;box-shadow:var(--sh4);border:1px solid var(--border);animation:cardIn .6s ease both;}
 .dark-mode .login-card{background:#1e293b;border-color:#334155;}
 .login-logo{text-align:center;margin-bottom:24px;}
@@ -850,6 +759,177 @@ body{transition:background .3s ease,color .3s ease;}
 .login-hint{font-size:.76rem;color:var(--gray2);margin-bottom:20px;}
 .login-err{background:var(--rbg);border:1px solid var(--rborder);color:var(--red);padding:9px 13px;border-radius:11px;font-size:.78rem;margin-bottom:12px;display:none;}
 .login-err.show{display:block;}
+
+
+/* ══ SCHOLARSHIP MATCHER ══ */
+.scholar-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--sh1);border:1px solid var(--border);animation:cardUp .5s ease .9s both;}
+.scholar-list{display:flex;flex-direction:column;gap:10px;}
+.scholar-item{
+  background:var(--bg);border-radius:13px;padding:13px 14px;
+  display:flex;align-items:flex-start;gap:12px;
+  border:1.5px solid var(--border);
+  transition:all .2s;cursor:pointer;
+  text-decoration:none;
+}
+.scholar-item:hover{border-color:var(--t);background:rgba(38,169,154,.04);transform:translateX(-3px);}
+.scholar-badge{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:#fff;
+}
+.scholar-body{flex:1;}
+.scholar-name{font-size:.9rem;font-weight:700;color:var(--p);margin-bottom:3px;}
+.dark-mode .scholar-name{color:#e2eaf4;}
+.scholar-meta{font-size:.74rem;color:var(--gray2);line-height:1.5;}
+.scholar-fit{
+  font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:100px;
+  margin-top:5px;display:inline-block;
+}
+.fit-high{background:var(--gbg);color:var(--green);}
+.fit-med{background:var(--obg);color:var(--orange);}
+.fit-low{background:var(--rbg);color:var(--red);}
+.scholar-arrow{color:var(--gray2);margin-top:10px;font-size:.9rem;}
+
+/* ══ INTERACTIVE ROADMAP ══ */
+.roadmap-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--sh1);border:1px solid var(--border);animation:cardUp .5s ease .95s both;}
+.roadmap-timeline{position:relative;padding-right:24px;}
+.roadmap-timeline::before{content:'';position:absolute;right:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--t),rgba(38,169,154,.1));}
+.roadmap-step{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;position:relative;}
+.roadmap-step:last-child{margin-bottom:0;}
+.roadmap-dot{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-weight:700;color:#fff;
+  position:relative;z-index:1;margin-right:-3px;
+  transition:transform .3s;
+}
+.roadmap-step:hover .roadmap-dot{transform:scale(1.2);}
+.dot-active{background:var(--t);box-shadow:0 0 0 4px rgba(38,169,154,.2);}
+.dot-later{background:var(--gray3);}
+.dot-done{background:var(--green);}
+.roadmap-content{flex:1;}
+.roadmap-month{font-size:.68rem;font-weight:700;color:var(--t);margin-bottom:2px;letter-spacing:.5px;}
+.roadmap-task{font-size:.85rem;font-weight:700;color:var(--p);margin-bottom:3px;}
+.dark-mode .roadmap-task{color:#e2eaf4;}
+.roadmap-detail{font-size:.75rem;color:var(--gray2);line-height:1.55;}
+.roadmap-check{
+  width:22px;height:22px;border-radius:50%;border:2px solid var(--border2);
+  flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;margin-top:1px;font-size:.7rem;
+}
+.roadmap-check.done{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* ══ BADGES / GAMIFICATION ══ */
+.badge-strip{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.badge-item{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  opacity:.35;transition:all .4s;
+}
+.badge-item.earned{opacity:1;animation:badgeEarn .6s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes badgeEarn{from{transform:scale(0) rotate(-15deg)}to{transform:scale(1) rotate(0)}}
+.badge-ico{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid var(--border);}
+.badge-item.earned .badge-ico{border-color:var(--t);background:var(--tbg);}
+.badge-lbl{font-size:.62rem;font-weight:700;color:var(--gray2);text-align:center;max-width:48px;line-height:1.2;}
+.badge-item.earned .badge-lbl{color:var(--td);}
+
+/* ══ DARK MODE - additional fixes ══ */
+.dark-mode .hook-eyebrow{background:rgba(38,169,154,.15);border-color:rgba(38,169,154,.3);}
+.dark-mode .hook-stat-ic{box-shadow:0 4px 12px rgba(0,0,0,.4);}
+.dark-mode .hook-meta-v{color:var(--t);}
+.dark-mode .sec-intro-badge{box-shadow:0 12px 36px rgba(0,0,0,.5);}
+.dark-mode .score-badge{opacity:.95;}
+.dark-mode .rh{background:linear-gradient(135deg,#0d1b2e,#0f172a);}
+.dark-mode .rh-grid{background-image:linear-gradient(rgba(38,169,154,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(38,169,154,.03) 1px,transparent 1px);}
+.dark-mode .cmp-card{background:linear-gradient(135deg,#162032,#1e2d42);}
+.dark-mode .toast{background:#1e293b;border-color:#334155;}
+
+
+.dark-mode #scr-hook{background:linear-gradient(160deg,#0a1525 0%,#0f1e35 60%,#0d1b2e 100%);}
+.dark-mode .hook-card{background:rgba(26,39,68,.95);border-color:rgba(255,255,255,.07);backdrop-filter:blur(10px);}
+.dark-mode .hook-mesh::before{background:radial-gradient(circle,rgba(38,169,154,.18) 0%,transparent 70%);}
+.dark-mode .hook-stat{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08);}
+.dark-mode .hook-stat-ic{background:rgba(38,169,154,.25);}
+.dark-mode .trust-badge{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);}
+.dark-mode .stage-inner .stage-header .stage-logo-text{color:#e2eaf4;}
+.dark-mode .hook-eyebrow{background:rgba(38,169,154,.18);border-color:rgba(38,169,154,.3);color:var(--tl);}
+.dark-mode .hook-h1 em{color:var(--tl);}
+.dark-mode .rb-lbl{color:#4a607a;}
+.dark-mode .scholar-item{background:#253348;border-color:#334155;}
+.dark-mode .scholar-item:hover{background:#2d3f56;border-color:var(--t);}
+.dark-mode .scholar-name{color:#e2eaf4;}
+.dark-mode .roadmap-card{background:#1e293b;border-color:#334155;}
+.dark-mode .roadmap-task{color:#e2eaf4;}
+.dark-mode .roadmap-month{color:var(--tl);}
+.dark-mode .roadmap-check{border-color:#3d5068;}
+.dark-mode .badge-lbl{color:#64748b;}
+.dark-mode .badge-item.earned .badge-lbl{color:var(--tl);}
+.dark-mode .badge-item.earned .badge-ico{background:rgba(38,169,154,.15);border-color:var(--t);}
+
+/* ══ RADAR CARD ══ */
+.radar-card{
+  background:var(--card);border-radius:20px;padding:18px;
+  margin-bottom:12px;box-shadow:var(--sh2);border:1px solid var(--border);
+  animation:cardUp .5s ease .9s both;
+}
+.radar-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:10px;}
+.radar-title{font-size:.9rem;font-weight:800;color:var(--p);margin-bottom:3px;}
+.radar-sub{font-size:.72rem;color:var(--gray2);line-height:1.5;}
+.radar-badge{font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.radar-svg-wrap{margin-bottom:4px;}
+
+.radar-panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.radar-panel{background:var(--bg);border-radius:14px;padding:11px 12px;border:1px solid var(--border);}
+.radar-panel-title{font-size:.72rem;font-weight:700;color:var(--gray2);margin-bottom:9px;letter-spacing:.3px;}
+
+.radar-legend-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.radar-legend-item:last-child{margin-bottom:0;}
+.radar-legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.radar-legend-body{flex:1;min-width:0;}
+.radar-legend-name{font-size:.72rem;font-weight:600;color:var(--p);display:block;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.radar-bar-wrap{background:var(--border);border-radius:100px;height:4px;overflow:hidden;}
+.radar-bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1) .8s;}
+.radar-legend-pct{font-size:.72rem;font-weight:800;flex-shrink:0;}
+
+.radar-insight{
+  display:flex;align-items:center;gap:10px;
+  background:var(--bg2);border-radius:12px;padding:11px 13px;
+  border:1px solid var(--border);
+  font-size:.79rem;color:var(--gray);line-height:1.55;
+}
+.radar-insight-ico{
+  width:30px;height:30px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+
+.dark-mode .radar-card{background:#1e293b;border-color:#334155;}
+.dark-mode .radar-panel{background:#253348;border-color:#334155;}
+.dark-mode .radar-title{color:#e2eaf4;}
+.dark-mode .radar-legend-name{color:#e2eaf4;}
+.dark-mode .radar-bar-wrap{background:#334155;}
+.dark-mode .radar-insight{background:#253348;border-color:#334155;color:#94a3b8;}
+
+/* ══ DARK MODE - CTA card & buttons fixes ══ */
+.dark-mode .cta-card{background:linear-gradient(135deg,#0d1b2e,#162032);border:1px solid rgba(255,255,255,.07);}
+.dark-mode .cta-card h3{color:#e2eaf4;}
+.dark-mode .cta-card p{color:rgba(255,255,255,.5);}
+.dark-mode .btn-dl{background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.12);}
+.dark-mode .btn-dl:hover{background:rgba(255,255,255,.13);}
+.dark-mode .btn-rst{color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);}
+.dark-mode .btn-rst:hover{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.22);}
+.dark-mode .btn-next{background:var(--t);color:#fff;}
+.dark-mode .btn-next:hover:not(:disabled){background:var(--td);}
+.dark-mode .ah{background:#0d1b2e;}
+.dark-mode .ins-val{color:#e2eaf4;}
+.dark-mode .ins-lbl{color:#64748b;}
+.dark-mode .rb-lbl::before,.dark-mode .rb-lbl::after{background:#334155;}
+.dark-mode .tip{background:#253348;border-right-color:var(--t);}
+.dark-mode .tip p{color:#e2eaf4;}
+.dark-mode .tip-n{background:var(--t);}
+.dark-mode .sec-hd-l{color:#e2eaf4;}
+.dark-mode .sec-hd:hover{background:#253348;}
+.dark-mode .roadmap-check{border-color:#3d5068;color:transparent;}
+.dark-mode .roadmap-check.done{color:#fff;}
 
 </style>
 </head>
@@ -914,7 +994,7 @@ body{transition:background .3s ease,color .3s ease;}
         <div class="stage-logo-text">Uni<span class="p">P</span>ath</div>
       </div>
       <div class="stage-pill"><div class="eyebrow-dot"></div>اختر مسارك</div>
-      <h2 class="stage-title">عايز تقدم لأي مرحلة؟</h2>
+      <h2 class="stage-title">أنت تتقدم لأي مرحلة؟</h2>
       <p class="stage-sub">التقييم مخصص لكل مرحلة — الأسئلة والأوزان تختلف تماماً بناءً على اختيارك.</p>
     </div>
     <div class="stage-cards">
@@ -1133,13 +1213,14 @@ const QS_UG=[
 
   // ── LANGUAGE (6) ── weight 0.22
   {id:'u_la1',sec:'language',
-   txt:'هل لديك شهادة IELTS أو TOEFL أو ما يعادلها؟',
-   micro:'ليس شرطاً في كل المنح، لكنه يفتح أبواباً أكثر ويثبت مستواك رسمياً.',
+   txt:'ما وضعك مع اللغة الإنجليزية واختباراتها؟',
+   micro:'ليس شرطاً في كل المنح — كثير منها تقبل بدائل أو تعطي مهلة للاختبار لاحقاً.',
    ans:[
-    {v:97,l:'نعم، درجة 6.0+ (IELTS) أو ما يعادلها',s:'يفتح معظم أبواب المنح الدولية'},
-    {v:78,l:'نعم، درجة أقل من 6.0',s:'يُذكر في الملف — وتطوير اللغة هدف قريب'},
-    {v:63,l:'شهادة من معهد لغة محلي',s:'تُحسب — أضف درجتك ومدة الدراسة'},
-    {v:43,l:'لا توجد شهادة رسمية',s:'كثير من المنح تقبل بيان من مدرسة أو دليل كفاءة — ابدأ بمحادثات أونلاين'}
+    {v:97,l:'عندي IELTS 6.0+ أو TOEFL أو ما يعادلها',s:'يفتح معظم أبواب المنح الدولية مباشرة'},
+    {v:78,l:'عندي شهادة درجتها أقل من 6.0',s:'يُذكر في الملف — الدرجة قابلة للتحسين بتحضير جيد'},
+    {v:60,l:'عندي شهادة من معهد لغة محلي',s:'تُحسب كدليل على الاهتمام — أضف مدة الدراسة والمستوى'},
+    {v:40,l:'ما عندي شهادة لغة وبدأت أتعلم',s:'الخطوة القادمة: سجّل في دورة — 3 أشهر كافية لتحضير IELTS'},
+    {v:22,l:'ما درست إنجليزي بشكل منتظم',s:'ابدأ بمستوى أساسي — YouTube وDuolingo نقطة انطلاق ممتازة'}
    ]},
   {id:'u_la2',sec:'language',
    txt:'كيف تقيّم مستوى فهمك للغة الإنجليزية قراءةً واستماعاً؟',
@@ -1340,21 +1421,22 @@ const QS_MS=[
 
   // ── LANGUAGE (6) ── weight 0.20
   {id:'m_la1',sec:'language',
-   txt:'هل لديك شهادة IELTS أو TOEFL أو ما يعادلها حديثة؟',
+   txt:'ما وضعك مع شهادة اللغة الإنجليزية؟',
    micro:'الماجستير يتطلب مستوى أعلى — لكن كثير من المنح تقبل بدائل أو تعطي مهلة.',
    ans:[
-    {v:97,l:'IELTS 7.0+ أو TOEFL 100+ حديثة',s:'يفتح أغلب أبواب المنح الدولية'},
-    {v:84,l:'IELTS 6.5 أو TOEFL 90-99',s:'مناسب لمعظم المنح — حاول ترفعه إن أمكن'},
-    {v:67,l:'IELTS 6.0 أو ما يعادله',s:'يكفي لبعض المنح — تحقق من متطلبات كل منحة'},
-    {v:43,l:'شهادة قديمة أو أقل من 6.0',s:'جدّد الاختبار — 3 أشهر تحضير جيد كافية للتحسن'}
+    {v:97,l:'IELTS 7.0+ أو TOEFL 100+ وحديثة',s:'يفتح أغلب أبواب المنح الدولية بلا قيود'},
+    {v:80,l:'IELTS 6.5 أو TOEFL 90-99',s:'مناسب لمعظم المنح الكبرى — حاول رفعه قبل التقديم'},
+    {v:60,l:'IELTS 6.0 أو ما يعادله',s:'يكفي لبعض المنح — تحقق من متطلبات منحتك تحديداً'},
+    {v:38,l:'شهادة قديمة أو أقل من 6.0',s:'جدّد الاختبار — 3 أشهر تحضير جيد كافية للتحسن'},
+    {v:20,l:'ما عندي شهادة لغة بعد',s:'أولوية قصوى — كثير من المنح تقبل انتظار النتيجة إن قدّمت مبكراً'}
    ]},
   {id:'m_la2',sec:'language',
    txt:'كيف تقيّم قدرتك على الكتابة الأكاديمية الإنجليزية؟',
    ans:[
     {v:97,l:'قوية — أكتب بأسلوب أكاديمي واضح',s:'استثمرها في SOP يقنع اللجان'},
-    {v:78,l:'جيدة — أحتاج مراجعة لغوية',s:'مراجعة متخصصة واحدة تكفي لرفع المستوى'},
-    {v:60,l:'متوسطة — أخطاء ملحوظة',s:'ابدأ بكتابة يومية قصيرة — الكمية تبني الجودة'},
-    {v:33,l:'ضعيفة',s:'هذا ما يجب التركيز عليه أولاً — مساعدة متخصص ضرورية'}
+    {v:76,l:'جيدة — أحتاج مراجعة لغوية',s:'مراجعة متخصصة واحدة تكفي لرفع المستوى'},
+    {v:52,l:'متوسطة — أخطاء ملحوظة',s:'ابدأ بكتابة يومية قصيرة — الكمية تبني الجودة'},
+    {v:25,l:'ضعيفة — أجد صعوبة في الكتابة',s:'هذا ما يجب التركيز عليه أولاً — مساعدة متخصص ضرورية'}
    ]},
   {id:'m_la3',sec:'language',
    txt:'هل تتواصل أو تعمل باللغة الإنجليزية بشكل منتظم؟',
@@ -1568,21 +1650,24 @@ const QS_PHD=[
 
   // ── LANGUAGE (5) ── weight 0.17
   {id:'p_la1',sec:'language',
-   txt:'هل لديك IELTS 7.0+ أو TOEFL 100+ حديثة؟',
-   micro:'الدكتوراه تتطلب مستوى لغوي يُمكّنك من قراءة الأبحاث والكتابة الأكاديمية بسلاسة.',
+   txt:'ما مستوى شهادتك أو كفاءتك في اللغة الإنجليزية؟',
+   micro:'الدكتوراه تحتاج مستوى يُمكّنك من قراءة الأبحاث والكتابة الأكاديمية — والشهادة تثبت ذلك.',
    ans:[
-    {v:97,l:'نعم، 7.5+ أو TOEFL 110+',s:'مستوى مثالي للعمل البحثي الدولي'},
-    {v:80,l:'7.0 أو TOEFL 100-109',s:'مناسب لمعظم برامج الدكتوراه'},
-    {v:63,l:'6.5 أو ما يعادله',s:'قد لا يكفي — تحقق من متطلبات برنامجك تحديداً'},
-    {v:35,l:'أقل من 6.5 أو لا شهادة',s:'أولوية قصوى — لا يمكن التقدم لمعظم برامج الدكتوراه بدونها'}
+    {v:97,l:'IELTS 7.5+ أو TOEFL 110+',s:'مستوى مثالي للبحث العلمي الدولي'},
+    {v:80,l:'IELTS 7.0 أو TOEFL 100-109',s:'مناسب لمعظم برامج الدكتوراه الدولية'},
+    {v:58,l:'IELTS 6.5 أو TOEFL 90-99',s:'قد لا يكفي لبعض البرامج — ابدأ بالتحضير للرفع'},
+    {v:35,l:'شهادة أقل من 6.5 أو قديمة',s:'جدّد الاختبار — مستوى 7.0 قابل للتحقق في 3-6 أشهر'},
+    {v:18,l:'ما عندي شهادة لغة بعد',s:'سجّل في أقرب دورة IELTS — الشهادة ضرورية حتى لو مستواك جيد'}
    ]},
   {id:'p_la2',sec:'language',
    txt:'هل تتقن المصطلحات البحثية الأكاديمية في مجالك؟',
+   micro:'الدكتوراه تعتمد كلياً على القراءة والكتابة الأكاديمية — هذه مهارة لا بديل عنها.',
    ans:[
     {v:97,l:'نعم، أقرأ وأكتب بطلاقة أكاديمية',s:'ضروري للتعامل مع المشرف والأبحاث يومياً'},
-    {v:76,l:'مستوى جيد — أفهم أغلب المصطلحات',s:'مارس الكتابة الأكاديمية بشكل منتظم'},
-    {v:57,l:'معرفة جزئية بالمصطلحات',s:'قراءة أبحاث في مجالك يومياً تُحل هذا بسرعة'},
-    {v:33,l:'ضعيف في اللغة الأكاديمية',s:'هذا ما يجب العمل عليه أولاً — الدكتوراه تعتمد عليه كلياً'}
+    {v:74,l:'مستوى جيد — أفهم أغلب المصطلحات',s:'مارس الكتابة الأكاديمية بشكل منتظم في مجالك'},
+    {v:48,l:'معرفة جزئية بالمصطلحات',s:'قراءة بحثين أسبوعياً في مجالك تُحل هذا بسرعة'},
+    {v:22,l:'ضعيف في اللغة الأكاديمية',s:'ابدأ بقراءة abstracts يومياً — الباب يُفتح بالتدريج'},
+    {v:12,l:'لم أقرأ أبحاثاً أكاديمية إنجليزية بعد',s:'هذا ما يجب أن تبدأ به اليوم فوراً'}
    ]},
   {id:'p_la3',sec:'language',
    txt:'هل كتبت أي نص أكاديمي طويل بالإنجليزية؟ (بحث، تقرير، مقترح…)',
@@ -1953,9 +2038,9 @@ function calcScore(){
   const score=Math.round(total/tw);
   const sorted=[...secs].sort((a,b)=>ss[b.id]-ss[a.id]);
   let level,timeline,cmp;
-  if(score>=72){level='excellent';timeline='جاهز الآن — ابدأ التقديم فوراً';cmp=88;}
-  else if(score>=48){level='good';timeline='4–8 أسابيع من العمل المكثف';cmp=54;}
-  else{level='needswork';timeline='3–6 أشهر من التحضير المنتظم';cmp=22;}
+  if(score>=72){level='excellent';timeline='جاهز الآن — ابدأ التقديم فوراً';cmp=Math.min(95,Math.round(score*0.82+Math.random()*8));}
+  else if(score>=48){level='good';timeline='4–8 أسابيع من العمل المكثف';cmp=Math.min(72,Math.round(score*0.68+Math.random()*7));}
+  else{level='needswork';timeline='3–6 أشهر من التحضير المنتظم';cmp=Math.min(40,Math.max(12,Math.round(score*0.45+Math.random()*6)));}
   return{score,level,ss,strongest:sorted[0],weakest:sorted[sorted.length-1],timeline,cmp,imp:Math.min(36,Math.round((100-score)*.42))};
 }
 
@@ -2033,8 +2118,13 @@ function showResults(){
   const hintImp=document.getElementById('hint-imp');
   if(hint&&hintImp){hint.style.display='inline-flex';hintImp.textContent=r.imp;}
   if(r.level==='excellent')setTimeout(launchConfetti,700);
-  saveAssessmentToAdmin(r,S.stage||'ug');
-  saveAssessmentToAdmin(r,S.stage||'ug');
+  // Badge notifications
+  setTimeout(()=>{
+    const secs=SECTIONS[S.stage]||SECTIONS_UG;
+    const strongSecs=secs.filter(s=>r.ss[s.id]>=70);
+    if(strongSecs.length>=3)toast('حصلت على وسام "ملف متكامل" 🏆','⭐',3000);
+    else if(r.score>=72)toast('ملفك قوي — استحققت وسام "جاهز للتقديم" 🚀','🎯',3000);
+  },1200);
   document.getElementById('rb').innerHTML=buildResults(r);
   // animate bars + cmp
   requestAnimationFrame(()=>{
@@ -2098,6 +2188,17 @@ function buildResults(r){
 
   // ── Timeline ──
   h+=`<div class="tl-card"><div class="tl-ico">⏱</div><div><div class="tl-lbl">الجدول الزمني المقدَّر للتحسّن</div><div class="tl-val">${r.timeline}</div></div></div>`;
+
+  // ── Badges ──
+  h+=`<div class="rb-lbl">إنجازاتك المكتسبة</div>`;
+  h+=`<div class="scholar-card">`+buildBadges(r,S.stage||'ug')+`</div>`;
+
+  // ── Readiness Radar ──
+  h+=`<div class="rb-lbl">رادار الجاهزية — بصمة ملفك</div>`;
+  h+=buildRadar(r, S.stage||'ug');
+
+  // ── Scholarship Section (removed per design decision) ──
+  // السيكشن دا محذوف حالياً — يمكن إضافته لاحقاً
 
   // ── Disclaimer ──
   h+=`<div class="disc-card">
@@ -2360,11 +2461,6 @@ function submitForm(){
     const nm=document.getElementById('fn').value.trim();
     const em=document.getElementById('fe').value.trim();
     const ph=document.getElementById('fp').value.trim();
-    saveContactToAdmin(nm,em,ph,S.result?.score||0);
-    const _nm=document.getElementById('fn').value.trim();
-    const _em=document.getElementById('fe').value.trim();
-    const _ph=document.getElementById('fp').value.trim();
-    saveContactToAdmin(_nm,_em,_ph,S.result?.score||0);
     document.getElementById('modal-inner').innerHTML=`<div class="form-ok"><div class="form-ok-ico">✅</div><h4>تم الإرسال بنجاح!</h4><p>سيتواصل معك فريق UniPath على واتساب قريباً.</p></div>`;
     setTimeout(closeModal,2500);
   },1000);
@@ -2397,305 +2493,288 @@ function toggleDark(){
 }
 initDark();
 
-// Admin access via URL param or keyboard shortcut
-if(window.location.search.includes('admin=1')){
-  document.addEventListener('DOMContentLoaded',()=>showScr('admin-login'));
-}
-document.addEventListener('keydown',(e)=>{
-  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){showScr('admin-login');}
-});
 
 
 
-// ═══ DARK MODE ═══
-function initDark(){
-  const saved=localStorage.getItem('up_dark');
-  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if(saved==='1'||(saved===null&&prefersDark)){
-    document.documentElement.classList.add('dark-mode');
-    const btn=document.getElementById('dm-toggle');
-    if(btn)btn.textContent='☀️';
-  }
-}
-function toggleDark(){
-  const isDark=document.documentElement.classList.toggle('dark-mode');
-  localStorage.setItem('up_dark',isDark?'1':'0');
-  const btn=document.getElementById('dm-toggle');
-  if(btn)btn.textContent=isDark?'☀️':'🌙';
-  toast(isDark?'تم تفعيل الوضع المظلم':'تم تفعيل الوضع الفاتح','🌙',1800);
-}
-initDark();
-// Admin access
-if(window.location.search.includes('admin=1')){
-  document.addEventListener('DOMContentLoaded',()=>showScr('admin-login'));
-}
-document.addEventListener('keydown',(e)=>{
-  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){showScr('admin-login');}
-});
 
-// ═══ ADMIN ═══
-const ADMIN_PASS='unipath2025';
-let adminData={assessments:[],contacts:[],filtered:null};
 
-function adminLogin(){
-  const pass=document.getElementById('admin-pass').value;
-  if(pass===ADMIN_PASS){
-    document.getElementById('login-err').classList.remove('show');
-    showScr('admin');loadAdminData();
-  }else{
-    document.getElementById('login-err').classList.add('show');
-    document.getElementById('admin-pass').value='';
-  }
-}
-function adminLogout(){showScr('hook');}
 
-function loadAdminData(){
-  try{
-    adminData.assessments=JSON.parse(localStorage.getItem('up_assessments')||'[]');
-    adminData.contacts=JSON.parse(localStorage.getItem('up_contacts')||'[]');
-  }catch(e){adminData={assessments:[],contacts:[]};}
-  if(adminData.assessments.length===0){
-    const stages=['ug','ms','phd'],snames={ug:'البكالوريوس',ms:'الماجستير',phd:'الدكتوراه'};
-    const secs={ug:['academic','language','activities','documents'],ms:['academic','language','experience','documents'],phd:['research','language','academic','documents']};
-    for(let i=0;i<18;i++){
-      const st=stages[Math.floor(Math.random()*3)];
-      const sc=35+Math.floor(Math.random()*60);
-      const lv=sc>=72?'excellent':sc>=48?'good':'needswork';
-      const ss=secs[st];
-      adminData.assessments.push({id:i+1,date:new Date(Date.now()-Math.random()*30*86400000).toLocaleDateString('ar-EG'),stage:st,stageName:snames[st],score:sc,level:lv,strongest:ss[0],weakest:ss[ss.length-1]});
-    }
-  }
-  if(adminData.contacts.length===0){
-    adminData.contacts=[
-      {id:1,name:'أحمد محمد',email:'ahmed@email.com',phone:'+249912345678',score:72,date:'2025-03-20',status:'new'},
-      {id:2,name:'فاطمة علي',email:'fatima@email.com',phone:'+249987654321',score:58,date:'2025-03-19',status:'review'},
-      {id:3,name:'خالد إبراهيم',email:'khaled@email.com',phone:'+249911111111',score:84,date:'2025-03-18',status:'done'},
-    ];
-  }
-  renderAdmin();
-}
+// ═══ SCHOLARSHIP DATA ═══
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// يمكن تعديل بيانات المنح هنا بسهولة:
+//   name    → اسم المنحة (يظهر في البطاقة)
+//   country → الدولة أو الجهة (يظهر تحت الاسم)
+//   bg      → لون خلفية حرف المنحة (HEX)
+//   detail  → وصف قصير للمنحة
+//   url     → رابط الموقع الرسمي للمنحة
+//   fit     → مستوى الملاءمة: 'high' = تناسبك جيداً | 'med' = مناسبة مع تحسينات
+//   matchScore → الحد الأدنى للدرجة لعرض المنحة (0 = تظهر دائماً)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const SCHOLARSHIPS={
+  ug:[
+    // --- منحة 1: عدّل هنا ---
+    {name:'منحة DAAD',country:'🇩🇪 ألمانيا',bg:'#004b87',detail:'تمويل دراسة ومعيشة — مفتوح للعرب',url:'https://www.daad.de',fit:'high',matchScore:0},
+    // --- منحة 2: عدّل هنا ---
+    {name:'منحة Erasmus+',country:'🇪🇺 أوروبا',bg:'#003399',detail:'تبادل طلابي ومنح — سهل التقديم',url:'https://erasmus-plus.ec.europa.eu',fit:'high',matchScore:0},
+    // --- منحة 3: عدّل هنا ---
+    {name:'Aga Khan Foundation',country:'🌍 دولي',bg:'#8b1a2a',detail:'يُركّز على أفريقيا وآسيا والشرق الأوسط',url:'https://www.akdn.org',fit:'med',matchScore:0},
+    // --- منحة 4: عدّل هنا ---
+    {name:'Opportunities Circle',country:'🌐 منح عربية',bg:'#26A99A',detail:'موقع متخصص في منح الطلاب العرب',url:'https://opportunitiescircle.com',fit:'high',matchScore:0},
+  ],
+  ms:[
+    // --- منحة 1: عدّل هنا ---
+    {name:'Fulbright',country:'🇺🇸 USA',bg:'#b22234',detail:'برنامج مرموق للدراسات العليا',url:'https://foreign.fulbrightonline.org',fit:'high',matchScore:0},
+    // --- منحة 2: عدّل هنا ---
+    {name:'DAAD',country:'🇩🇪 ألمانيا',bg:'#004b87',detail:'متنوع ومفتوح أكاديمياً — يقبل العرب',url:'https://www.daad.de',fit:'high',matchScore:0},
+    // --- منحة 3: عدّل هنا ---
+    {name:'Erasmus Mundus',country:'🇪🇺 أوروبا',bg:'#003399',detail:'برامج مشتركة بين جامعات أوروبية',url:'https://erasmus-plus.ec.europa.eu',fit:'med',matchScore:0},
+    // --- منحة 4: عدّل هنا ---
+    {name:'Korea GKS',country:'🇰🇷 كوريا',bg:'#003478',detail:'حكومية شاملة — مفتوحة للطلاب العرب',url:'https://www.studyinkorea.go.kr',fit:'med',matchScore:0},
+  ],
+  phd:[
+    // --- منحة 1: عدّل هنا ---
+    {name:'DAAD Research',country:'🇩🇪 ألمانيا',bg:'#004b87',detail:'منح بحثية مع مشرفين — مفتوح للعرب',url:'https://www.daad.de',fit:'high',matchScore:0},
+    // --- منحة 2: عدّل هنا ---
+    {name:'China CSC',country:'🇨🇳 الصين',bg:'#de2910',detail:'حكومية كاملة — خيارات واسعة للعرب',url:'https://www.campuschina.org',fit:'high',matchScore:0},
+    // --- منحة 3: عدّل هنا ---
+    {name:'Japan MEXT',country:'🇯🇵 اليابان',bg:'#bc002d',detail:'حكومية كاملة مع مشرف محدد',url:'https://www.mext.go.jp',fit:'med',matchScore:0},
+    // --- منحة 4: عدّل هنا ---
+    {name:'Korea GKS PhD',country:'🇰🇷 كوريا',bg:'#003478',detail:'حكومية شاملة للدكتوراه — يقبل العرب',url:'https://www.studyinkorea.go.kr',fit:'med',matchScore:0},
+  ]
+};
 
-function applyFilters(){
-  const level=document.getElementById('f-level').value;
-  const stage=document.getElementById('f-stage').value;
-  adminData.filtered=adminData.assessments.filter(a=>{
-    if(level!=='all'&&a.level!==level)return false;
-    if(stage!=='all'&&a.stage!==stage)return false;
-    return true;
+function buildRoadmap(r,stage){
+  const steps={
+    ug:[
+      {m:'الشهر 1-2',t:'تقوية اللغة الإنجليزية',d:'حضّر لـ IELTS أو طور مستواك — استهدف 6.0+',sec:'language',ico:'🌐'},
+      {m:'الشهر 2-3',t:'بناء ملف الأنشطة',d:'انضم لمبادرة أو تطوع — وثّق كل شيء بأرقام',sec:'activities',ico:'🏛'},
+      {m:'الشهر 3-4',t:'كتابة خطاب الحافز',d:'ابدأ المسودة: لماذا هذا؟ لماذا الآن؟ ماذا بعد؟',sec:'documents',ico:'✍️'},
+      {m:'الشهر 4',t:'طلب خطابات التوصية',d:'تواصل مع المعلمين مبكراً مع Brag Sheet جاهز',sec:'documents',ico:'📝'},
+      {m:'الشهر 5-6',t:'تقديم الطلبات',d:'راجع كل وثيقة — ثم اضغط Submit بثقة!',sec:null,ico:'🚀'},
+    ],
+    ms:[
+      {m:'الشهر 1-2',t:'رفع درجة IELTS',d:'استهدف 6.5+ — استثمر هذا الوقت بشكل مكثف',sec:'language',ico:'🌐'},
+      {m:'الشهر 2-3',t:'تطوير الـ SOP بعمق',d:'5 مسودات على الأقل — كل مراجعة تحسّنه',sec:'documents',ico:'✍️'},
+      {m:'الشهر 3',t:'تحديث CV باحترافية',d:'أضف إنجازات بأرقام — كل تجربة لها قيمة',sec:'documents',ico:'📋'},
+      {m:'الشهر 3-4',t:'تعزيز الخبرة والتواصل',d:'LinkedIn + أنشطة مهنية — التواصل يفتح أبواباً',sec:'experience',ico:'💼'},
+      {m:'الشهر 5-6',t:'تقديم لـ 5-8 منح',d:'التنويع يرفع الفرص — لا تعتمد على منحة واحدة',sec:null,ico:'🚀'},
+    ],
+    phd:[
+      {m:'الشهر 1-2',t:'تطوير المقترح البحثي',d:'أهم وثيقة — استشر أستاذاً متخصصاً',sec:'research',ico:'🔬'},
+      {m:'الشهر 2-3',t:'التواصل مع المشرفين',d:'أرسل 10+ رسائل مدروسة — رد واحد يكفي',sec:'research',ico:'📧'},
+      {m:'الشهر 3-4',t:'رفع شهادة اللغة',d:'استهدف IELTS 7.0+ — الدكتوراه تحتاج مستوى أعلى',sec:'language',ico:'🌐'},
+      {m:'الشهر 4',t:'وثائق وتوصيات بحثية',d:'Academic CV + Research Statement + توصيتان',sec:'documents',ico:'📋'},
+      {m:'الشهر 5-6',t:'تقديم الطلبات',d:'قدّم للجامعات والمنح المناسبة لمجالك البحثي',sec:null,ico:'🚀'},
+    ]
+  };
+  const s2=steps[stage]||steps.ug;
+  const scs=SECTIONS[stage]||SECTIONS_UG;
+  const weakIds=scs.filter(s=>r.ss[s.id]<60).map(s=>s.id);
+
+  // Determine urgency label based on score
+  const urgencyLabel = r.level==='excellent' ? 'اختياري' : r.level==='good' ? 'مهم' : 'أولوية قصوى';
+  const urgencyColor = r.level==='excellent' ? 'var(--green)' : r.level==='good' ? 'var(--orange)' : 'var(--red)';
+
+  let h='<div class="roadmap-timeline">';
+  s2.forEach((step,i)=>{
+    const isWeak=step.sec&&weakIds.includes(step.sec);
+    const isLast = i===s2.length-1;
+    const dotCls = isLast ? 'dot-active' : isWeak ? 'dot-active' : 'dot-later';
+    const statusTag = isLast
+      ? `<span style="background:rgba(38,169,154,.12);color:var(--t);font-size:.62rem;font-weight:700;padding:1px 7px;border-radius:100px;margin-right:6px;">الهدف النهائي</span>`
+      : isWeak
+        ? `<span style="background:rgba(225,29,72,.1);color:var(--red);font-size:.62rem;font-weight:700;padding:1px 7px;border-radius:100px;margin-right:6px;">★ أولوية</span>`
+        : '';
+    h+=`<div class="roadmap-step">
+      <div class="roadmap-dot ${dotCls}">${step.ico}</div>
+      <div class="roadmap-content">
+        <div class="roadmap-month">${step.m}${statusTag}</div>
+        <div class="roadmap-task">${step.t}</div>
+        <div class="roadmap-detail">${step.d}</div>
+      </div>
+      <div class="roadmap-status-dot" style="width:10px;height:10px;border-radius:50%;background:${isLast?'var(--t)':isWeak?'var(--red)':'var(--gray3)'};flex-shrink:0;margin-top:4px;"></div>
+    </div>`;
   });
-  renderAdmin();
-}
-function resetFilters(){
-  document.getElementById('f-period').value='all';
-  document.getElementById('f-level').value='all';
-  document.getElementById('f-stage').value='all';
-  adminData.filtered=null;renderAdmin();
+  return h+'</div>';
 }
 
-function renderAdmin(){
-  const data=adminData.filtered||adminData.assessments;
-  const total=data.length;
-  const avg=total?Math.round(data.reduce((s,a)=>s+a.score,0)/total):0;
-  const exc=data.filter(a=>a.level==='excellent').length;
-  document.getElementById('admin-stats').innerHTML=[
-    {ico:'📊',val:total,lbl:'إجمالي التقييمات',t:'+'+Math.floor(Math.random()*5)+' هذا الأسبوع'},
-    {ico:'⭐',val:avg+'%',lbl:'متوسط الدرجات',t:''},
-    {ico:'🏆',val:exc,lbl:'مستوى ممتاز',t:Math.round(exc/Math.max(total,1)*100)+'% من الإجمالي'},
-    {ico:'📩',val:adminData.contacts.length,lbl:'طلبات التواصل',t:adminData.contacts.filter(c=>c.status==='new').length+' جديد'},
-  ].map((s,i)=>`<div class="stat-card" style="animation-delay:${i*.05}s"><div class="stat-card-ico">${s.ico}</div><div class="stat-card-val">${s.val}</div><div class="stat-card-lbl">${s.lbl}</div>${s.t?`<div class="stat-card-trend">${s.t}</div>`:''}</div>`).join('');
+function buildRadar(r, stage){
+  const secs = SECTIONS[stage]||SECTIONS_UG;
+  const cx=160, cy=155, R=108, n=secs.length;
+  const labelR=R+28;
 
-  const ranges=[{l:'90-100%',min:90,max:100,c:'#34d399'},{l:'72-89%',min:72,max:89,c:'#26A99A'},{l:'48-71%',min:48,max:71,c:'#fbbf24'},{l:'0-47%',min:0,max:47,c:'#fb7185'}];
-  document.getElementById('chart-scores').innerHTML=ranges.map(r=>{
-    const cnt=data.filter(a=>a.score>=r.min&&a.score<=r.max).length;
-    const pct=total?Math.round(cnt/total*100):0;
-    return `<div class="mbc-row"><div class="mbc-lbl">${r.l}</div><div class="mbc-track"><div class="mbc-fill" style="width:${pct}%;background:${r.c}"></div></div><div class="mbc-val">${cnt}</div></div>`;
-  }).join('');
+  // Grid rings at 25,50,75,100%
+  const ringPcts=[25,50,75,100];
+  let gridSvg='';
+  ringPcts.forEach(pct=>{
+    const r2=R*(pct/100);
+    const pts=secs.map((_,i)=>{
+      const angle=(2*Math.PI*i/n)-Math.PI/2;
+      return `${cx+r2*Math.cos(angle)},${cy+r2*Math.sin(angle)}`;
+    }).join(' ');
+    const isLast=pct===100;
+    gridSvg+=`<polygon points="${pts}" fill="none" stroke="${isLast?'rgba(38,169,154,.18)':'rgba(128,150,170,.12)'}" stroke-width="${isLast?1.5:.8}" stroke-dasharray="${isLast?'':'3,3'}"/>`;
+    // ring label on right axis
+    const ax=cx+r2-2, ay=cy+5;
+    gridSvg+=`<text x="${ax}" y="${ay}" font-size="7" fill="rgba(128,150,170,.55)" text-anchor="end">${pct}</text>`;
+  });
 
-  const excC=data.filter(a=>a.level==='excellent').length,goodC=data.filter(a=>a.level==='good').length,nwC=data.filter(a=>a.level==='needswork').length;
-  const tots=excC+goodC+nwC||1;
-  const donutData=[{l:'ممتاز',c:'#34d399',v:excC},{l:'جيد',c:'#fbbf24',v:goodC},{l:'يحتاج عمل',c:'#fb7185',v:nwC}];
-  let angle=0;
-  const paths=donutData.map(d=>{
-    const pct=d.v/tots,a1=angle*Math.PI*2-Math.PI/2,a2=(angle+pct)*Math.PI*2-Math.PI/2;
-    angle+=pct;
-    const r=35,cx=45,cy=45,x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1),x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2),large=pct>.5?1:0;
-    return pct>0?`<path d="M${cx},${cy} L${x1},${y1} A${r},${r},0,${large},1,${x2},${y2} Z" fill="${d.c}" opacity=".85"/>`:'';
-  }).join('');
-  document.getElementById('donut-svg').innerHTML=`<circle cx="45" cy="45" r="20" fill="var(--card)"/>${paths}`;
-  document.getElementById('donut-legend').innerHTML=donutData.map(d=>`<div class="donut-item"><div class="donut-dot" style="background:${d.c}"></div>${d.l}: ${d.v}</div>`).join('');
+  // Axis lines
+  let axesSvg='';
+  secs.forEach((_,i)=>{
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    axesSvg+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(angle)}" y2="${cy+R*Math.sin(angle)}" stroke="rgba(128,150,170,.15)" stroke-width="1"/>`;
+  });
 
-  const lbl={excellent:'ممتاز',good:'جيد',needswork:'يحتاج عمل'};
-  const lcls={excellent:'status-exc',good:'status-good',needswork:'status-nw'};
-  const sn={academic:'أكاديمي',language:'لغة',activities:'أنشطة',documents:'وثائق',experience:'خبرة',research:'بحث'};
-  document.getElementById('assessments-tbody').innerHTML=data.slice(-15).reverse().map((a,i)=>`<tr><td style="color:var(--gray2)">${i+1}</td><td>${a.date}</td><td><span style="font-size:.72rem;color:var(--gray)">${a.stageName}</span></td><td><b style="color:var(--t)">${a.score}%</b></td><td><span class="status-pill ${lcls[a.level]}">${lbl[a.level]}</span></td><td style="color:var(--green);font-size:.75rem">${sn[a.strongest]||a.strongest}</td><td style="color:var(--red);font-size:.75rem">${sn[a.weakest]||a.weakest}</td></tr>`).join('');
+  // Score polygon
+  const scorePts=secs.map((s,i)=>{
+    const val=r.ss[s.id]||0;
+    const rr=R*(val/100);
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    return `${cx+rr*Math.cos(angle)},${cy+rr*Math.sin(angle)}`;
+  }).join(' ');
 
-  const clbl={new:'جديد',review:'قيد المراجعة',done:'مكتمل'};
-  const ccls={new:'status-new',review:'status-review',done:'status-done'};
-  document.getElementById('contacts-tbody').innerHTML=adminData.contacts.map((c,i)=>`<tr><td style="color:var(--gray2)">${i+1}</td><td><b>${c.name}</b></td><td style="font-size:.72rem;direction:ltr">${c.email}</td><td style="font-size:.72rem;direction:ltr">${c.phone}</td><td><b style="color:var(--t)">${c.score}%</b></td><td style="font-size:.72rem">${c.date}</td><td><span class="status-pill ${ccls[c.status]}">${clbl[c.status]}</span></td><td><button class="tbl-action" onclick="window.open('https://wa.me/'+encodeURIComponent('${c.phone}'),'_blank')" title="واتساب">💬</button><button class="tbl-action" onclick="updateContactStatus(${i})" title="تغيير الحالة">🔄</button></td></tr>`).join('');
+  // Ideal polygon (80%)
+  const idealPts=secs.map((_,i)=>{
+    const rr=R*0.80;
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    return `${cx+rr*Math.cos(angle)},${cy+rr*Math.sin(angle)}`;
+  }).join(' ');
+
+  // Dots on score polygon
+  let dotsSvg='';
+  secs.forEach((s,i)=>{
+    const val=r.ss[s.id]||0;
+    const rr=R*(val/100);
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    const dx=cx+rr*Math.cos(angle), dy=cy+rr*Math.sin(angle);
+    const col=val>=70?'#26A99A':val>=45?'#f59e0b':'#e11d48';
+    dotsSvg+=`<circle cx="${dx}" cy="${dy}" r="4.5" fill="${col}" stroke="white" stroke-width="1.5"/>`;
+  });
+
+  // Labels
+  let labelsSvg='';
+  secs.forEach((s,i)=>{
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    const lx=cx+labelR*Math.cos(angle);
+    const ly=cy+labelR*Math.sin(angle);
+    const val=r.ss[s.id]||0;
+    const col=val>=70?'#26A99A':val>=45?'#f59e0b':'#e11d48';
+    const anchor=lx<cx-5?'end':lx>cx+5?'start':'middle';
+    // icon + name split
+    const parts=s.name.split('');
+    labelsSvg+=`
+      <text x="${lx}" y="${ly-6}" text-anchor="${anchor}" font-size="12" dominant-baseline="middle">${s.icon}</text>
+      <text x="${lx}" y="${ly+9}" text-anchor="${anchor}" font-size="8.5" font-weight="700" fill="${col}" dominant-baseline="middle">${val}%</text>`;
+  });
+
+  // Center score ring
+  const overallCol=r.level==='excellent'?'#26A99A':r.level==='good'?'#f59e0b':'#e11d48';
+  const levelAr=r.level==='excellent'?'ممتاز':r.level==='good'?'جيد':'يحتاج عمل';
+
+  // Weak sections list
+  const weakSecs=secs.filter(s=>r.ss[s.id]<60).sort((a,b)=>r.ss[a.id]-r.ss[b.id]);
+  const strongSecs=secs.filter(s=>r.ss[s.id]>=70).sort((a,b)=>r.ss[b.id]-r.ss[a.id]);
+
+  const weakHtml=weakSecs.length?weakSecs.map(s=>`
+    <div class="radar-legend-item">
+      <div class="radar-legend-dot" style="background:#e11d48"></div>
+      <div class="radar-legend-body">
+        <span class="radar-legend-name">${s.icon} ${s.name}</span>
+        <div class="radar-bar-wrap"><div class="radar-bar-fill" style="width:${r.ss[s.id]}%;background:linear-gradient(90deg,#e11d48,#fb7185)"></div></div>
+      </div>
+      <span class="radar-legend-pct" style="color:#e11d48">${r.ss[s.id]}%</span>
+    </div>`).join(''):'<p style="font-size:.78rem;color:var(--gray2);padding:6px 0">🎉 لا نقاط ضعف حرجة — ملفك متوازن!</p>';
+
+  const strongHtml=strongSecs.length?strongSecs.map(s=>`
+    <div class="radar-legend-item">
+      <div class="radar-legend-dot" style="background:#26A99A"></div>
+      <div class="radar-legend-body">
+        <span class="radar-legend-name">${s.icon} ${s.name}</span>
+        <div class="radar-bar-wrap"><div class="radar-bar-fill" style="width:${r.ss[s.id]}%;background:linear-gradient(90deg,#26A99A,#32c4b4)"></div></div>
+      </div>
+      <span class="radar-legend-pct" style="color:#26A99A">${r.ss[s.id]}%</span>
+    </div>`).join(''):'<p style="font-size:.78rem;color:var(--gray2);padding:6px 0">ابدأ العمل على تقوية ملفك</p>';
+
+  return `<div class="radar-card" id="radar-card">
+    <div class="radar-header">
+      <div>
+        <div class="radar-title">بصمة ملفك الأكاديمي</div>
+        <div class="radar-sub">مقارنة مع المستوى المطلوب للمنح التنافسية</div>
+      </div>
+      <div class="radar-badge" style="background:${overallCol}22;color:${overallCol};border:1px solid ${overallCol}44">${levelAr} · ${r.score}%</div>
+    </div>
+
+    <div class="radar-svg-wrap">
+      <svg id="radar-svg" viewBox="0 0 320 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;overflow:visible">
+        <defs>
+          <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="${overallCol}" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="${overallCol}" stop-opacity="0.05"/>
+          </radialGradient>
+          <filter id="radarGlow">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        ${gridSvg}${axesSvg}
+        <!-- Ideal zone -->
+        <polygon points="${idealPts}" fill="rgba(38,169,154,.04)" stroke="rgba(38,169,154,.25)" stroke-width="1" stroke-dasharray="5,3"/>
+        <!-- Score shape -->
+        <polygon id="radar-poly" points="${scorePts}" fill="url(#radarFill)" stroke="${overallCol}" stroke-width="2" filter="url(#radarGlow)" style="transition:all 1s ease"/>
+        ${dotsSvg}
+        ${labelsSvg}
+        <!-- Legend: ideal line -->
+        <circle cx="16" cy="285" r="4" fill="none" stroke="rgba(38,169,154,.5)" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="24" y="289" font-size="8.5" fill="rgba(128,150,170,.7)">المستوى المطلوب 80%</text>
+        <circle cx="140" cy="285" r="4" fill="${overallCol}" stroke="white" stroke-width="1.5"/>
+        <text x="148" y="289" font-size="8.5" fill="rgba(128,150,170,.7)">درجتك الفعلية</text>
+      </svg>
+    </div>
+
+    <div class="radar-panels">
+      <div class="radar-panel">
+        <div class="radar-panel-title">⚡ تحتاج تقوية</div>
+        ${weakHtml}
+      </div>
+      <div class="radar-panel">
+        <div class="radar-panel-title">✦ نقاط قوتك</div>
+        ${strongHtml}
+      </div>
+    </div>
+
+    <div class="radar-insight">
+      ${r.level==='excellent'
+        ? `<span class="radar-insight-ico" style="background:rgba(38,169,154,.15);color:#26A99A">🚀</span><span>ملفك فوق المستوى المطلوب في معظم المحاور — ابدأ التقديم الآن.</span>`
+        : r.level==='good'
+        ? `<span class="radar-insight-ico" style="background:rgba(245,158,11,.15);color:#f59e0b">⚡</span><span>4-8 أسابيع على المحاور الضعيفة تنقلك لمنطقة الممتازين.</span>`
+        : `<span class="radar-insight-ico" style="background:rgba(225,29,72,.12);color:#e11d48">📍</span><span>ابدأ بأضعف محور — كل تحسن يرفع درجتك الإجمالية بشكل ملحوظ.</span>`
+      }
+    </div>
+  </div>`;
 }
 
-function updateContactStatus(i){
-  const s=['new','review','done'],c=adminData.contacts[i];
-  c.status=s[(s.indexOf(c.status)+1)%3];
-  try{localStorage.setItem('up_contacts',JSON.stringify(adminData.contacts));}catch(e){}
-  renderAdmin();
+function buildBadges(r,stage){
+  const scs=SECTIONS[stage]||SECTIONS_UG;
+  const badges=[
+    {ico:'🎯',lbl:'بدأت الرحلة',ok:true},
+    {ico:'📚',lbl:'قوي أكاديمياً',ok:(r.ss['academic']||0)>=65},
+    {ico:'🌐',lbl:'لغوي متقدم',ok:(r.ss['language']||0)>=65},
+    {ico:'🏛',lbl:'فاعل في مجتمعه',ok:(r.ss['activities']||r.ss['experience']||r.ss['research']||0)>=65},
+    {ico:'📋',lbl:'ملف مكتمل',ok:(r.ss['documents']||0)>=65},
+    {ico:'⭐',lbl:'ملف قوي',ok:r.score>=65},
+    {ico:'🚀',lbl:'جاهز للتقديم',ok:r.level==='excellent'},
+  ];
+  return '<div class="badge-strip">'+badges.map((b,i)=>
+    `<div class="badge-item ${b.ok?'earned':''}" style="${b.ok?'animation-delay:'+(i*.12)+'s':''}">
+      <div class="badge-ico">${b.ico}</div>
+      <div class="badge-lbl">${b.lbl}</div>
+    </div>`
+  ).join('')+'</div>';
 }
 
-function exportCSV(){
-  const data=adminData.filtered||adminData.assessments;
-  const rows=[['#','التاريخ','المرحلة','الدرجة','المستوى','أقوى قسم','أضعف قسم']];
-  data.forEach((a,i)=>rows.push([i+1,a.date,a.stageName,a.score+'%',a.level,a.strongest,a.weakest]));
-  const csv=rows.map(r=>r.join(',')).join('\n');
-  const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='UniPath-Assessments.csv';a.click();
-}
-function exportContactsCSV(){
-  const rows=[['#','الاسم','البريد','الهاتف','الدرجة','التاريخ','الحالة']];
-  adminData.contacts.forEach((c,i)=>rows.push([i+1,c.name,c.email,c.phone,c.score+'%',c.date,c.status]));
-  const csv=rows.map(r=>r.join(',')).join('\n');
-  const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='UniPath-Contacts.csv';a.click();
-}
-function copyStats(){
-  const data=adminData.filtered||adminData.assessments;
-  const avg=data.length?Math.round(data.reduce((s,a)=>s+a.score,0)/data.length):0;
-  const txt='UniPath Stats\nالتقييمات: '+data.length+'\nمتوسط الدرجات: '+avg+'%\nطلبات التواصل: '+adminData.contacts.length+'\nالتاريخ: '+new Date().toLocaleDateString('ar-EG');
-  navigator.clipboard.writeText(txt).then(()=>toast('تم نسخ الإحصائيات','📋',2000));
-}
-function saveAssessmentToAdmin(result,stage){
-  try{
-    const a=JSON.parse(localStorage.getItem('up_assessments')||'[]');
-    const sn={ug:'البكالوريوس',ms:'الماجستير',phd:'الدكتوراه'};
-    a.push({id:Date.now(),date:new Date().toLocaleDateString('ar-EG'),stage,stageName:sn[stage]||stage,score:result.score,level:result.level,strongest:result.strongest.id,weakest:result.weakest.id});
-    if(a.length>100)a.splice(0,a.length-100);
-    localStorage.setItem('up_assessments',JSON.stringify(a));
-  }catch(e){}
-}
-function saveContactToAdmin(name,email,phone,score){
-  try{
-    const c=JSON.parse(localStorage.getItem('up_contacts')||'[]');
-    c.unshift({id:Date.now(),name,email,phone,score,date:new Date().toLocaleDateString('ar-EG'),status:'new'});
-    if(c.length>200)c.pop();
-    localStorage.setItem('up_contacts',JSON.stringify(c));
-  }catch(e){}
-}
 </script>
 
-<!-- ════ ADMIN LOGIN ════ -->
-<section id="scr-admin-login" class="scr">
-  <div class="admin-login">
-    <div class="login-card">
-      <div class="login-logo">
-        <div class="login-logo-txt">Uni<span class="p">P</span>ath</div>
-        <div class="login-sub">لوحة التحكم</div>
-      </div>
-      <div class="login-title">تسجيل الدخول</div>
-      <div class="login-hint">للوصول لبيانات التقييمات وطلبات التواصل</div>
-      <div class="login-err" id="login-err">كلمة المرور غير صحيحة</div>
-      <div class="fg"><label class="fl">كلمة المرور</label>
-        <input class="fi" id="admin-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
-      </div>
-      <button class="btn-cta" onclick="adminLogin()" style="margin-top:4px">دخول ←</button>
-    </div>
-  </div>
-</section>
-
-<!-- ════ ADMIN PANEL ════ -->
-<section id="scr-admin" class="scr">
-  <header class="admin-hd">
-    <div class="admin-hd-logo">
-      <span>Uni<span class="p">P</span>ath</span>
-      <span style="font-size:.72rem;opacity:.5;font-weight:400;">لوحة التحكم</span>
-    </div>
-    <div class="admin-hd-right">
-      <button class="admin-logout" onclick="adminLogout()">تسجيل الخروج</button>
-    </div>
-  </header>
-  <div class="admin-body">
-
-    <!-- Stats -->
-    <div class="admin-stats" id="admin-stats"></div>
-
-    <!-- Filters -->
-    <div class="admin-filters">
-      <div class="admin-filters-title">🔽 تصفية البيانات</div>
-      <div class="filters-row">
-        <select class="filter-select" id="f-period" onchange="applyFilters()">
-          <option value="all">كل الفترات</option>
-          <option value="today">اليوم</option>
-          <option value="week">هذا الأسبوع</option>
-          <option value="month">هذا الشهر</option>
-        </select>
-        <select class="filter-select" id="f-level" onchange="applyFilters()">
-          <option value="all">كل المستويات</option>
-          <option value="excellent">ممتاز</option>
-          <option value="good">جيد</option>
-          <option value="needswork">يحتاج عمل</option>
-        </select>
-        <select class="filter-select" id="f-stage" onchange="applyFilters()">
-          <option value="all">كل المراحل</option>
-          <option value="ug">بكالوريوس</option>
-          <option value="ms">ماجستير</option>
-          <option value="phd">دكتوراه</option>
-        </select>
-        <button class="filter-reset" onclick="resetFilters()">↺ إعادة تعيين</button>
-      </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="admin-charts">
-      <div class="chart-card">
-        <div class="chart-card-title">📊 توزيع الدرجات</div>
-        <div class="mini-bar-chart" id="chart-scores"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-card-title">🥧 توزيع المستويات</div>
-        <div class="donut-wrap">
-          <svg class="donut-svg" width="90" height="90" viewBox="0 0 90 90" id="donut-svg"></svg>
-          <div class="donut-legend" id="donut-legend"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Assessments table -->
-    <div class="admin-table-card">
-      <div class="admin-table-hd">
-        <div class="admin-table-title">📋 التقييمات الأخيرة</div>
-        <div class="export-btns">
-          <button class="export-btn" onclick="exportCSV()">📥 CSV</button>
-          <button class="export-btn" onclick="copyStats()">📋 نسخ</button>
-        </div>
-      </div>
-      <div style="overflow-x:auto;">
-        <table class="admin-table" id="assessments-table">
-          <thead><tr>
-            <th>#</th><th>التاريخ</th><th>المرحلة</th><th>الدرجة</th><th>المستوى</th><th>أقوى قسم</th><th>أضعف قسم</th>
-          </tr></thead>
-          <tbody id="assessments-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Contact requests table -->
-    <div class="admin-table-card">
-      <div class="admin-table-hd">
-        <div class="admin-table-title">📩 طلبات التواصل</div>
-        <div class="export-btns">
-          <button class="export-btn" onclick="exportContactsCSV()">📥 CSV</button>
-        </div>
-      </div>
-      <div style="overflow-x:auto;">
-        <table class="admin-table" id="contacts-table">
-          <thead><tr>
-            <th>#</th><th>الاسم</th><th>البريد</th><th>الهاتف</th><th>الدرجة</th><th>التاريخ</th><th>الحالة</th><th>خيارات</th>
-          </tr></thead>
-          <tbody id="contacts-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 </body>
 </html>
